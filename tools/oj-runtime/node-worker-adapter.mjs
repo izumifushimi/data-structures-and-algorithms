@@ -1,0 +1,10 @@
+import {parentPort, workerData} from 'node:worker_threads';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+globalThis.self = globalThis;
+globalThis.location = {href:'http://localhost/'};
+globalThis.fetch = async url => new Response(await fs.readFile(new URL(`../../public/oj/cpp/${path.basename(String(url))}`,import.meta.url)));
+globalThis.postMessage = message => parentPort.postMessage(message);
+parentPort.on('message', data => globalThis.onmessage?.({data}));
+await import(workerData?.entry ?? './runner-worker.js');
+parentPort.postMessage({type:'ready'});

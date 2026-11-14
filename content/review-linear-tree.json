@@ -1,0 +1,657 @@
+{
+  "fdg8dyzhbd1z3521": {
+    "blocks": {
+      "0": {
+        "code": "list<datatype>li(10,5);\nlist<datatype>li1{2,3,4};",
+        "notes": [
+          "datatyoe 改为 datatype，并将第二种初始化示例命名为 li1，避免同一作用域重复定义。"
+        ]
+      },
+      "1": {
+        "code": "//list独有的操作\nli.push_front(4); //在li表头插入元素\nli.pop_front(); //删除第一个元素\nli.unique();//相邻且相等的重复元素删除到只保留一个\nli.reverse();//所有元素位置前后颠倒\nli.sort();\nli1.sort();\nli.merge(li1);//将两个已按升序排列的链表归并，随后 li1 为空\nli.sort(greater<datatype>());\nli1.sort(greater<datatype>());\nli.merge(li1,greater<datatype>());//将两个已按降序排列的链表归并，随后 li1 为空\nli.remove(3);//删除li所有值为3的元素\nli.remove_if(isEven);//删除li所有偶数\nli.remove_if(isOdd);",
+        "notes": [
+          "list 翻转接口为 reverse；merge 是有序归并而不是拼接。每次 merge 前把两表按对应比较规则排序，满足其前置条件。"
+        ]
+      }
+    },
+    "notes": [
+      "list 不支持下标和随机访问；merge 的两个链表必须按同一比较规则有序。示例中的 datatype、isEven/isOdd 与标准头文件需事先定义。"
+    ]
+  },
+  "uqmmo4zf165fax00": {
+    "blocks": {
+      "0": {
+        "code": "//输出数组a的每一个元素左端第一个比他小的值\nvoid left_smaller(int a[],int n){\n    stack<int>stk;\n    for(int i=0;i<n;i++){\n        while(!stk.empty()&&a[i]<=stk.top()) //a[i]不大于栈顶元素出栈\n            stk.pop();\n    if(stk.empty()){\n        cout<<\"not find\"<<' ';\n    }\n    else{\n        cout<<stk.top()<<' ';\n    }\n    stk.push(a[i]);//a[i]入栈,当前查询结束后，再让它成为后面元素的候选值\n}\n}",
+        "notes": [
+          "空字符常量非法，改为空格；输出元素之间增加分隔。"
+        ]
+      },
+      "1": {
+        "code": "//输出每个元素左侧连续且严格大于它的元素个数\nvoid left_bigger(int a[],int n){\n    stack<int>stk;\n    for(int i=0;i<n;i++){\n        while(!stk.empty()&&a[i]<a[stk.top()]) stk.pop();\n        if(stk.empty()) cout<<i<<' ';\n        else cout<<i-stk.top()-1<<' ';\n        stk.push(i);//下标入栈\n    }\n}",
+        "notes": [
+          "严格大于对应弹出 > 当前值的候选元素，相等元素作为边界保留；修正非法空字符常量。"
+        ]
+      }
+    },
+    "notes": [
+      "单调性必须说明观察方向。left_smaller 保留的是从栈底到栈顶严格递增的候选值。left_bigger 统计连续相邻区间长度，不是左侧所有较大元素总数。"
+    ]
+  },
+  "xwlnuwghb5uqp1sc": {
+    "blocks": {
+      "1": {
+        "code": "//在结点cs后面插入结点cs1\nvoid cs_insert_post(chainString &cs,chainString cs1){\n    if(cs1==NULL) return;\n    if(cs==NULL){\t\t//如果cs为空则cs1覆盖cs\n    cs=cs1;\n    cs->next=cs,cs->pre=cs; //next和pre都指向自己满足循环\n    return;\n}\n    chainString nxt=cs->next;\n    cs1->next=nxt,nxt->pre=cs1;\n    cs->next=cs1,cs1->pre=cs;\n    return;\n}\n//将字符串str放入链串，结果作为返回值\nchainString cs_assign(const char *str){\n        if(str==NULL || *str=='\\0') return NULL;\n        chainString ret=NULL,temp =new csNode;\n        if(temp==NULL) return NULL;\n        int sz=strlen(str),i,j,k=(sz-1)/M*M; //k表示能够装满完整链串结点的字符总数\n        for(i=0;i<min(sz,M);i++){ //构建第一个结点\n            temp->data[i]=str[i]; \n        }\n        cs_insert_post(ret,temp); //把temp插到ret\n    for(j=k;j>=M;j-=M){   //从后往前构建结点并插入第一个结点后面\n        temp=new csNode; \n        for(i=j;i<min(j+M,sz);i++){\n            temp->data[i-j]=str[i];\n        }\n        cs_insert_post(ret,temp);\n    }\n    return ret;\n    }\n\n//遍历链串cs，输出cs所表示的字符串\nvoid cs_traverse(chainString cs){\n    if(cs==NULL) return;\n    chainString cs1=cs;     //定义1个移动指针，从头指针开始\n    do{\t\t\t\t\t\t// do...while，它不是先判断条件，而是：先执行一次循环体，再判断条件。\n        cout<<cs1->data;\n        cs1=cs1->next;\n    }while(cs1!=cs); //因为是循环链表，当cs1重新回到头指针时，不在循环\n    cout<<endl;\n}",
+        "notes": [
+          "空输入直接返回空串；长度恰为 M 的倍数时，不额外创建无字符的尾结点。"
+        ]
+      },
+      "2": {
+        "code": "//删除循环链串 cs 中下标为 idx 的字符（从 0 开始）\nbool cs_delete(chainString &cs,int idx){\n    if(cs==NULL || idx<0) return false;\n    int i=0,j,len;\n    chainString cs1=cs;\n    do{\n        len=strlen(cs1->data);\n        if(i+len<=idx){\n            i+=len;\n            cs1=cs1->next;\n        }else{\n            for(j=idx-i;j<len;j++)\n                cs1->data[j]=cs1->data[j+1]; //包括结尾的 '\\0'\n            if(len==1){\n                if(cs1->next==cs1){\n                    delete cs1;\n                    cs=NULL;\n                }else{\n                    chainString pre=cs1->pre,nxt=cs1->next;\n                    pre->next=nxt;\n                    nxt->pre=pre;\n                    if(cs1==cs) cs=nxt;\n                    delete cs1;\n                }\n            }\n            return true;\n        }\n    }while(cs1!=cs);\n    return false;\n}",
+        "notes": [
+          "修正 int i=0;j,len 的语法；按循环链表只遍历一圈，防止越界索引造成死循环；移动字符时只复制到终止符；删掉头结点或唯一结点时同步更新 cs。"
+        ]
+      },
+      "3": {
+        "code": "int cs_compare(chainString cs1,chainString cs2){\n    int i=0,j=0;\n    chainString h1=cs1,h2=cs2;\n    while(true){\n        while(cs1!=NULL && cs1->data[i]=='\\0'){\n            cs1=cs1->next;\n            i=0;\n            if(cs1==h1) cs1=NULL;\n        }\n        while(cs2!=NULL && cs2->data[j]=='\\0'){\n            cs2=cs2->next;\n            j=0;\n            if(cs2==h2) cs2=NULL;\n        }\n        if(cs1==NULL && cs2==NULL) return 0;\n        if(cs1==NULL) return -1;\n        if(cs2==NULL) return 1;\n        unsigned char a=cs1->data[i],b=cs2->data[j];\n        if(a>b) return 1;\n        if(a<b) return -1;\n        ++i;++j;\n    }\n}",
+        "notes": [
+          "chainstring 大小写改正；比较终止符使用 == 和字符常量；记录起点并在绕回后视为到达串尾，避免相等的循环链串无限比较。"
+        ]
+      }
+    },
+    "notes": [
+      "n(n+1)/2+1 统计按位置选取的子串次数，包含空串，不是不同子串的数量。链串实现约定为无头结点的双向循环链表。"
+    ]
+  },
+  "rs4udzq4ez5ieiek": {
+    "blocks": {
+      "1": {
+        "code": "void sl_insert(seqList &sl,int p,datatype x){\n    if(sl.len>=N){\n        cout<<\"表满插入失败\"<<endl;\n        return;\n    }\n    if(p>=sl.len){\n        sl.data[sl.len]=x;\n    }else{\n        if(p<0) p=0;\n        for(int i=sl.len;i>p;i--)\n            sl.data[i]=sl.data[i-1];\n        sl.data[p]=x;\n    }\n    sl.len++;\n}",
+        "notes": [
+          "补齐 if/else 的大括号；后移循环改为 i>p，避免读取 data[-1]。"
+        ]
+      },
+      "2": {
+        "code": "void sl_pushback(seqList &sl,datatype x){\n    if(sl.len>=N) return;\n    sl.data[sl.len]=x;\n    sl.len++;\n}",
+        "notes": [
+          "尾插前检查数组容量。"
+        ]
+      },
+      "3": {
+        "code": "int sl_search(seqList sl,int p,datatype x){\n    if(p>=sl.len) return -1;\n    for(int i=max(0,p);i<sl.len;i++){\n        if(sl.data[i]==x) return i;\n    }\n    return -1;\n}",
+        "notes": [
+          "找到时立即返回下标；未找到统一返回 -1，避免首个不匹配元素就提前返回。"
+        ]
+      },
+      "4": {
+        "code": "void sl_delete(seqList &sl,int p){\n    if(p>=sl.len || p<0 || sl.len==0){ //排除p的无效位置\n        cout<<\"删除失败！\"<<endl;\n        return;\n    }\n    for(int i=p;i<sl.len-1;i++){\n        sl.data[i]=sl.data[i+1];\n    }\n    sl.len--;\n}",
+        "notes": [
+          "只移动到倒数第二个元素，避免表满时读取 data[N]。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "dzb4ust6p1tn1p4i": {
+    "blocks": {
+      "0": {
+        "code": "//求ve中所有区间长度为m的每一个区间中元素的最大值\nvoid rangeMax(vector<int>ve,int m){\n    if(m<=0 || m>(int)ve.size()) return;\n    deque<int>dq;\n    for(int i=0;i<ve.size();i++){\n        while(!dq.empty()&&ve[dq.back()]<ve[i])//去尾\n            dq.pop_back();\n        dq.push_back(i);\n        if(i>=m-1){\n            if(!dq.empty()&&i-dq.front()>=m)\n                dq.pop_front();\n            cout<<ve[dq.front()]<<' ';\n        }\n    }\n}",
+        "notes": [
+          "窗口长度须为 1..n；修正非法空字符常量。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "xg722hby8yvyr2i0": {
+    "blocks": {
+      "0": {
+        "code": "int sl_research(SeqList sl,int left,int right,datatype x){\n    if(left<0 || right>sl.len || left>right) return -1;\n    for(int i=left;i<right;i++){\n        if(sl.data[i]==x) return i;\n    }\n    return -1;\n}",
+        "notes": [
+          "按原循环采用左闭右开区间 [left,right)；补足边界检查，使用 sl.data，匹配时返回。"
+        ]
+      },
+      "1": {
+        "code": "int sl_delete(SeqList &sl,int left,int right){\n    if(left<0 || right>sl.len || left>right) return -1;\n    int len = right-left;\n    for(int i=right;i<sl.len;i++){\n        sl.data[i-len]=sl.data[i];\n    }\n    sl.len-=len;\n    return 1;\n}",
+        "notes": [
+          "删除需引用传参才能修改原表；数组访问补上 sl。"
+        ]
+      },
+      "2": {
+        "code": "ChainList cl_search(ChainList h,datatype x,int &ord){\n    ord=1;\n    if(h==NULL) return NULL;\n    while(h->next!=NULL && h->next->data!=x){\n        h=h->next;\n        ord++;\n    }\n    if(h->next!=NULL&&h->next->data==x){\n        return h->next;\n    }\n    return NULL;\n}",
+        "notes": [
+          "处理空头指针，避免解引用空指针。"
+        ]
+      },
+      "3": {
+        "code": "void cl_insert(ChainList h,datatype x1,datatype x2){\n    if(h==NULL) return;\n    while(h->next!=NULL&&h->next->data!=x1){\n        h=h->next;\n    }\n    if(h->next!=NULL){\n        ChainList p = new clNode;\n        p->data = x2;\n        p->next = h->next->next;\n        p->pre = h->next;\n        if(p->next!=NULL) p->next->pre=p;\n        h->next->next = p;\n    }\n    else{\n        ChainList p = new clNode;\n        p->data = x2;\n        p->next = NULL;\n        h->next = p;\n        p->pre = h;\n    }\n}",
+        "notes": [
+          "处理空头指针；在双向链表中间插入时同时修复后继的 pre。"
+        ]
+      },
+      "4": {
+        "code": "void cl_delete(ChainList h, datatype x){\n    if(h==NULL) return;\n    h = h->next;\n    while(h != NULL){\n        if(h->data == x){\n            ChainList p = h;\n            if(h==NULL) return;\n    h = h->next;\n            p->pre->next = p->next;\n            if(p->next != NULL){\n                p->next->pre = p->pre;\n            }\n            delete p;\n        }\n        else{\n            if(h==NULL) return;\n    h = h->next;\n        }\n    }\n}",
+        "notes": [
+          "空头指针直接返回。"
+        ]
+      },
+      "5": {
+        "code": "void merge(SeqList sl1,SeqList sl2,SeqList &sl){\n    if(sl1.len+sl2.len>N) return;\n    int i = 0, j = 0, k = 0;\n    while (i < sl1.len && j < sl2.len) {\n        if (sl1.data[i] <= sl2.data[j])\n            sl.data[k++] = sl1.data[i++];\n        else\n            sl.data[k++] = sl2.data[j++];\n    }\n    while (i < sl1.len) sl.data[k++] = sl1.data[i++];\n    while (j < sl2.len) sl.data[k++] = sl2.data[j++];\n    sl.len = k;\n}",
+        "notes": [
+          "删除函数末尾多余的右大括号。"
+        ]
+      },
+      "6": {
+        "code": "//把两个带头结点的双向链表依次复制到新表 cl\nvoid merge(ChainList cl1,ChainList cl2,ChainList &cl){\n    cl=new clNode;\n    ChainList tail=cl;\n    ChainList lists[2]={cl1,cl2};\n    for(int i=0;i<2;i++){\n        ChainList p=lists[i]==NULL?NULL:lists[i]->next;\n        while(p!=NULL){\n            tail->next=new clNode;\n            tail->next->data=p->data;\n            tail->next->pre=tail;\n            tail=tail->next;\n            p=p->next;\n        }\n    }\n}",
+        "notes": [
+          "原码未分配目标结点且不断移动输出头指针；增加新表头和尾指针，逐个分配复制，保留 cl 指向头结点。这里只按原意拼接，不进行有序归并。"
+        ]
+      },
+      "7": {
+        "code": "void cl_unique(ChainList h){\n    if(h==NULL) return;\n    ChainList p = h->next;\n    while(p!=NULL&&p->next!=NULL){\n        if(p->next->data==p->data){\n           ChainList q = p->next;\n            p->next = q->next;\n            if(q->next!=NULL)\n            q->next->pre = p;\n            delete q;q=NULL;\n        }\n        else{\n            p=p->next;\n        }\n    }\n}",
+        "notes": [
+          "先判 p 是否为空，再读取 p->next，支持空链表。"
+        ]
+      },
+      "8": {
+        "code": "//带头结点的循环双向链表，按原位置奇偶拆成两个循环双向链表\nvoid rcl_split(ChainList h, ChainList &h1, ChainList &h2){\n    h1=new clNode;\n    h2=new clNode;\n    h1->next=h1;h1->pre=h1;\n    h2->next=h2;h2->pre=h2;\n    if(h==NULL) return;\n    int pos=1;\n    while(h->next!=h){\n        ChainList q=h->next;\n        h->next=q->next;\n        q->next->pre=h;\n        ChainList dst=(pos%2==1)?h1:h2;\n        q->next=dst->next;\n        q->pre=dst;\n        dst->next->pre=q;\n        dst->next=q;\n        pos++;\n    }\n    h->pre=h;\n}",
+        "notes": [
+          "空表不再错误摘除头结点；初始化两个输出循环表的头结点，并同步 next/pre。保留原算法头插策略，两个输出表内的相对顺序会逆转。"
+        ]
+      },
+      "9": {
+        "code": "bool dcl_swap(dChainList &h,datatype x){\n    if(h==NULL) return false;\n    dChainList p=h->next;\n    while(p!=NULL && p->data!=x) p=p->next;\n    if(p==NULL || p->pre==h) return false;\n    dChainList pre=p->pre;\n    pre->pre->next=p;\n    pre->next=p->next;\n    if(p->next!=NULL) p->next->pre=pre;\n    p->pre=pre->pre;\n    p->next=pre;\n    pre->pre=p;\n    return true;\n}",
+        "notes": [
+          "查找先判空；用临时变量保存原前驱，修正 p->pre-pre 的拼写和相邻交换后的四个链域。"
+        ]
+      },
+      "10": {
+        "code": "void rcl_delete_pre(ChainList &p){\n    if(p==NULL || p->next==NULL) return;\n    else if(p->next==p){\n        delete p;p=NULL;\n        return;\n    }\n    else if(p->next->next==p){\n        ChainList q = p->pre;\n        p->pre=p;\n        p->next=p;\n        delete q;q=NULL;\n        return;\n    }\n    else{\n        ChainList q = p->pre;\n        q->pre->next=p;\n        p->pre=q->pre;\n        delete q;q=NULL;\n        return;\n    }\n}",
+        "notes": [
+          "空指针不能读取 next，&& 改为短路或条件。"
+        ]
+      },
+      "11": {
+        "code": "bool pal(string str){\n    stack<char> ss;\n    for(int i=0;i<(int)str.size();i++) ss.push(str[i]);\n    for(int j=0;j<(int)str.size();j++){\n        if(str[j]!=ss.top()) return false;\n        ss.pop();\n    }\n    return true;\n}",
+        "notes": [
+          "原 SeqStack 未提供成员函数且数组被写成函数调用；改用同章 STL 栈，按入栈后逐个比较出栈的原思路，避免 top 下标增减错误。"
+        ]
+      },
+      "12": {
+        "code": "bool check(string exp){\n    stack<char> ss;\n    for(int i=0;i<exp.size();i++){\n        if(exp[i]=='('||exp[i]=='['||exp[i]=='{') ss.push(exp[i]);\n        else{\n            if(exp[i]!=')'&&exp[i]!=']'&&exp[i]!='}') continue;\n            if(ss.empty()) return false;\n            char ch = ss.top();\n            if(exp[i]==')'&&ch!='(' || exp[i]==']'&&ch!='[' || exp[i]=='}'&&ch!='{') return false;\n            ss.pop();\n        }\n    }\n    if(!ss.empty()) return false;\n    return true;\n    \n}",
+        "notes": [
+          "按实际 push/top/pop/empty 用法使用 STL 栈；跳过非右括号字符需同时不等于三个右括号。"
+        ]
+      },
+      "13": {
+        "code": "string convert(int num,int k){\n    if(k<2 || k>36) return \"\";\n    if(num==0) return \"0\";\n    stack<char> ss;\n    long long value=num;\n    bool negative=value<0;\n    if(negative) value=-value;\n    while(value!=0){\n        int r=value%k;\n        char ch=(r<10)?'0'+r:'A'+r-10;\n        ss.push(ch);\n        value/=k;\n    }\n    string res=negative?\"-\":\"\";\n    while(!ss.empty()){\n        res+=ss.top();\n        ss.pop();\n    }\n    return res;\n}",
+        "notes": [
+          "无效进制应返回而不是继续；补上 0 和负数，INT_MIN 先转 long long 再取反；字母余数映射减 10；修正空字符串、未声明变量和栈类型。"
+        ]
+      },
+      "14": {
+        "code": "void f(int h[],int s[],int n){\nstack<int> st;\nfor (int i = 1; i <= n; i++) {\n        while (!st.empty() && h[st.top()] < h[i]) {\n            st.pop();\n        }\n\n        if (st.empty()) {\n            s[i] = i - 1;\n        } else {\n            int j = st.top();\n            s[i] = i - j - 1;\n        }\n\n        st.push(i);\n    }\n}",
+        "notes": [
+          "iny 改为 int，补上局部单调栈 st。数组约定从 1 开始，计算左侧连续严格小于当前高度的个数。"
+        ]
+      }
+    },
+    "notes": [
+      "本页各题片段并非可以直接拼接的完整程序。ChainList/SeqList 等需对应题目的类型定义；使用 pre 的题目要求双向链表，不能套用只有 next 的单链表定义。rcl_split 保留原头插方式，输出顺序与原序列相反。"
+    ]
+  },
+  "vn1vtgg058gsyr91": {
+    "blocks": {
+      "1": {
+        "code": "queue<datatype> qu;//底层为deque\nqueue<datatype, deque<datatype> > qu1;//底层需支持 pop_front，vector 不满足要求\nqueue<datatype, list<datatype> > qu2;//底层为list\n\nqu.push(3);\nqu.push(5);\nqu.push(2);\n\ncout << qu.size() << endl;//个数\ncout << qu.back() << endl;//获取队尾\n\nwhile (!qu.empty()) {\n    cout << qu.front() << ' ';\n    qu.pop();\n}\n\ncout << endl;",
+        "notes": [
+          "queue 的底层容器必须支持 pop_front；vector 不满足，改为 deque。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "owuypwz940xxzpvr": {
+    "blocks": {
+      "2": {
+        "code": "//获取栈顶元素\ndatatype top(seqStack ss){\n    if(empty(ss)){\n        cout<<\"栈是空的\"<<endl;\n        return 0; //因为函数类型不是void所以要有返回值\n    }\n    return ss.data[ss.top];\n}",
+        "notes": [
+          "修正类型名拼写。"
+        ]
+      },
+      "5": {
+        "code": "datatype stackData[N];\nint topIndex=-1;\nstackData[++topIndex]=2; //入栈，实际使用前检查容量\n--topIndex;             //出栈后此时为空\nif(topIndex>=0)\n    cout<<stackData[topIndex]<<endl;\nelse\n    cout<<\"栈是空的\"<<endl;",
+        "notes": [
+          "避免数组名 seqStack 与前文类型名冲突；出栈后不能直接访问下标 -1。该块是语句用法示例，应放在函数体内。"
+        ]
+      },
+      "7": {
+        "code": "//判断栈ss是否是空栈，是返回true否则返回false \nbool empty(chainStack cs){\n    return cs==NULL || cs->next==NULL;\n}",
+        "notes": [
+          "空头指针视为空栈。"
+        ]
+      },
+      "8": {
+        "code": "//向cs中压入一个值为x的结点\nvoid push(chainStack cs,datatype x){\n    if(cs==NULL) return;\n    chainStack q=new csNode;\n    if(q==NULL) return;\n    q->data=x;\n    q->next=cs->next;\n    cs->next=q;\n}",
+        "notes": [
+          "链栈要求带头结点；空头指针不能插入。"
+        ]
+      },
+      "11": {
+        "code": "//遍历，不破坏原链栈\nvoid traverse(chainStack cs){\n    if(cs==NULL) return;\n    for(chainStack p=cs->next;p!=NULL;p=p->next)\n        cout<<p->data<<' ';\n    cout<<endl;\n}",
+        "notes": [
+          "修正 while(!=empty) 的语法；原 pop 会通过共享头结点清空原链栈，遍历改用局部移动指针。"
+        ]
+      }
+    },
+    "notes": [
+      "顺序栈 top=-1 代表空，入栈先 ++top，出栈先读 data[top] 再 --top。链栈示例采用带头结点表示，头指针指向头结点，首个数据结点才是栈顶。"
+    ]
+  },
+  "bza8d7o3twyr1qqc": {
+    "blocks": {},
+    "notes": [
+      "表达式求值片段仅支持合法、二元 + - * /、整数操作数和圆括号，不支持一元负号、浮点数字面量或非法表达式。cal 在合法输入下栈必须至少有两个操作数；若作为开放 OJ 输入，应先校验语法。"
+    ]
+  },
+  "hhq73pa711g46fxo": {
+    "blocks": {
+      "0": {
+        "code": "//输出杨辉三角的前n行\nvoid yanghuiTriangle(int n){\n    if(n<=0) return;\n    int f1,f2,flag,w=4; //w是字符宽度，为了保证输出杨辉三角的形状。flag判断当前行是否已经输出第一个数字\n    queue<int>qu;\n    qu.push(0),qu.push(1); //初始化队列\n    while(n--){ //循环n次\n        qu.push(0); \n        flag=0;//flag等于0表示这一行还没有输出过第一个数字\n        do{\n            f1=qu.front();qu.pop();\n            f2=qu.front();\n            if(f2){\n                if(!flag){\n                    flag=1;\n                    cout<<setw(w*n+1)<<f2;//setw表示设置文本输出宽度w\n                }\n                else{\n                    cout<<setw(2*w)<<f2;\n                }\n            }\n            else{\n                cout<<endl;\n            }\n            qu.push(f1+f2);\n        }while(f2!=0);     \n    }\n}",
+        "notes": [
+          "n 为负数时 while(n--) 不会正常终止；非正行数直接返回。"
+        ]
+      }
+    },
+    "notes": [
+      "int 存储的杨辉三角只适合小规模示例；行数较大时需要 long long 或高精度整数。"
+    ]
+  },
+  "hrhvgg9q5xwn4zwn": {
+    "blocks": {
+      "1": {
+        "code": "//在结点gt后面插入一个原子，原子的值为x\nvoid gt_insert(gTable &gt,datatype x){\n    if(gt==NULL) gt=new gtNode;\t\n    gTable temp = new gtNode;\n    temp->ele.data=x;\t//temp->tag默认为false所以不需要写\n    temp->next=gt->next;\t\n    gt->next=temp;\n}\n\n//在结点gt的后面插入一个子表gt1\nvoid gt_insert(gTable &gt,gTable gt1){\n    if(gt==NULL) gt =new gtNode;\n    gTable temp = new gtNode;\n    temp->tag=true,temp->ele.link=gt1;\n    temp->next=gt->next;\t\n    gt->next=temp;\n}\n//遍历广义表,不适合递归广义表因为会出现循环\nvoid gt_traverse(gTable gt){\n    if(gt==NULL) return;\n    gt=gt->next;  //跳过头结点指向第一个数据结点\n    while(gt!=NULL){\n        if(gt->tag == false) cout<<gt->ele.data<<' '; //输出原子\n        else{\n            cout<<endl<<\"子表:\"; \n            gt_traverse(gt->ele.link);    //遍历子表\n            cout<<endl;\n        }\n        if(gt==NULL) return;\n    gt=gt->next;\n    }\n}",
+        "notes": [
+          "子表插入应接收 gTable gt1，避免同签名重定义和未声明变量；遍历加空指针检查，修正非法空字符。"
+        ]
+      },
+      "2": {
+        "code": "bool gt_equal(gTable gt1,gTable gt2){\n    gTable p=gt1==NULL?NULL:gt1->next;\n    gTable q=gt2==NULL?NULL:gt2->next;\n    while(p!=NULL && q!=NULL){\n        if(p->tag!=q->tag) return false;\n        if(!p->tag){\n            if(p->ele.data!=q->ele.data) return false;\n        }else if(!gt_equal(p->ele.link,q->ele.link)){\n            return false;\n        }\n        p=p->next;q=q->next;\n    }\n    return p==NULL && q==NULL;\n}",
+        "notes": [
+          "修正误写赋值；子表相等后仍需比较后续同层结点，不能提前返回 true；同时检查两表长度，支持空表。"
+        ]
+      }
+    },
+    "notes": [
+      "union 的多个成员共用存储空间，不能同时有效存放 data 和 link；tag 决定当前应读哪一个成员。当前遍历/比较仅适用于不含循环自引用的广义表。"
+    ]
+  },
+  "xhmfwclpu62ys3yo": {
+    "blocks": {
+      "1": {
+        "code": "//判断是否为空\nbool empty(chainQueue cq){\n    return cq.front==NULL;\n}\n//入队\nvoid push(chainQueue &cq,datatype x){\n    cqNode temp=new clNode;\n    temp->data=x;\n    temp->next=NULL;\n    if(empty(cq)){ //如果是空的\n        cq.front=new clNode; //创建头结点\n        cq.front->next=temp; \n    }\n    else{\n        cq.rear->next=temp; //放在当前队尾后面\n            }\n    cq.rear=temp; //队尾变成新的结点\n}\n//获取队头x的值\ndatatype front(chainQueue cq){\n    if(empty(cq)){\n        cout<<\"空的\"<<endl;\n        return -1;\n    }\n    else{\n        return cq.front->next->data;\n    }\n}\n\n//出队,删除队头\nvoid pop(chainQueue &cq){\n    if(empty(cq)){\n        cout<<\"空的\"<<endl;\n        return;\n    }\n    cqNode temp=cq.front->next;//定义队头结点\n    cq.front->next=temp->next;\n    delete temp;temp=NULL;\n    if(cq.front->next==NULL){//如果空了\n        delete cq.front;cq.front=NULL;//删掉队头\n        cq.rear=NULL;//删掉队尾\n    }\n}\n//遍历,同时清空链队列\nvoid traserve(chainQueue &cq){\n    while(!empty(cq)){\n        cout<<front(cq)<<\"\";\n        pop(cq);\n    }\n    cout<<endl;\n}",
+        "notes": [
+          "补齐赋值分号和 while 条件的右括号。"
+        ]
+      },
+      "3": {
+        "code": "#define next(x) ((x)==N-1?0:(x)+1)  \n//判断是否是空的\nbool empty(seqQueue sq){\n    return next(sq.rear)==sq.front;\n}\n//判断是否满了\nbool full(seqQueue sq){\n    return next(next(sq.rear))==sq.front;//最后一个位置永远空着不给放\n}\n//入队\nvoid push(seqQueue &sq,datatype x){\n    if(full(sq)){\n        return;\n    }\n    sq.rear=next(sq.rear);\n    sq.data[sq.rear]=x;\n}\n//获取队头\ndatatype front(seqQueue sq){\n    if(empty(sq)){\n        return -1;\n    }\n    return sq.data[sq.front];\n}\n//出队，删掉队头\nvoid pop(seqQueue &sq){\n    if(empty(sq)){\n        return;\n    }\n    sq.front=next(sq.front); \n}\n//遍历并清空\nvoid traverse(seqQueue &sq){\n    while(!empty(sq)){\n        cout<<front(sq)<<' ';\n        pop(sq);       \n    }\n        cout<<endl;  \n}",
+        "notes": [
+          "出队和声明为“清空”的遍历都需要引用传参；否则 pop 不会推进调用方 front，原遍历会死循环。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "tha5paui8hzzxa5c": {
+    "blocks": {
+      "1": {
+        "code": "// 两个矩阵相乘：mat1×mat2，相乘结果作为返回值\nmatrix mat_mul(matrix mat1, matrix mat2) {\n    if (mat1.col != mat2.row) {\n        cout << \"矩阵不能相乘!\" << endl;\n        return matrix();\n    }\n\n    matrix mat(mat1.row, mat2.col); \n\n    for (int i = 0; i < mat1.row; i++)\n        for (int j = 0; j < mat2.col; j++) {\n            mat.a[i][j] = 0;\n            for (int k = 0; k < mat1.col; k++)  \n                mat.a[i][j] += mat1.a[i][k] * mat2.a[k][j];\n        }\n\n    return mat;\n}",
+        "notes": [
+          "返回值是 matrix 对象，维度不匹配返回空矩阵，不能返回空指针。"
+        ]
+      },
+      "2": {
+        "code": "// 将方阵下三角按行压缩；调用前须确保矩阵对称\nvector<int> convert(matrix mat) {\n    vector<int> ret;\n    if(mat.row!=mat.col) return ret;\n    for(int i=0;i<mat.row;i++)\n        for(int j=0;j<=i;j++)\n            ret.push_back(mat.a[i][j]);\n    return ret;\n}\n// 还原对称矩阵；非法压缩长度返回空矩阵\nmatrix convert(vector<int> ve) {\n    matrix mat;\n    int n=0;\n    while(n<min(M,N) && n*(n+1)/2<(int)ve.size()) ++n;\n    if(n*(n+1)/2!=(int)ve.size()) return mat;\n    int i=0;\n    for(int k=0;k<(int)ve.size();k++){\n        if(k>=(i+1)*(i+2)/2) ++i;\n        int j=k-i*(i+1)/2;\n        mat.a[i][j]=mat.a[j][i]=ve[k];\n    }\n    mat.row=mat.col=n;\n    return mat;\n}",
+        "notes": [
+          "还原的行切换阈值应是下一行起始位置 (i+1)(i+2)/2；修正原式在 k=0 时生成列下标 -1；检查方阵和三角数长度。"
+        ]
+      },
+      "4": {
+        "code": "// 将稀疏矩阵mat压缩存储，结果作为返回值\nsMatrix sm_convert(matrix mat) {\n    sMatrix sm;\n\n    sm.row = mat.row;\n    sm.col = mat.col;                 // 设置行数和列数\n\n    for (int i = 0; i < mat.row; i++)\n        for (int j = 0; j < mat.col; j++) {\n            if (mat.a[i][j] != 0) {   // 非零元素加入结果\n                if(sm.n>=N) throw std::length_error(\"稀疏矩阵容量不足\");\n                int &idx = sm.n;//用idx引用表示sm中非零元素排序的下标\n                sm.nz[idx++] = {i,j,mat.a[i][j]};\n            }\n        }\n\n    return sm;\n}\n// 将压缩存储的稀疏矩阵sm还原为原矩阵\nmatrix sm_convert(sMatrix sm) {\n    matrix mat(sm.row,sm.col);\n\n    for (int i = 0; i < sm.n; i++) {\n        smMode tmp = sm.nz[i];        // 第i个非零元素\n        mat.a[tmp.r][tmp.c] = tmp.data;\n    }\n\n    return mat;\n}",
+        "notes": [
+          "非零元数组只有 N 个位置，压缩前检查容量，避免越界；需包含 <stdexcept>。"
+        ]
+      },
+      "5": {
+        "code": "//求压缩稀疏矩阵的转置\nsMatrix sm_tr(sMatrix sm){\n    sMatrix ret;\n    ret.row=sm.col,ret.col=sm.row,ret.n=sm.n; //定义矩阵大小\n    for(int i=0;i<sm.n;i++){\n        smMode temp = sm.nz[i];\n        ret.nz[i]={temp.c,temp.r,temp.data}; //列在前（因为列数据是行）\n    }\n    sort(ret.nz,ret.nz+ret.n);//sort(开始位置，结束位置，排序规则(默认升序))\n    return ret;\n}",
+        "notes": [
+          "修正成员赋值、三元组类型名和 sort 结束迭代器。"
+        ]
+      }
+    },
+    "notes": [
+      "矩阵示例要求 0<=row<=M、0<=col<=N，且数据乘加不溢出。sMatrix 的 nz[N] 最多保存 N 个非零元，不能把任意 M×N 矩阵都视为可压缩。"
+    ]
+  },
+  "up0t23dy1c8i7wna": {
+    "blocks": {
+      "3": {
+        "code": "//在p后面插入数据域为x的结点\nvoid cl_insert(chainList p,datatype x){\n    if(p==NULL) return;\n    chainList q = new clNode;\n    if(q == NULL){\n        cout<<\"插入失败\"<<endl;\n        return;\n    }\n    q->data=x;\n    q->next=p->next; //定义q的后继\n    p->next=q;//确保q是p的后继\n}",
+        "notes": [
+          "插入位置 p 必须存在，先判空。"
+        ]
+      },
+      "4": {
+        "code": "void cl_creator(chainList &h,datatype a[],int n){\n    if(h==NULL) h=new clNode;//如果表头是空指针则为表头动态分配存储空间\n    for(int i=n-1;i>=0;i--){\n        cl_insert(h,a[i]);\n    }\n}\nint a[] = {1,2,3,4,5,6,7,8,3,5,3,1,0};\nchainList header = NULL;\ncl_creator(header,a,sizeof(a)/sizeof(a[0]));",
+        "notes": [
+          "C++ 数组初始化使用大括号，调用名称与定义一致，参数 n 为元素数量而非字节数。最后三行为 main 内的使用示例。"
+        ]
+      },
+      "6": {
+        "code": "void cl_destroy(chainList &h){\n    if(h==NULL) return;\n    while(h->next!=NULL){\n        cl_delete(h);\n    }\n    delete h;h=NULL;//删除头结点自身\n}",
+        "notes": [
+          "修正类型拼写，支持销毁空指针。"
+        ]
+      },
+      "8": {
+        "code": "void dcl_insert_post(dchainList &p,datatype x){\n    if(p==NULL) return;\n    dchainList q=new dclNode,nxt=p->next;\n    q->data=x;\n    q->next=nxt;\n    if(nxt!=NULL) nxt->pre=q;\n    p->next=q;\n    q->pre=p;\n}",
+        "notes": [
+          "给 nxt 声明正确类型；只有 nxt 非空才更新其 pre，修正原 if 缺少块范围导致的尾插空指针解引用。"
+        ]
+      },
+      "9": {
+        "code": "void dcl_insert_pre(dchainList &p, datatype x)\n{\n    if(p==NULL) return;\n    dchainList q = new dclNode;\n    dchainList pre = p->pre;\n\n    q->data = x;\n    q->next = p;\n    q->pre = pre;\n    p->pre = q;\n\n    if(pre != NULL)\n        pre->next = q;\n    else\n        p = q;\n}",
+        "notes": [
+          "插入位置为空时直接返回。"
+        ]
+      },
+      "10": {
+        "code": "//创建双向链表，包含n个结点，结点数据存放在数组a中\nvoid dcl_create(dchainList &h, datatype a[], int n)\n{\n    h=NULL;\n    if(n<=0) return;\n    h = new dclNode;     //构造第一个结点\n\n    h->data = a[0];\n\n    for(int i = n-1; i >= 1; i--)\n    {\n        dcl_insert_post(h, a[i]);\n    }\n}",
+        "notes": [
+          "当前实现无额外头结点，a[0] 已赋给首结点；循环从最后元素到 a[1]，避免重复 a[0]，并处理 n<=0。"
+        ]
+      },
+      "14": {
+        "code": "//创建循环链表h，共有n个结点，每一个结点的数据域存放在数组a中\nvoid rcl_creater(chainList &h, datatype a[], int n)\n{\n    h=NULL;\n    if(n<=0) return;\n    rcl_insert(h, a[n-1]);             \n    //先构建最后一个结点\n\n    for(int i = n-2; i >= 0; i--)\n    {\n        cl_insert(h, a[i]);\n    }\n    //将数组a的元素从后向前依次插入链表中\n}",
+        "notes": [
+          "创建空循环表时不再读取 a[-1]；此表示中 h 保留为尾结点，h->next 是首元素。"
+        ]
+      },
+      "16": {
+        "code": "//删除循环链表h中的所有结点\nvoid rcl_destroy(chainList &h)\n{\n    while(h != NULL)\n    {\n        rcl_delete(h);\n    }\n}",
+        "notes": [
+          "销毁循环表应调用会更新引用头指针并处理唯一结点的 rcl_delete；调用普通链表删除会留下悬空头指针。"
+        ]
+      }
+    },
+    "notes": [
+      "本页混合了带头结点单链表、无头结点双向链表和循环链表；各段是独立表示，不能混用销毁/查找函数。两个 cl_search 是不同表示的替代实现，不应以相同签名同时编译。"
+    ]
+  },
+  "xfaary207gmrfvvu": {
+    "blocks": {
+      "0": {
+        "code": "#define N 50\n#include<iostream>\nusing namespace std;\ntypedef int datatype;\ntypedef int elementtype;\ntypedef struct slNode{\n    datatype data[N];\n    int len;\n    slNode():len(0){}\n} SeqList;\ntypedef struct clNode{\n    clNode * pre;\n    clNode * next;\n    datatype data;\n    clNode():pre(NULL),next(NULL){}\n} * DList;\ntypedef struct cNode{\n    cNode * next;\n    datatype data;\n    cNode():next(NULL){}\n}*ChainList;\n//把顺序表sl2合并到sl1后面 \nSeqList sl_merge(SeqList &sl1,SeqList &sl2){\n    SeqList C;\n    if(sl1.len + sl2.len > N)\n        return C;\n    for(int i=0;i<sl1.len;i++){\n        C.data[i]=sl1.data[i];\n    }    \n    C.len+=sl1.len;\n    for(int j=0;j<sl2.len;j++){\n        C.data[sl1.len+j]=sl2.data[j];\n    }\n    C.len+=sl2.len;\n    return C;\n}\n//把链表sl2合并到sl1后面\nDList cl_merge(DList &cl1, DList &cl2){\n    DList C = new clNode; \n    clNode *p = C;\n    clNode *q = cl1->next;\n    while(q != NULL){\n        p->next = new clNode;\n        p->next->data = q->data;\n        p->next->pre = p;\n        p = p->next;\n        q = q->next;\n    }\n    q = cl2->next;\n    while(q != NULL){\n        p->next = new clNode;\n        p->next->data = q->data;\n        p->next->pre = p;\n        p = p->next;\n        q = q->next;\n    }\n    return C;\n}\n\n\nChainList cl_copy(ChainList cl1){\n    ChainList cl2 = new cNode;\n    cNode *p=cl2;\n    cNode *q=cl1->next;\n    while(q!=NULL){\n        p->next = new cNode;\n        p->next->data=q->data;\n        p=p->next;\n        q=q->next;\n    }\n    return cl2;\n}\n\nint Delete(ChainList &cl1,int x){\n    if(cl1==NULL) return -1;\n    ChainList h = cl1;\n    int pos = 1;\n    while(h->next!=NULL && h->next->data!=x){\n        h=h->next;\n        pos ++;\n    }\n    if(h->next==NULL){\n        return -1;\n    }\n    ChainList q = h->next;\n    h->next = q->next;\n    delete q;\n    return pos;\n}\n\ntypedef struct pNode{\n    int coef;\n    int exp;\n    pNode * next;\n    pNode():next(NULL){}\n}*Poly;\n\nPoly Add(Poly A,Poly B){\n    Poly C=new pNode,r=C;\n    Poly p=A->next,q=B->next;\n    while(p!=NULL&&q!=NULL){\n        Poly s=new pNode;\n        if(p->exp>q->exp){\n            s->coef=p->coef;\n            s->exp=p->exp;\n            p=p->next;\n        }\n        else if(p->exp<q->exp){\n            s->coef=q->coef;\n            s->exp=q->exp;\n            q=q->next;\n        }\n        else{\n            s->coef=p->coef+q->coef;\n            s->exp=p->exp;\n            p=p->next;\n            q=q->next;\n            if(s->coef==0){\n            delete s;continue;\n        }\n        }\n        r->next=s;r=s;\n    }\n    while(p!=NULL){\n        r->next=new pNode;\n        r=r->next;\n        r->coef=p->coef;\n        r->exp=p->exp;\n        p=p->next;\n    }\n    while(q!=NULL){\n        r->next=new pNode;\n        r=r->next;\n        r->coef=q->coef;\n        r->exp=q->exp;\n        q=q->next;\n    }\n    return C;\n}\nPoly Mul(Poly A,Poly B){\n    Poly C=new pNode;\n    Poly p=A->next;\n    while(p!=NULL){\n        Poly q=B->next;\n        while(q!=NULL){\n            int coef=p->coef*q->coef,exp=p->exp+q->exp;\n            Poly r=C;\n            while(r->next!=NULL&&r->next->exp>exp) r=r->next;\n            if(r->next!=NULL&&r->next->exp==exp){\n                r->next->coef+=coef;\n                if(r->next->coef==0){\n                    Poly s=r->next;\n                    r->next=s->next;\n                    delete s;\n                }\n            }\n            else{\n                Poly s=new pNode;\n                s->coef=coef;s->exp=exp;\n                s->next=r->next;r->next=s;\n            }\n            q=q->next;\n        }\n        p=p->next;\n    }\n    return C;\n}\n\nint swap(elementtype x,DList &h){\n    if(h==NULL) return 0;\n    DList p=h;\n    while(p->next!=NULL && p->next->data!=x){\n        p=p->next;\n    }\n    if(p->next==NULL) return 0;\n    else{\n        if(p==h) return 1;\n        else{\n            DList q = p->next;\n            p->next = q->next;\n            if(q->next!=NULL) q->next->pre=p;\n            q->next = p;\n            q->pre = p->pre;\n            q->pre->next = q;\n            p->pre=q;\n            return 1;\n        }\n    }\n}\nint main(){\n    //1.测试顺序表合并\n    SeqList sl1,sl2;\n    sl1.data[0]=1;sl1.data[1]=2;sl1.data[2]=3;sl1.len=3;\n    sl2.data[0]=4;sl2.data[1]=5;sl2.len=2;\n    SeqList sl3=sl_merge(sl1,sl2);\n    cout<<\"sl_merge: \";\n    for(int i=0;i<sl3.len;i++) cout<<sl3.data[i]<<\" \";\n    cout<<endl;\n\n    //2.测试双向链表合并\n    DList dl1=new clNode,dl2=new clNode;\n    DList p=dl1;\n    for(int i=1;i<=3;i++){\n        p->next=new clNode;\n        p->next->data=i;\n        p->next->pre=p;\n        p=p->next;\n    }\n    p=dl2;\n    for(int i=4;i<=6;i++){\n        p->next=new clNode;\n        p->next->data=i;\n        p->next->pre=p;\n        p=p->next;\n    }\n    DList dl3=cl_merge(dl1,dl2);\n    cout<<\"cl_merge: \";\n    p=dl3->next;\n    while(p!=NULL){\n        cout<<p->data<<\" \";\n        p=p->next;\n    }\n    cout<<endl;\n\n    //3.测试单链表复制\n    ChainList cl1=new cNode;\n    ChainList q=cl1;\n    for(int i=1;i<=5;i++){\n        q->next=new cNode;\n        q=q->next;\n        q->data=i;\n    }\n    ChainList cl2=cl_copy(cl1);\n    cout<<\"cl_copy: \";\n    q=cl2->next;\n    while(q!=NULL){\n        cout<<q->data<<\" \";\n        q=q->next;\n    }\n    cout<<endl;\n\n    //4.测试删除\n    cout<<\"Delete位置: \"<<Delete(cl1,3)<<endl;\n    cout<<\"Delete后: \";\n    q=cl1->next;\n    while(q!=NULL){\n        cout<<q->data<<\" \";\n        q=q->next;\n    }\n    cout<<endl;\n\n    //5.测试多项式相加和相乘\n    Poly A=new pNode,B=new pNode;\n    Poly r=A;\n    r->next=new pNode;r=r->next;r->coef=3;r->exp=2;\n    r->next=new pNode;r=r->next;r->coef=2;r->exp=1;\n    r->next=new pNode;r=r->next;r->coef=1;r->exp=0;\n    r=B;\n    r->next=new pNode;r=r->next;r->coef=2;r->exp=2;\n    r->next=new pNode;r=r->next;r->coef=4;r->exp=1;\n    r->next=new pNode;r=r->next;r->coef=5;r->exp=0;\n\n    Poly C=Add(A,B);\n    cout<<\"Add: \";\n    r=C->next;\n    while(r!=NULL){\n        cout<<r->coef<<\"x^\"<<r->exp<<\" \";\n        r=r->next;\n    }\n    cout<<endl;\n\n    Poly D=Mul(A,B);\n    cout<<\"Mul: \";\n    r=D->next;\n    while(r!=NULL){\n        cout<<r->coef<<\"x^\"<<r->exp<<\" \";\n        r=r->next;\n    }\n    cout<<endl;\n\n    //6.测试swap\n    DList h=new clNode;\n    p=h;\n    for(int i=1;i<=5;i++){\n        p->next=new clNode;\n        p->next->data=i;\n        p->next->pre=p;\n        p=p->next;\n    }\n    cout<<\"swap返回值: \"<<swap(3,h)<<endl;\n    cout<<\"swap后: \";\n    p=h->next;\n    while(p!=NULL){\n        cout<<p->data<<\" \";\n        p=p->next;\n    }\n    cout<<endl;\n\n    return 0;\n}\n\n",
+        "notes": [
+          "Delete 和 swap 查找先检查 next 是否为空，再读取 data；补上空头指针处理。"
+        ]
+      }
+    },
+    "notes": [
+      "此页 sl_merge 注释中的“合并到 sl1 后面”指返回拼接后的新表，原实现不会直接修改 sl1；链表返回值也为新分配的复制表，使用完需释放。"
+    ]
+  },
+  "mtgwclgx66dch1gd": {
+    "blocks": {
+      "3": {
+        "code": "vec[2]; //第三个元素\nvec.at(2); //第三个元素\nvec.front(); //第一个元素\nvec.back(); //最后一个元素\n*vec.begin(); //使用迭代器访问第一个元素\n*(vec.end()-1); //使用迭代器访问最后一个元素",
+        "notes": [
+          "at 是成员函数，应使用圆括号；补齐示例语句分号。要求 vec 至少包含三个元素。"
+        ]
+      },
+      "4": {
+        "code": "vec.push_back(3);  //末尾添加\nvec.insert(vec.begin(),2109); //表头插入\nvec.insert(vec.end()-2,6,5); //在 vec 倒数第二个元素前插入 6 个值为 5 的元素（要求 size>=2） vec.end表示最后一个元素的下一个元素的位置",
+        "notes": [
+          "end()-2 指向倒数第二个元素，修正注释以与原操作一致。"
+        ]
+      }
+    },
+    "notes": [
+      "各代码块是 API 用法片段，不能直接连成一段程序：初始 vec 为空，访问 vec[2]、front/back、end()-2 和区间 erase 前必须先保证相应长度。at 越界抛出异常，operator[] 越界为未定义行为。"
+    ]
+  },
+  "naes6mh6d27dh4fg": {
+    "blocks": {
+      "1": {
+        "code": "stk.push(3); //入栈\ncout<<stk.size()<<endl; //栈中元素个数\nstk.pop(); //出栈\nwhile(!stk.empty()){\n    cout<<stk.top()<<' ';\n    stk.pop();\n}",
+        "notes": [
+          "使用栈成员 empty；每次输出后 pop，否则非空栈会无限循环。前面的 push 随即 pop 后为空，此循环仅演示遍历写法。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "ysfglgiveivmrnif": {
+    "blocks": {
+      "1": {
+        "code": "//m是叶结点数量，data是叶结点的数据信息，w是权重\nvoid huTree_create(huTree &t,const datatype data[],int w[],int m){\n    if(m<=0 || m>M) throw std::invalid_argument(\"叶结点数量越界\");\n    int i;\n    hutNode hn1,hn2,hn3;\n    priority_queue<hutNode>f; //用优先队列存放结点集合\n    for(i=1;i<=m;i++){ \t//初始化m个叶结点\n        t[i].data=data[i-1],t[i].w=w[i-1],t[i].idx=i;//因为t数组规定从1开始，data数组是0开始\n        t[i].lc=-1,t[i].rc=-1;\n        f.push(t[i]);\n            }\n    while(f.size()>1){\n        hn1=f.top(),f.pop();\n        hn2=f.top(),f.pop();\n        hn3.w=hn1.w+hn2.w,hn3.idx=i;\n        hn3.lc=hn1.idx,hn3.rc=hn2.idx;\n        f.push(hn3);\n        t[i++]=hn3;\n    }\n    t[0]=f.top(),t[0].idx=0;\n}",
+        "notes": [
+          "空集合不能取优先队列 top；检查叶结点数 1..M，需 <stdexcept>。"
+        ]
+      },
+      "2": {
+        "code": "//利用哈夫曼树t对每个叶结点编码，编码存放在参数code中\nvoid huTree_coding(huTree t,int cur,map<char,string>&code){//map是一种映射，每一个char存储对应一个字符串\n    static string temp;\n    if(cur==0) temp.clear();\n    if(t[cur].lc==-1){\t\t\t//到达叶结点，保存编码\n        code[t[cur].data]=temp.empty()?\"0\":temp; \t\n        return;\n    }\n    temp+='0';\t//左分支路径标注为0\n    huTree_coding(t,t[cur].lc,code);\n    temp.erase(temp.length()-1);//删掉添加的一步\n    temp+='1'; \t//右分支路径标注为1\n    huTree_coding(t,t[cur].rc,code);\n    temp.erase(temp.length()-1);\n}\nstring coding(huTree &t,string txt){\n    if(txt.empty()) return \"\";\n    int w[M],m=0,len=txt.length(),i;        //m为txt中不同字符的数量\n    char data[M];                           //txt中出现的字符\n    map<char,int> freq;                        //字符出现的次数\n    //统计每个字符出现的次数\n    for(i=0;i<len;i++) freq[txt[i]]++;\n    if(freq.size()>M) throw std::length_error(\"不同字符数量超过 M\");\n    for(map<char,int>::iterator it=freq.begin();it!=freq.end();it++)\n        data[m]=it->first,w[m]=it->second,++m; //转存\n    huTree_create(t,data,w,m);               //创建哈夫曼树\n    map<char,string>code;\n    huTree_coding(t,0,code);                 //获得每个字符的编码\n    string ret;                              //存放编码结果\n    for(i=0;i<len;i++)                       //求txt的编码\n        ret+=code[txt[i]];\n    return ret;\n}",
+        "notes": [
+          "频率表需要变量名 freq，避免与 map 类型冲突；data/w 同一字符共用 m 下标，只增加一次；处理空文本、字符种数和单字符编码，清除上次调用留下的路径。"
+        ]
+      },
+      "3": {
+        "code": "string huTree_decoding(huTree t,string code){\n    string ret;\n    if(t[0].lc==-1){ //单字符字母表，约定每个字符编码为 0\n        for(char bit:code){\n            if(bit!='0') throw std::invalid_argument(\"非法哈夫曼编码\");\n            ret+=t[0].data;\n        }\n        return ret;\n    }\n    hutNode cur=t[0];\n    for(int i=0;i<(int)code.length();i++){\n        if(code[i]!='0' && code[i]!='1')\n            throw std::invalid_argument(\"编码必须为 0 或 1\");\n        cur=t[code[i]=='0'?cur.lc:cur.rc];\n        if(cur.lc==-1){\n            ret+=cur.data;\n            cur=t[0];\n        }\n    }\n    if(cur.idx!=0) throw std::invalid_argument(\"编码在非叶结点处截断\");\n    return ret;\n}",
+        "notes": [
+          "配合单字符编码约定处理只有一个叶结点的树，避免访问 t[-1]；拒绝非二进制字符和截断编码，需 <stdexcept>。树须先由非空文本构建。"
+        ]
+      }
+    },
+    "notes": [
+      "M 限制不同字符种数；单字符字母表约定编码为 0。相同权重可能产生不同但同样最优的编码，OJ 应比较解码结果/带权路径长度或规定并列规则，不能硬比编码字面值。权重和须不溢出 int。"
+    ]
+  },
+  "efgmxpodr4s61iwh": {
+    "blocks": {},
+    "notes": [
+      "mq 初始每个结点 pa=-1；query/merge 的下标必须在已初始化范围内。路径压缩改变树的形状，但不改变集合划分；还可按秩/大小合并以控制树高。"
+    ]
+  },
+  "xcwkgfs7vbb92p2k": {
+    "blocks": {
+      "1": {
+        "code": "//pri 在上一代码块中声明；仅处理合法二元 + - * / 与圆括号\nvoid shuntingYard(string infix,rpn &postfix,int &n){\n    pri['+']=pri['-']=1;\n    pri['*']=pri['/']=2;\n    n=0;\n    stack<char> stk;\n    for(int i=0;i<(int)infix.length();i++){\n        if(isspace(static_cast<unsigned char>(infix[i]))) continue;\n        if(isdigit(static_cast<unsigned char>(infix[i]))){\n            int num=0;\n            while(i<(int)infix.length() && isdigit(static_cast<unsigned char>(infix[i])))\n                num=num*10+infix[i++]-'0';\n            if(n>=N) throw std::length_error(\"逆波兰数组容量不足\");\n            postfix[n].tag=true;\n            postfix[n++].data.v=num;\n            --i;\n        }else if(infix[i]=='('){\n            stk.push('(');\n        }else{\n            char op=infix[i];\n            if(op!=')' && op!='+' && op!='-' && op!='*' && op!='/')\n                throw std::invalid_argument(\"不支持的运算符\");\n            while(!stk.empty() && stk.top()!='(' &&\n                  (op==')' || pri[stk.top()]>=pri[op])){\n                if(n>=N) throw std::length_error(\"逆波兰数组容量不足\");\n                postfix[n].tag=false;\n                postfix[n++].data.op=stk.top();\n                stk.pop();\n            }\n            if(op==')'){\n                if(stk.empty()) throw std::invalid_argument(\"括号不匹配\");\n                stk.pop();\n            }else stk.push(op);\n        }\n    }\n    while(!stk.empty()){\n        if(stk.top()=='(') throw std::invalid_argument(\"括号不匹配\");\n        if(n>=N) throw std::length_error(\"逆波兰数组容量不足\");\n        postfix[n].tag=false;\n        postfix[n++].data.op=stk.top();\n        stk.pop();\n    }\n}",
+        "notes": [
+          "移除重复的 pri 定义，初始化优先级和 num，修正 jifix 拼写及连续数字扫描；同优先级的左结合运算使用 >=；正确处理括号并在末尾清空运算符栈。需 <cctype> 和 <stdexcept>。"
+        ]
+      }
+    },
+    "notes": [
+      "当前转换只支持非负整数字面量及合法二元四则表达式；一元负号需要单独规则。表达式树后序遍历得到后缀表达式，操作数顺序不能颠倒。"
+    ]
+  },
+  "bfazopa9871m0v0n": {
+    "blocks": {
+      "1": {
+        "code": "//将左右链指针表示的二叉树t线索化，pre为树t根结点的中根序的直接前驱\nvoid convert_to_thTree(thTree t,thTree &pre){\n        if(t==NULL) return;\n    convert_to_thTree(t->lc,pre);   //进入左子树\n    if(t->lc!=NULL)\t\t//t的左指针域是孩子结点\n        t->ltag=false;\n    else\n        t->lc=pre,t->ltag=true;  //左指针就是线索\n    if(pre->rc!=NULL)\n        pre->rtag=false; \n    else\n        pre->rtag=true,pre->rc=t;\n    pre=t;\t\t //t的右子树中根序的第一个结点的直接前驱是t\n    convert_to_thTree(t->rc,pre);\n}\n//将左右链表示的二叉树转化为带头结点的线索二叉树\nvoid thTree_create(thTree &header,thTree t){\n    thTree pre;\n    header=new thNode;\n    header->lc=header;\n    header->rc=header;\n    if(t==NULL){\n        header->ltag=true;\t//没有左孩子，所以只能设置为true\n        return;\n    }\n    header->lc=t,header->ltag=false;\n    header->rc=header,header->rtag=false;\n    pre=header;  //原二叉树的中根序第一个结点的直接前驱为header\n    convert_to_thTree(t,pre);\n    pre->rtag=true,pre->rc=header;\t//pre为中根序列的最后一个结点\n}\n",
+        "notes": [
+          "空线索树的左右指针都指回头结点，避免保留无效空线索。convert_to_thTree 的 pre 应由 thTree_create 初始化为头结点。"
+        ]
+      },
+      "3": {
+        "code": "void thTree_midOrder(thTree header){\n    if(header==NULL || header->ltag==true) return;\n    thTree t=header;\n    do{\n        t=midNext(t);\n        if(t!=header) cout<<t->data;\n    }while(t!=header);\n    cout<<endl;\n}",
+        "notes": [
+          "补齐 do/while 与 if 的块边界；添加空头指针检查。"
+        ]
+      }
+    },
+    "notes": [
+      "ltag/rtag 为 false 时指向孩子，为 true 时才是前驱/后继线索。线索化只能对原始普通二叉树做一次，不能把已线索化的指针再当孩子递归。"
+    ]
+  },
+  "wzfhk2wlng7igkb7": {
+    "blocks": {
+      "1": {
+        "code": "//向上更新函数，当一个结点的孩子结点更新完毕时，需要更新当前结点的信息\nvoid pushup(int rt){\n    sum[rt] = sum[rt<<1]+sum[rt<<1|1]; //左孩子和右孩子\n}\n//根据数组a构建表示区间和线段树，rt表示当前结点编号，l、r表示当前结点区间\nvoid build(int a[N],int rt,int l,int r){\n    if(l>r) return;\n    lazy[rt]=0;\n    if(l==r){\n        sum[rt]=a[l]; //到达叶结点\n        return;\n    }\n    int mid = (l+r)>>1;\n    build(a,rt<<1,l,mid);\t//\t构建左子树\n    build(a,(rt<<1|1),mid+1,r);\t//构建右子树\n    pushup(rt);\n}",
+        "notes": [
+          "重新构建时清零当前结点 lazy，避免上一次使用遗留标记。"
+        ]
+      },
+      "2": {
+        "code": "void pushdown(int rt,int ln,int rn); //定义在下一块\n//将a[pos]的值增加inc\nvoid update(int rt,int l,int r,int pos,int inc){\n    if(pos<l || pos>r || l>r) return;\n    if(l==r){\t//l=r=pos\n        sum[rt]+=inc;\t\n        return;\n    }\n    int mid = (l+r)>>1;\n    pushdown(rt,mid-l+1,r-mid);\n    if(pos<=mid) update(rt<<1,l,mid,pos,inc); //pos在左子树\n    else update((rt<<1)|1,mid+1,r,pos,inc);\t//pos在右子树\n    pushup(rt);//更新当前结点到根结点的所有节点\n}",
+        "notes": [
+          "单点更新与区间懒标记共用时，下钻前也必须 pushdown，否则会丢失未下传的区间增量；增加声明及范围检查。"
+        ]
+      },
+      "3": {
+        "code": "//将结点rt的延时更新值向下传递 参数ln，rn分别为结点rt的左子树和右子树对应区间的长度\nvoid pushdown(int rt,int ln,int rn){\n    if(lazy[rt]){\n        lazy[rt<<1]+=lazy[rt];\t//当前结点延时更新值传递给左孩子\n        lazy[(rt<<1)|1]+=lazy[rt]; //当前结点延时更新值传递给右孩子\n        //利用当前结点rt的延时更新值修改rt的孩子结点的sum\n        sum[rt<<1] += lazy[rt]*ln;\n        sum[rt<<1|1]+=lazy[rt]*rn;\n        lazy[rt] = 0;\t\t//清除本结点的延时更新值\n    }\n}\n//区间更新，将a[L,R]中的元素值都增加inc\nvoid update(int rt,int l,int r,int L,int R,int inc){\n    if(l>r || L>R || R<l || r<L) return;\n    if(L<=l && r<=R){\t\t//结点[l,r]是中止结点\n        sum[rt]+=inc*(r-l+1);//更新当前区间的和\n        lazy[rt]+=inc;\t//更新当前的延时更新值\n        return;\n    }\n    int mid=(l+r)>>1;\n    pushdown(rt,mid-l+1,r-mid);\t//更新当前结点的sum，并将延时更新值向孩子结点传递\n    //判断左右子树与[L,R]有没有交集，如果有，继续向下搜索\n    if(L<=mid) update(rt<<1,l,mid,L,R,inc);\n    if(R>mid) update((rt<<1)|1,mid+1,r,L,R,inc);\n    pushup(rt);\t\t//更新当前结点到根结点的所有节点\n}",
+        "notes": [
+          "更新前排除空区间和无交集，避免无效范围递归越界。"
+        ]
+      },
+      "4": {
+        "code": "int query(int rt,int l,int r,int L,int R){\n    if(l>r || L>R || R<l || r<L) return 0;\n    if(L<=l && r<=R){\t//是中止结点\n        return sum[rt];\n    }\n    int mid = (l+r)>>1;\n    pushdown(rt,mid-l+1,r-mid);//更新当前结点的sum，并将延时更新值向孩子结点传递\n    int ret = 0;\t//最后结果为[L,R]在左右区间的sum之和\n    if(L<=mid) ret+=query(rt<<1,l,mid,L,R);\n    if(R>mid) ret+=query((rt<<1)|1,mid+1,r,L,R);\n    return ret;\n}",
+        "notes": [
+          "完全包含条件应为 r<=R；左递归原先多传了一个 r；无交集返回加法单位元 0。"
+        ]
+      }
+    },
+    "notes": [
+      "此处区间均为闭区间 [l,r]，与顺序表练习的左闭右开区间不同。样例用 int，若数据范围较大，sum/lazy 及乘积需统一改为 long long。"
+    ]
+  },
+  "ov6067m2ggauqgm5": {
+    "blocks": {
+      "0": {
+        "code": "priority_queue<int>pq; //大顶堆\npriority_queue<int,vector<int>>pq1; //vector实现\npriority_queue<int,vector<int>,greater<int>>pq2; //小顶堆",
+        "notes": [
+          "比较器是 priority_queue 的第三个模板参数，第二个参数应为底层容器。"
+        ]
+      },
+      "1": {
+        "code": "//同一类型同时提供两个比较运算；按需要选择 less/greater\nstruct node{\n    int key;\n    bool operator>(const node &n1)const{ return key>n1.key; }\n    bool operator<(const node &n1)const{ return key<n1.key; }\n};",
+        "notes": [
+          "原码在同一作用域重复定义 struct node；合并为一个类型，同时提供两个比较运算。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "ebic8kgy45ilbbyn": {
+    "blocks": {
+      "0": {
+        "code": "//完全二叉树转化为大顶堆\nvoid heap_adjust(datatype heap[],int n,int cur){\n    if(n<=0 || cur<0 || cur>=n) return;\n    int i;\n    datatype temp=heap[cur];\n    while(i=2*cur+1,i<n){ //确保i是cur的左孩子\n        if(i+1<n && heap[i+1]>heap[i]) i++; //保证heap[i]是较大的子结点\n        if(heap[i]<=temp) break; //父节点大于所有子结点\n        heap[cur] = heap[i]; //结点i的值更新父节点\n        cur = i; //更新cur，接着向下比较\n    }\n    heap[cur] = temp; \n}\n\nvoid heap_make(datatype heap[],int n){\n    for(int i=n/2-1;i>=0;i--) //结点编号从0开始\n        heap_adjust(heap,n,i);\n}",
+        "notes": [
+          "空堆和非法 cur 不读取 heap[cur]；临时值使用 datatype，避免截断。"
+        ]
+      },
+      "2": {
+        "code": "void heap_pop(datatype heap[],int &n){\n    if(n<=0) return;\n    heap[0]=heap[n-1],n--;//用最后一个结点取代根结点\n    if(n>0) heap_adjust(heap,n,0);\n}",
+        "notes": [
+          "head 拼写改为 heap；空堆不能删除，删除最后一个元素后不再调整；数组类型与 datatype 保持一致。"
+        ]
+      },
+      "1": {
+        "code": "void heap_push(datatype heap[],int &n,datatype k){\n    int cur,pa;\n    cur=n,n++; //cur指向新增加的结点，元素数+1\n    while(cur>0){\n        pa=(cur-1)/2; //父节点\n        if(heap[pa]>=k) break; \n        heap[cur]=heap[pa]; //父节点小就下沉\n        cur=pa; //当前结点指向父节点\n    }\n    heap[cur] = k; //最后赋值\n}",
+        "notes": [
+          "待插入值使用 datatype，与堆数组类型保持一致。"
+        ]
+      }
+    },
+    "notes": [
+      "数组版 heap_push 的调用者须保证还有容量；n 是有效元素数量，结点下标从 0 开始，左孩子为 2*i+1。"
+    ]
+  },
+  "vgyr818zdigzrma9": {
+    "blocks": {
+      "0": {
+        "code": "struct paNode{\nint pa;\t//父结点下标\ndatatype data;\npaNode():pa(-1){}\t//根结点的父节点下标为-1\n};\nstruct paTree{\npaNode tree[N];\nint n;\t//树的结点数量\nint root; //根结点下标\n};",
+        "notes": [
+          "此处使用 C++ 的结构名 paTree；去掉不完整 typedef 并补分号。"
+        ]
+      },
+      "1": {
+        "code": "paTree create(datatype data[N],int pa[N],int n){\n    paTree t;\n    t.n = n;\n    t.root=-1;\n    for(int i=0;i<n;i++){\n        t.tree[i].pa=pa[i],t.tree[i].data=data[i];\n        if(pa[i]==-1) t.root=i;\n    }\n    return t;\n}",
+        "notes": [
+          "初始化空树根为 -1，返回构建出的树。"
+        ]
+      },
+      "2": {
+        "code": "int lm_child(paTree t,int cur){\n    if(cur<0 || cur>=t.n) return -1;\n    for(int i=0;i<t.n;i++)\n        if(t.tree[i].pa==cur) return i;\n    return -1;\n}\nint r_bro(paTree t,int cur){\n    if(cur<0 || cur>=t.n || t.tree[cur].pa==-1) return -1;\n    for(int i=cur+1;i<t.n;i++)\n        if(t.tree[i].pa==t.tree[cur].pa) return i;\n    return -1;\n}",
+        "notes": [
+          "双亲数组不保证孩子下标大于双亲，也不保证兄弟连续；扫描寻找按数组顺序的孩子/后续兄弟，同时修复 cur+1 越界。"
+        ]
+      },
+      "3": {
+        "code": "struct lrbNode{\ndatatype data;\nint pa;\nint lmc;\nint rb;\nlrbNode():lmc(-1),rb(-1){}\n};\nstruct lrbTree{\nlrbNode tree[N];\nint n;\nint root;\n};",
+        "notes": [
+          "去掉没有别名的不完整 typedef 写法，保留 C++ 结构名 lrbTree。"
+        ]
+      },
+      "4": {
+        "code": "lrbTree create(datatype data[],int pa[],int n){\n    lrbTree t;\n    t.n=n;t.root=-1;\n    int last[N];\n    for(int i=0;i<n;i++) last[i]=-1;\n    for(int i=0;i<n;i++){\n        t.tree[i].data=data[i];\n        t.tree[i].pa=pa[i];\n        if(pa[i]==-1) t.root=i;\n        else{\n            if(t.tree[pa[i]].lmc==-1) t.tree[pa[i]].lmc=i;\n            else t.tree[last[pa[i]]].rb=i;\n            last[pa[i]]=i;\n        }\n    }\n    return t;\n}\nint lm_child(lrbTree t,int cur){\n    if(cur<0 || cur>=t.n) return -1;\n    return t.tree[cur].lmc;\n}\nint r_bro(lrbTree t,int cur){\n    if(cur<0 || cur>=t.n) return -1;\n    return t.tree[cur].rb;\n}",
+        "notes": [
+          "返回树对象而非已离开作用域的 i；用每个双亲的 last 记录最近孩子，避免将非兄弟的 i-1 错接；保存根的 pa=-1，补下标检查。输入须保证 0<=n<=N、双亲下标有效且构成树。"
+        ]
+      },
+      "6": {
+        "code": "//求树的括号表示btree中，cur的最左孩子结点\nint lm_child(string btree,int cur){\n    if(cur>=0 && cur+2<(int)btree.size() && btree[cur+1]=='(' && btree[cur+2]!=')') \n        return cur+2;\n    return -1;\n}\n//求树的括号表示btree中，结点cur的右兄弟结点，结果作为返回值\nint r_bro(string btree,int cur){\n    if(cur<0 || cur>=(int)btree.size()) return -1;\n    if(btree[cur]=='(' || btree[cur]==')'){\n        return -1;\n    }\n    int cnt=0;\n    for(int i=cur+1;i<btree.size();i++){//cnt是一个计数器\n        if(btree[i]=='(') cnt++;\n        else if(btree[i]==')') cnt--;\n        else if(btree[i]==',' && cnt==0)\n            return i+1;\n        if(cnt<0) break;\n    }\n    return -1;\n}",
+        "notes": [
+          "读取括号串 cur+1/cur+2 前检查下标。此语法假设结点标签为单个字符。"
+        ]
+      }
+    },
+    "notes": [
+      "双亲表示法和左孩子右兄弟表示法各有一个 create，参数签名相同但返回类型不同，是替代示例，不能直接同时定义。多叉树没有统一的中序概念，本页 midOrder 约定先遍历最左孩子、访问根，再遍历其余孩子。"
+    ]
+  },
+  "gme34aw4kzzy04fl": {
+    "blocks": {
+      "2": {
+        "code": "//将第x个元素增加inc\nvoid update(int x,int inc){\n    if(x<=0) return;\n    while(x<=n){\n        bit[x]+=inc;\n        x+=lowbit(x);//x更新为x的父结点\n    } \n}",
+        "notes": [
+          "树状数组从 1 开始；x=0 时 lowbit(0)=0，原更新会死循环。"
+        ]
+      }
+    },
+    "notes": [
+      "bit 应全零初始化并分配至少 n+1 个位置；有效下标 1..n，prefixSum 查询上界不得超过 n。区间和用 prefixSum(r)-prefixSum(l-1)。"
+    ]
+  },
+  "nkgizgxflk13u2gn": {
+    "blocks": {
+      "3": {
+        "code": "int create_lraTree(lraTree t,datatype data,int &idx,int lc=-1,int rc=-1){\n    t[idx].data = data;\n    t[idx].lc = lc;\n    t[idx].rc = rc;\n    return idx++;\n}",
+        "notes": [
+          "函数参数使用逗号，不能使用分号。idx 必须由调用者初始化且不超过数组容量 N。"
+        ]
+      },
+      "4": {
+        "code": "void preOrder(lrpTree t){\n    if(t==NULL) return;\n    cout<<t->data;\n    preOrder(t->lc);\n    preOrder(t->rc);\n}",
+        "notes": [
+          "先序遍历只在访问当前结点时输出；原来又提前打印左右孩子导致重复，且 cout>> 是输入方向错误。"
+        ]
+      },
+      "5": {
+        "code": "void preOrder(lrpTree rt){\nstack<lrpTree>stk;\n    lrpTree t=rt;\n    while(t||!stk.empty()){\n        while(t){\n            cout<<t->data;\n            stk.push(t);\n            t=t->lc;\n        }\n        t=stk.top();\n        stk.pop();\n        t=t->rc;\n    }    \n}",
+        "notes": [
+          "补齐函数结尾的右大括号。递归与非递归 preOrder 是同签名替代实现，应分别展示。"
+        ]
+      },
+      "6": {
+        "code": "lrpTree create_lrpTree(string str,int &idx){\n    lrpTree ret;\n    if(idx<0 || idx>=(int)str.size()) return NULL;\n    if(str[idx]=='#'){ \n        idx++;\n        return NULL;\n    }\n    ret = new lrpNode;\n    ret->data = str[idx++];\n    ret->lc = create_lrpTree(str,idx);\n    ret->rc = create_lrpTree(str,idx);\n    return ret;\n}",
+        "notes": [
+          "访问字符串前先检查 idx 范围；串结束时不再递增越界索引。空结点仍由 # 表示。"
+        ]
+      }
+    },
+    "notes": [
+      "convertToBracket/convertToTree 采用 (左子树 根字符 右子树) 的递归括号格式，例如 ((A)B(C))；不等同于常见的 B(A,C)。现有转换假定标签为单字符且括号表达式合法。左右链指针表示法与数组表示法是替代实现。"
+    ]
+  }
+}

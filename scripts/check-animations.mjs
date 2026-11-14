@@ -1,0 +1,3 @@
+import {animations,frames} from '../src/animations.js';import assert from 'node:assert/strict';
+for(const a of animations){for(const input of [[8,3,6,1,7,4,2,5],[-3,0,-9,4,4],[1],[5,5,5]]){const original=[...input];let f=frames(a.id,input);assert.ok(f.length>0,a.id);assert.deepEqual(input,original,'mutation '+a.id);for(const t of f){assert.equal(typeof t.text,'string',a.id);if(t.values)assert.ok(t.values.every(x=>typeof x==='string'||Number.isFinite(x)),a.id);}if(/sort$/.test(a.id)&&!a.id.includes('external')&&!a.id.startsWith('topological'))assert.deepEqual(f.at(-1).values,[...input].sort((a,b)=>a-b),a.id);}}
+console.log('PASS',animations.length,'animation traces across four inputs');

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+.openai/*.tar.gz
+.openai/*.tgz
+outputs/
+tools/oj-runtime/bundle/
+*.dSYM/
+__pycache__/
+.env
+.env.*
+!.env.example

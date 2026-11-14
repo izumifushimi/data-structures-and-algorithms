@@ -1,0 +1,6 @@
+import {problems} from '../src/problems.js';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {spawnSync} from 'node:child_process';
+const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'algorithms-test-'));let count=0;
+for(const p of problems){const source=path.join(tmp,p.id+'.cpp'),bin=path.join(tmp,p.id);fs.writeFileSync(source,p.reference.replace('#include <bits/stdc++.h>','#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <queue>\n#include <stack>\n#include <map>\n#include <set>\n#include <unordered_set>\n#include <list>\n#include <functional>\n#include <tuple>\n#include <numeric>\n#include <cstdint>\n#include <array>'));
+const c=spawnSync('clang++',['-std=c++17',source,'-o',bin],{encoding:'utf8'});if(c.status!==0)throw Error(p.id+' compile '+c.stderr);
+for(const t of p.cases){let r=spawnSync(bin,[],{input:t.stdin,encoding:'utf8',timeout:10000});if(r.signal==='SIGKILL')r=spawnSync(bin,[],{input:t.stdin,encoding:'utf8',timeout:10000});const norm=s=>s.trim().replace(/\s+/g,' ');if(r.status!==0||norm(r.stdout)!==norm(t.expected))throw Error(p.id+' '+JSON.stringify(t)+' '+r.stdout+' '+r.stderr);count++;}}
+console.log('PASS',problems.length,'reference programs;',count,'test cases');

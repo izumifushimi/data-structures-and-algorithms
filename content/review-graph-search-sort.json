@@ -1,0 +1,410 @@
+{
+  "hnap2ge6fi24yk7v": {
+    "blocks": {
+      "2": {
+        "code": "struct edge{\nint v;\nint w;\nedge(int v1,int w1):v(v1),w(w1){}\n};\ntypedef struct vgNode{\nvector<edge> edges[vNum];\t//边表\ndatatype data[vNum];\nint v,e;\n}vecGraph;",
+        "notes": [
+          "补齐 edge 构造函数的成员初始化列表。"
+        ]
+      },
+      "3": {
+        "code": "void create(vecGraph &g){\n    int i,u,v,w;\n    cin>>g.v>>g.e;\n    for(i=0;i<vNum;i++) g.edges[i].clear();\n    for(i=0;i<g.e;i++){\n        cin>>u>>v>>w;\n        g.edges[u].push_back(edge(v,w)); //将边(u,v)加入图\n        g.edges[v].push_back(edge(u,w)); //将边(v,u)加入图（有向图不需要）\n    }\n}",
+        "notes": [
+          "创建前清空旧边，避免重复创建时累加；修正反向边适用于无向图的注释。"
+        ]
+      },
+      "4": {
+        "code": "struct node{\nint to;\t\t//邻接点\nint w;\nint next;\t//下一个顶点\nnode():next(-1){}\n} edges[eNum<<1];\t//边表大小为2*eNum\nint header[vNum],\t//每一个顶点第一个邻接点的编号，初始值为-1\nv,e,\t\ncnt=0;\t//计数器，表示edges中没有被占用的最小下标",
+        "notes": [
+          "删除结构体定义和 edges 数组声明之间多余的分号，使数组具有 node 类型。"
+        ]
+      },
+      "5": {
+        "code": "void add(int u,int v,int w){ //添加一条边\nedges[cnt].to=v;\t//将边的信息加入edges\nedges[cnt].w=w;\t\t\nedges[cnt].next=header[u];\t//记录顶点上一条边的位置\nheader[u]=cnt++; ////让新边成为顶点u的第一条边,然后cnt加1\n}\n//更新全局变量\nvoid create(){\n    int i,x,y,w;\n    cin>>v>>e;\n    cnt=0;\n    for(i=0;i<=v;i++){\n        header[i]=-1;\n    }\n    for(i=0;i<e;i++){\n        cin>>x>>y>>w;\n        add(x,y,w);\n        add(y,x,w);\n    }\n}\n//输出每个顶点的邻接点和相应边的权重\nvoid traverse(){\n    for(int i=1;i<=v;i++){\n        cout<<i<<':';\n        for(int j=header[i];j!=-1;j=edges[j].next){\n            cout<<edges[j].to<<' '<<edges[j].w<<',';\n        }\n    }\n}",
+        "notes": [
+          "创建时重置静态边表计数器；遍历使用实际数组名 edges。"
+        ]
+      }
+    },
+    "notes": [
+      "链式边表、vector 边表、静态链式前向星是三套独立示例，分别编译，不能把同名 create/edges 直接拼接。除邻接矩阵页外，图算法约定顶点为 1..n，需保证 n<vNum。"
+    ]
+  },
+  "uaafc7zhihxseat8": {
+    "blocks": {
+      "0": {
+        "code": "struct adjMatrix{\n        datatype data[vNum];\nint edge[vNum][vNum];\nint v; //vertex\nint e; //edge\n};",
+        "notes": [
+          "邻接矩阵和顶点数据按顶点容量 vNum 分配，而非边容量 eNum。"
+        ]
+      },
+      "2": {
+        "code": "//输出无权图g中第u个顶点的所有邻接点\nvoid adjVertex(adjMatrix g,int u){\n    for(int i=0;i<g.v;i++){\n        if(g.edge[u][i]!=INF)\n            cout<<i<<' ';\n}\n}",
+        "notes": [
+          "统一本页顶点编号为 0..g.v-1；修正成员访问逗号和空字符常量。"
+        ]
+      }
+    },
+    "notes": [
+      "本页 create 使用 0..g.v-1 编号，其余多数图算法使用 1..n；移植时应统一编号。INF 表示无边，真实权值不能等于 INF。"
+    ]
+  },
+  "hzwyvvq4bbg2x7pc": {
+    "blocks": {
+      "0": {
+        "code": "bool vis[vNum];\t//标记每一个顶点的颜色\nint dfn[vNum],cnt=0; //dfn存放DFS序列，cnt为序列编号\n//对图g的顶点cur所在连通分量做深度优先搜索\nvoid dfs(vector<int>g[vNum],int cur){\n    int i,u;\n    dfn[++cnt] = cur; //第几个访问的是cur\n    vis[cur]=true;\t//当前顶点为黑色\n    for(i=0;i<g[cur].size();i++){\n        u=g[cur][i];  //顶点cur的第i个连接点\n      if(!vis[u]) dfs(g,u); //如果u是白色，就找u的邻接点\n    }\n}\n//对图g深度优先搜索\nvoid dfs_traverse(vector<int>g[vNum],int v){\n    int i;\n    cnt=0;\n    memset(vis,0,sizeof(vis));\t//每个顶点都是白色\n    for(i=1;i<=v;i++){\n        if(!vis[i]) dfs(g,i);//如果i是白色，就找i的邻接点\n    }\n}",
+        "notes": [
+          "邻接表保存顶点编号，统一为 int；每次完整遍历重置 DFS 序列计数。"
+        ]
+      },
+      "1": {
+        "code": "#define N 100\n#define M 100\nbool maze[N][M],vis[N][M];//定义了两个布尔数组来判断访问情况和墙壁情况\nint n,m,dir[4][2]={{1,0},{-1,0},{0,1},{0,-1}};//用来表示上下左右移动\nbool can(int x,int y){//房间(x,y)在迷宫内部，能进入，没被访问过\n    return x>=0 && x<n && y>=0 && y<m && !maze[x][y] && !vis[x][y];\n}\nvoid dfs(int x,int y,int &ret){\n    int i,dx,dy;\n    if(ret) return;\n    if(x==n-1 && y==m-1){ ret=1; return; }\n    vis[x][y]=true; //标记当前房间\n    for(i=0;i<4;i++){ //查看四个相邻的房间\n        dx=x+dir[i][0],dy=y+dir[i][1]; //第一列是x的，第二列是y的\n        if(can(dx,dy)){\n        if(dx==n-1 && dy==m-1){ //因为我们要找的是最右下角的房子，所以是x[n-1]y[n-1]\n            ret=1; //表示成功找到通路\n            return;\n        }\n        dfs(dx,dy,ret);//如果不是终点就继续找\n        }\n    }\n}\nint main(){\n    cin>>n>>m;\n    if(n<=0 || n>N || m<=0 || m>M){ cout<<0<<endl; return 0; }\n    for(int i=0;i<n;i++)\n        for(int j=0;j<m;j++)\n            cin>>maze[i][j];\n    memset(vis,0,sizeof(vis));\n    int ret=0;\n    if(n>0 && n<=N && m>0 && m<=M && can(0,0)) dfs(0,0,ret);\n    cout<<ret<<endl;\n    return 0;\n}",
+        "notes": [
+          "补充 1×1 迷宫的起终点重合情况；墙壁起点不允许出发；验证尺寸并清空访问标记；找到路径后提前结束。"
+        ]
+      },
+      "2": {
+        "code": "bool vis[vNum];\t\t//标记顶点的颜色\nint bfn[vNum];\nint bfn_cnt=0;\t\t//广度优先序列\n//对图g中cur所在连通分量进行广度优先搜索，出发点为cur\nvoid bfs(vector<int> g[vNum],int cur){\n    int i,u,v;\n    queue<int> q;\n    bfn[++bfn_cnt]=cur,vis[cur]=true;\t //bfn[1]就是cur，访问后涂黑\n    q.push(cur);\t//入队\n    while(!q.empty()){\t\n        u=q.front(),q.pop();\t//取出队头\n        for(i=0;i<g[u].size();i++){\t//检查每一个邻接点\n            v=g[u][i];\n            if(!vis[v]){ //白色\n                bfn[++bfn_cnt]=v;\n                vis[v]=true;\n                q.push(v);\n            }\n        }\n    }\n}\n//对g进行广度优先搜索，v为顶点数量\nvoid bfs_traverse(vector<int> g[vNum],int v){\n    bfn_cnt=0;\n    memset(vis,0,sizeof(vis)); //每个顶点都是白色\n    for(int i=1;i<=v;i++){\n        if(!vis[i])\n            bfs(g,i);\n    }\n}",
+        "notes": [
+          "BFS 序列计数移到整个遍历范围，避免每个连通分量从下标 1 覆盖前面的序列；修正入队注释。"
+        ]
+      },
+      "3": {
+        "code": "//求顶点cur到其他顶点的最短路径长\nvoid bfs(vector<int>g[vNum],int cur,int dis[vNum]){\n    int i,u,v;\n    memset(vis,0,sizeof(vis));\n    fill(dis,dis+vNum,-1);\n    dis[cur]=0;\n    queue<int>q;\n    vis[cur]=true;\n    q.push(cur);\n    while(!q.empty()){\n        u=q.front(),q.pop();\n        for(i=0;i<g[u].size();i++){\n            v=g[u][i];\n            if(!vis[v]){\n                dis[v]=dis[u]+1;\t\n                vis[v]=true,q.push(v);\n            }\n        }\n    }\n}\n",
+        "notes": [
+          "修正函数签名、q.pop 和 true 拼写；初始化源点距离为 0、其他距离为 -1，并重置访问状态。"
+        ]
+      }
+    },
+    "notes": [
+      "本页多个示例含同名 vis/dfs/bfs 和不同数组类型，应分别编译；无权最短路仅适用于每条边代价相同的图。"
+    ]
+  },
+  "gm25a9zkibxepn7w": {
+    "blocks": {
+      "0": {
+        "code": "int leave[vNum],belong[vNum],cnt=0,bcnt=0;\nbool vis[vNum];\n// 对原图g进行DFS，得到顶点处理完毕的序列\nvoid dfs(vector<int> g[vNum],int cur){\n    vis[cur]=true;\n    for(int i=0;i<g[cur].size();i++)\n        if(!vis[g[cur][i]]) dfs(g,g[cur][i]);\n    leave[++cnt]=cur;//leave是第一次DFS的完成排序\n}\n\n// 对反图gt进行DFS，记录强连通分量\nvoid dfst(vector<int> gt[vNum],int cur){\n    vis[cur]=true;\n    belong[cur]=cnt;\t//当前顶点的强连通分量编号设置为cnt\n    for(int i=0;i<gt[cur].size();i++)\n        if(!vis[gt[cur][i]]) dfst(gt,gt[cur][i]);\n}\n\n// Kosaraju算法求图g的强连通分量\nint Kosaraju(vector<int> g[vNum],vector<int> gt[vNum],int v){\n    int i;\n    memset(vis,0,sizeof(vis));\n    cnt=0;\n    for(i=1;i<=v;i++)\t//对原图DFS\n        if(!vis[i]) dfs(g,i);\n\n    memset(vis,0,sizeof(vis));\n    cnt=0;\n    for(i=v;i>=1;i--){\t//对反图进行DFS，从leave的最后一个元素所表示的顶点开始\n        if(!vis[leave[i]]){\n            cnt++;\n            dfst(gt,leave[i]);\n        }\n    }\n    for(i=1;i<=v;i++) //全部分量处理完成后再输出\n        cout<<i<<' '<<belong[i]<<endl;\n    return cnt;\n}",
+        "notes": [
+          "把输出循环移出第二轮 DFS 的外层循环，避免复用 i 导致死循环和漏算强连通分量。"
+        ]
+      },
+      "1": {
+        "code": "int dfn[vNum]={0},low[vNum],belong[vNum],cnt=0,bcnt=0;\nbool instk[vNum];\nstack<int> stk;\n//从u出发进行dfs\nvoid dfs(vector<int> g[vNum],int u){\n    int i,v;\n    dfn[u]=low[u]=++cnt;\t\t//low和dfs初始化相同\n    stk.push(u),instk[u]=true;\n    for(i=0;i<g[u].size();i++){\n        v=g[u][i];\n        if(!dfn[v]){\n            dfs(g,v);\n            low[u]=min(low[u],low[v]);\t//(u,v)是树边\n        }\n        else if(instk[v])\n            low[u]=min(low[u],dfn[v]); //(u,v)是前向边或反向边\n    }\n    if(dfn[u]==low[u]){ //u是强连通分量的根结点\n        ++bcnt;\n        do{\n            i=stk.top(),stk.pop();\n            belong[i]=bcnt,instk[i]=false;\n        }while(i!=u);\n    }\n}\n//求所有强连通分量\nvoid Tarjan(vector<int> g[vNum],int v){\n    memset(dfn,0,sizeof(dfn));\n    memset(instk,0,sizeof(instk));\n    cnt=bcnt=0;\n    while(!stk.empty()) stk.pop();\n    for(int i=1;i<=v;i++)\n        if(!dfn[i]) dfs(g,i);\n}",
+        "notes": [
+          "每次求解前重置时间戳、在栈标记、分量计数及栈，支持多次调用。"
+        ]
+      }
+    },
+    "notes": [
+      "Kosaraju 与 Tarjan 两段是独立实现，各自的同名全局变量/dfs 不能合并定义。"
+    ]
+  },
+  "efgybln1u34h4qk2": {
+    "blocks": {
+      "0": {
+        "code": "int dfn[vNum],low[vNum],cnt=1,pbc_cnt=0;\nset<int>cut; //存放割点\nset<int>pbc[vNum];\t//pbc[i]存放第i个点双连接分量的顶点\nstack<pair<int,int>>stk;\n//求无向图g中u所在连接分量中割点和点双连接分量，fa为u的父结点\nvoid tarjan(vector<int>g[vNum],int u,int fa){\n    int i,v,u1,v1,child=0;\n    bool skipped_fa=false;\n    dfn[u]=low[u]=cnt++;\n    for(i=0;i<g[u].size();i++){\n        v=g[u][i];\n        if(v==fa && !skipped_fa){ skipped_fa=true; continue; }\t\t//忽略从u到其父结点的边\n        if(!dfn[v]){\t\t\t//(u,v)为树边\n            ++child;\n            stk.push(make_pair(u,v));\n            tarjan(g,v,u);\n            low[u]=min(low[u],low[v]);\n            if(low[v]>=dfn[u]){\n                if(fa!=-1)\t//当u为根结点时，单独判断\n                    cut.insert(u);\t//u为割点\n                pbc[++pbc_cnt].clear();\n                do{\t\t\t//将栈(u,v)上的边的两个端点加到第pbc_cnt个点连通量中\n                    u1=stk.top().first;\n                    v1=stk.top().second;\n                    stk.pop();\n                    pbc[pbc_cnt].insert(u1);\n                    pbc[pbc_cnt].insert(v1);\n                }while(!stk.empty()&&(u1!=u||v1!=v));\n            }\n        }\n        else if(dfn[v]<dfn[u]){\n            stk.push(make_pair(u,v));\n            low[u]=min(low[u],dfn[v]);\n        }\n    }\n    if(fa==-1 && child==0){ pbc[++pbc_cnt].clear(); pbc[pbc_cnt].insert(u); }\n    if(fa==-1&&child>1) cut.insert(u);\t\t//当u为根结点且有多余一个孩子结点时，u为割点\n}\n//求无向图g的割点和点双连通分量，v为顶点数\nvoid cut_pbc(vector<int>g[vNum],int v){\n    memset(dfn,0,sizeof(dfn));\n    cnt=1; pbc_cnt=0; cut.clear();\n    while(!stk.empty()) stk.pop();\n    for(int i=1;i<=v;i++){\n        if(!dfn[i]) tarjan(g,i,-1);\n    }\n}\n",
+        "notes": [
+          "对父边只跳过一次，使平行边能作为返祖边更新 low；补充孤立顶点分量；每次求解重置状态。"
+        ]
+      },
+      "1": {
+        "code": "\nint dfn[vNum],low[vNum],cnt=1,ebc_cnt=-1;\nmap<pair<int,int>,bool>isBridge;\t//当(u,v)为桥时，isBridge[(u,v)]=true\nvector<int>ebc[vNum]; //ebc[i]为第i个边双连通分量中的顶点\n//求图g中u所在的连通分量中的桥，fa为u的父结点\nvoid tarjan(vector<int>g[vNum],int u,int fa){\n    int i,v;\n    bool skipped_fa=false;\n    dfn[u]=low[u]=cnt++;\n    for(i=0;i<g[u].size();i++){\n        v=g[u][i];\n        if(v==fa && !skipped_fa){ skipped_fa=true; continue; }\t//忽略从u到其父结点的边\n        if(!dfn[v]){\n            tarjan(g,v,u);\n            low[u]=min(low[u],low[v]);\n            if(low[v]>dfn[u]){\n                isBridge[make_pair(u,v)]=true;\t//(u,v)为桥\n            }\n        }\n        else if(dfn[v]<dfn[u]){\n            low[u]=min(low[u],dfn[v]);\n        }\n    }\n}\n//求图g中顶点cur所在连通分量中的边双连通分量，当前编号是ebc_cnt\nvoid dfs(vector<int>g[vNum],int cur){\n    dfn[cur]=1;\n    ebc[ebc_cnt].push_back(cur);\t//cur加入当前边双连通分量\n    for(int i=0;i<g[cur].size();i++){\n        int u=g[cur][i];\n        //如果边(cur,u)为桥，则跳过u\n        if(!dfn[u]&&!isBridge[make_pair(cur,u)]&&!isBridge[make_pair(u,cur)]){\n            dfs(g,u);\n        }\n    }\n}\n//去g所有的桥和边连通分量\nvoid bridge_ebc(vector<int>g[vNum],int v){\n    memset(dfn,0,sizeof(dfn));\n    cnt=1; ebc_cnt=-1; isBridge.clear();\n    for(int i=0;i<vNum;i++) ebc[i].clear();\n    for(int i=1;i<=v;i++){\n        if(!dfn[i]) tarjan(g,i,-1);\n    }\n    memset(dfn,0,sizeof(dfn));\n    for(int i=1;i<=v;i++){\n        if(!dfn[i]){\n            ++ebc_cnt;\n            dfs(g,i);\n        }\n    }\n}\n",
+        "notes": [
+          "只忽略一次父边，修正平行边被误判为桥；每次调用清理时间戳、桥集合和边双连通分量。"
+        ]
+      }
+    },
+    "notes": [
+      "割点/点双分量与桥/边双分量两块分别编译，因其中全局变量和 tarjan 同名。单独的自环不会改变割点或桥。",
+      "随机测试核对了割点与桥，并覆盖平行边和非连通图；点双/边双分量的全部成员集合尚未逐项差分验证。"
+    ]
+  },
+  "gcbkvkk1hbl1a1wu": {
+    "blocks": {
+      "0": {
+        "code": "struct node{\n    int u,v,w;\n    node(int u1=0,int v1=0,int w1=0):u(u1),v(v1),w(w1){} //w表示边(u,v)的权重,u在U中,v在V-U中\n    bool operator<(node n1) const{\n        return w>n1.w; //为了定义小顶堆\n    }\n};\n\nbool vis[vNum]; //vis[u]=true,u在集合U中;否则u不在集合U中\n\n//求图g的最小生成树,结果保存在参数t中,n为顶点数\nvoid prim(vector<edge>g[vNum],int n,vector<int>t[vNum]){\n    memset(vis,0,sizeof(vis));\n    for(int i=0;i<vNum;i++) t[i].clear();\n    if(n<=0) return;\n    priority_queue<node>pq; //优先队列,小顶堆\n    int i,step=n-1,u,v;\n    for(i=0;i<g[1].size();i++){ //将第1个顶点加入U,并更新其邻接点到U的距离\n        edge tmp=g[1][i];\n        pq.push(node(1,tmp.v,tmp.w));\n    }\n    vis[1]=1;\n    while(step>0 && !pq.empty()){ //每次成功加入一个新顶点\n        node tmp=pq.top();\n        pq.pop(),v=tmp.v;\n        if(vis[v]) continue; //失效边直接丢弃\n        --step;\n        u=tmp.u,vis[tmp.v]=1; //将v加入U\n        t[v].push_back(u),t[u].push_back(v); //将边(u,v)加入树T中\n        for(i=0;i<g[v].size();i++){ //更新v的属于V-U的邻接点到U的距离\n            edge tmp=g[v][i];\n            if(!vis[tmp.v])\n                pq.push(node(v,tmp.v,tmp.w));\n        }\n    }\n}",
+        "notes": [
+          "重置访问标记和输出树；空图直接返回；每次取堆顶前检查非空，跳过失效边后才减少剩余顶点数，避免非连通图访问空堆。"
+        ]
+      },
+      "1": {
+        "code": "struct node{\n    int u,v,w;\n    node(int u1=0,int v1=0,int w1=0):u(u1),v(v1),w(w1){}\n    bool operator<(node n1) const{\n        return w<n1.w;\n    }\n}edges[eNum];\n\n//求图g的最小生成树,结果保存在参数t中,n为顶点数\nvoid kruskal(vector<edge>g[vNum],int n,vector<int>t[vNum]){\n    int i,j,cnt=0,num=0;\n    int pa[vNum];\n    for(i=0;i<vNum;i++){ pa[i]=i; t[i].clear(); }\n    auto query=[&](int x){\n        int r=x;\n        while(pa[r]!=r) r=pa[r];\n        while(pa[x]!=x){ int y=pa[x]; pa[x]=r; x=y; }\n        return r;\n    };\n    auto merge=[&](int u,int v){ pa[query(u)]=query(v); };\n    //将图g的所有边转存到数组edges中,边的数量为cnt\n    for(i=1;i<=n;i++){\n        for(j=0;j<g[i].size();j++){\n            edge tmp=g[i][j];\n            if(i<tmp.v) //同一条边在g中出现两次,只取其中一条\n                edges[cnt++]=node(i,tmp.v,tmp.w);\n        }\n    }\n    sort(edges,edges+cnt); //对edges按w进行从小到大排序\n    for(i=0;i<cnt;i++){\n        int u=edges[i].u,v=edges[i].v;\n        if(query(u)!=query(v)){ //u,v属于不同的子树\n            merge(u,v); //合并u和v所在的子树\n            t[u].push_back(v),t[v].push_back(u); //将边(u,v)加入MST中\n            if(++num==n-1) //如果MST中已有n-1条边,结束\n                break;\n        }\n    }\n}",
+        "notes": [
+          "在函数内补充并初始化并查集，保持原 query/merge 调用形式；清空旧输出，避免依赖其他章节或上次调用留下的状态。"
+        ]
+      }
+    },
+    "notes": [
+      "两段 node 比较方式相反，是两套独立示例。MST 的前提是无向连通图；非连通时 Prim 仅得到顶点 1 所在分量，Kruskal 得到最小生成森林。"
+    ]
+  },
+  "nt3aaeukgr2p9zed": {
+    "blocks": {
+      "0": {
+        "code": "struct node{\n    int u; //源点经过U中的顶点到达v的最短路径的离v最近的顶点\n    int v; //V-U中的顶点\n    int d; //源点经过U中的顶点到达v的最短距离\n    node(int u1,int v1,int d1):u(u1),v(v1),d(d1){}\n    bool operator<(node n1)const{ //为了定义小顶堆\n        return d>n1.d;\n    }\n};\n\n//求图g的单源最短距离和路径,n为顶点数,st为源点,d[i]为源点到顶点i的最短距离\nvoid Dijkstra(vector<edge>g[vNum],int n,int st,int d[vNum],int p[vNum]){\n    int i,j,cnt=1,v,vis[vNum]={0}; //vis[k]的值为0或1,分别表示顶点k未加入U或已加入U\n    priority_queue<node>pq;\n    for(i=1;i<=n;i++) d[i]=INF,p[i]=0;\n    d[st]=0;\n    vis[st]=1,p[st]=st; //将源点加入U,源点的p值为它本身\n    for(i=0;i<g[st].size();i++) //将源点的邻接点加入pq\n        pq.push(node(st,g[st][i].v,g[st][i].w));\n    while(!pq.empty()){\n        node tmp=pq.top();\n        pq.pop(),v=tmp.v;\n        if(!vis[v]){ //判断v是否不在U中\n            d[v]=tmp.d,p[v]=tmp.u; //得到源点到v的最短距离和最短路径中离v最近的顶点\n            vis[v]=1,cnt++; //将v加入U中,U中顶点数加1\n            if(cnt==n) return; //所有顶点都加入U,结束\n            for(i=0;i<g[v].size();i++){ //对v及所有不在U中的邻接点所对应的边进行松弛操作\n                if(!vis[g[v][i].v])\n                    pq.push(node(v,g[v][i].v,tmp.d+g[v][i].w));\n            }\n        }\n    }\n}\n//输出顶点v的最短路径\nvoid getPath(int p[vNum],int v){\n    if(v<=0 || v>=vNum || p[v]==0) return;\n    if(p[v]==v){\n        cout<<v<<' ';\n        return;\n    }\n    getPath(p,p[v]);\n    cout<<v<<' ';\n}",
+        "notes": [
+          "初始化所有距离为 INF、源点距离为 0；路径输出遇到不可达顶点直接返回，防止递归进入 p[0]；修正空字符常量。"
+        ]
+      },
+      "1": {
+        "code": "//利用spfa算法求g的单源最短路径,源点为st,顶点数为n。如果g有负权环,返回值为0;否则返回值为1\nint spfa(vector<edge>g[vNum],int n,int st,int d[vNum],int p[vNum]){\n    int i,u,v,vis[vNum]={0},num[vNum]={0};\n    for(i=1;i<=n;i++)\n        d[i]=INF,p[i]=0; //初始化d和p\n    d[st]=0,p[st]=st; //初始化源点的距离\n    queue<int>q;\n    q.push(st); vis[st]=1;\n    while(!q.empty()){\n        u=q.front(),q.pop(); //取队头元素\n        vis[u]=0; //标识顶点u已不在队列中\n        for(i=0;i<g[u].size();i++){\n            v=g[u][i].v;\n            if(d[v]>d[u]+g[u][i].w){\n                d[v]=d[u]+g[u][i].w; //松弛操作\n                p[v]=u;\n                num[v]=num[u]+1; //当前改进路径的边数\n                if(num[v]>=n) return 0; //只检测源点可达的负环\n                if(!vis[v])\n                    q.push(v),vis[v]=1; //v入队\n            }\n        }\n    }\n    return 1;\n}",
+        "notes": [
+          "初始源点标为已入队、不可达前驱用 0；负环判断改为改进路径边数，避免用出队次数错误判断负环。"
+        ]
+      },
+      "2": {
+        "code": "//求带权图g的每一对顶点之间的最短距离和最短路径,n为顶点数\nvoid Floyd(vector<edge>g[vNum],int n,int d[vNum][vNum],int p[vNum][vNum]){\n    int i,j,k;\n    for(i=1;i<=n;i++) //初始化d和p\n        for(j=1;j<=n;j++){\n            d[i][j]=(i==j)?0:INF;\n            p[i][j]=(i==j)?i:-1;\n        }\n    for(i=1;i<=n;i++) //对有边相连的两个顶点重新初始化d和p\n        for(j=0;j<g[i].size();j++){\n            int v=g[i][j].v;\n            if(g[i][j].w<d[i][v]){\n                d[i][v]=g[i][j].w;\n                p[i][v]=i;\n            }\n        }\n    for(k=1;k<=n;k++) //依次将顶点k加入集合U\n        for(i=1;i<=n;i++)\n            for(j=1;j<=n;j++){\n                if(p[i][k]!=-1 && p[k][j]!=-1 && d[i][j]>d[i][k]+d[k][j]){\n                    d[i][j]=d[i][k]+d[k][j]; //松弛操作\n                    p[i][j]=k;\n                }\n            }\n}\n\n//输出顶点u到v的最短路径(顶点v除外)\nvoid getPath(int p[vNum][vNum],int u,int v){\n    if(p[u][v]==-1 || u==v) return; //u到v不存在路径\n    if(p[u][v]==u){ //p[u][v]为叶结点,u到v的最短路径为\n                      //边(u,v)\n        cout<<u<<' ';\n        return;\n    }\n    getPath(p,u,p[u][v]);\n    getPath(p,p[u][v],v);\n}",
+        "notes": [
+          "空路径使 d[i][i]=0；存在重边时保留最小权值，防止输入顺序覆盖更短的边。"
+        ]
+      }
+    },
+    "notes": [
+      "Dijkstra 要求边权非负；SPFA 只报告源点可达的负环；Floyd 的距离/路径解释要求无负环，检测负环可检查最终 d[i][i]<0。INF 及 int 必须覆盖实际路径和的范围，超出 int 范围时需统一改 long long。传递闭包原例计算至少经过一条边的可达关系；若定义包含长度 0 的路径，应另外把对角线设为 1。"
+    ]
+  },
+  "cupw7m5ihhhargh0": {
+    "blocks": {
+      "1": {
+        "code": "//求AOE网g的关键路径,n为事件数,g存在环路,返回0;否则返回源点的下标,关键活动保存在cp中\nint critical_path(vector<edge>g[vNum],int n,vector<edge>cp[vNum]){\n    int i,j,u,v,w,tsort[vNum],ve[vNum]={0},vl[vNum],ae,al;\n    if(n<=0) return 0;\n    vector<int> unweighted[vNum];\n    for(i=1;i<=n;i++){\n        cp[i].clear();\n        for(j=0;j<g[i].size();j++) unweighted[i].push_back(g[i][j].v);\n    }\n    if(!topological_sort(unweighted,n,tsort)){ //如果g存在环路,不能计算事件的拓扑序\n        cout<<\"图g存在环路!\"<<endl;\n        return 0;\n    }\n    ve[tsort[0]]=0; //源点的最早发生时间为0\n    for(i=0;i<n-1;i++){ //按照事件的拓扑序列依次求每个事件u的所有邻接事件v的\n                         //ve值\n        u=tsort[i];\n        for(j=0;j<g[u].size();j++){\n            v=g[u][j].v,w=g[u][j].w;\n            ve[v]=max(ve[v],ve[u]+w);\n        }\n    }\n    int duration=0;\n    for(i=1;i<=n;i++) duration=max(duration,ve[i]);\n    for(i=1;i<=n;i++) //多个汇点时取最大最早完成时间为总工期\n        vl[i]=duration;\n    for(i=n-2;i>=0;i--){ //按照事件的逆拓扑序依次求每个事件的所有前期事件u的\n                          //vl值\n        u=tsort[i];\n        for(j=0;j<g[u].size();j++){\n            v=g[u][j].v,w=g[u][j].w;\n            vl[u]=min(vl[u],vl[v]-w);\n        }\n    }\n    for(i=1;i<=n;i++){ //计算每一个活动(i,v)的最早发生时间和最迟发生时间\n        for(j=0;j<g[i].size();j++){\n            v=g[i][j].v;\n            ae=ve[i],al=vl[v]-g[i][j].w;\n            if(ae==al) //当活动的最早发生时间等于最迟发生时间时,加入关键路径\n                cp[i].push_back(edge(v,g[i][j].w));\n        }\n    }\n    return tsort[0];\n}",
+        "notes": [
+          "先提取无权邻接表交给已有拓扑排序，修正 vector<edge> 与 vector<int> 参数不匹配；多个汇点时取最大全局完成时间；直接写入 cp，避免依赖未定义的 add_edge；清空旧结果并处理空图。"
+        ]
+      }
+    },
+    "notes": [
+      "AOE 活动持续时间应非负。若存在多个源点/汇点，可视为添加一个零权超级源点/汇点；本函数返回拓扑序列的首顶点，cp 保存所有关键活动。",
+      "关键路径已验证多汇点与有环输入的边界样例；未覆盖所有 AOE 网络变体。"
+    ]
+  },
+  "it1niv51webln15h": {
+    "blocks": {
+      "2": {
+        "code": "\n //在伸展树t中,对键值k进行自顶向下伸展操作\nvoid splay(splayTree &t,keytype k){\n    splayTree header=new stNode,LMax=NULL,RMin=NULL; //HL为header->lc,HR为header->rc\n    if(t==NULL){\n        delete header;\n        return;\n    }\n    while(1){\n        if(t->key>k){ //进入左分支\n            if(t->lc==NULL) break; //情形(2.2.1)\n            if(t->lc->key>k) t=LL(t);\n            if(t->lc==NULL) break; //情形(2.2.2)\n            //情形(2.2.4):分裂,情形(2.2.3)直接进行下面的操作\n            if(RMin==NULL) header->rc=RMin=t;\n            else RMin->lc=t,RMin=t;\n            t=t->lc;\n        }\n        else if(t->key<k){ //进入右分支\n            if(t->rc==NULL) break; //情形(2.3.1)\n            if(t->rc->key<k) t=RR(t);\n            if(t->rc==NULL) break; //情形(2.3.2)\n            //情形(2.3.4):分裂,情形(2.3.3)直接进行下面的操作\n            if(LMax==NULL) header->lc=LMax=t;\n            else LMax->rc=t,LMax=t;\n            t=t->rc;\n        }\n        else\n            break; //情形(2.1)\n    }\n    //第(3)步\n    if(LMax==NULL) header->lc=t->lc; //将t的左分支加到HL中\n    else LMax->rc=t->lc;\n    if(RMin==NULL) header->rc=t->rc; //将t的右分支加到HR中\n    else RMin->lc=t->rc;\n    t->lc=header->lc; //将t的左分支设置为HL\n    t->rc=header->rc; //将t的右分支设置为HR\n    delete header;\n}\n",
+        "notes": [
+          "双层同向旋转后再次检查相应孩子，避免查找落在树外时把 t 移为 NULL 后继续解引用。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "ocd9lro158k0h9og": {
+    "blocks": {
+      "0": {
+        "code": "const int p[10]={2,3,5,7,11,13,17,19,23,29};\n\ntypedef struct htNode{\n    int key;\n    bool occupied;\n    htNode *cn[29];\n\n    htNode():key(0),occupied(false){\n        for(int i=0;i<29;i++)\n            cn[i]=NULL;\n    }\n}*hashTree;",
+        "notes": [
+          "空节点初始化为未占用并初始化 key，防止未写入键值就参与查找。"
+        ]
+      },
+      "1": {
+        "code": "int htree_search(hashTree ht,int k,int dep){\n    if(ht==NULL) return 0;\n    else if(ht->occupied && ht->key==k)\n        return 1;\n    else{\n        if(dep>=10) return 0;\n        int c=(k%p[dep]+p[dep])%p[dep];\n        return htree_search(ht->cn[c],k,dep+1);\n    }\n}",
+        "notes": [
+          "将负数键的余数规范到合法分支编号；保护有限的质数表边界。"
+        ]
+      },
+      "2": {
+        "code": "//在散列树ht中插入键值k。插入成功,返回true;否则返回false\nbool htree_insert(hashTree &ht,int k,int dep=0){\n    if(ht==NULL) ht=new htNode;\n    if(htree_search(ht,k,dep)) return false; //删除标记下方也可能已有同键\n    if(ht->occupied==false){ //结点中的键值已被删除\n        ht->key=k,ht->occupied=true;\n        return true;\n    }\n    else if(ht->key==k) //ht中已存在键值为k的结点\n        return false;\n\n    if(dep>=10) return false;\n    int c=(k%p[dep]+p[dep])%p[dep]; //下一个分支的编号\n    if(ht->cn[c]==NULL){ //结点为空,创建新结点\n        ht->cn[c]=new htNode;\n        ht->cn[c]->key=k; ht->cn[c]->occupied=true; //occupied默认为true\n        return true;\n    }\n    else\n        return htree_insert(ht->cn[c],k,dep+1); //进入下一层\n}",
+        "notes": [
+          "根指针改为引用并处理空树；递归补 return；填回已删除节点前查重；新结点显式设为占用；规范负数余数并保护质数表边界。"
+        ]
+      },
+      "3": {
+        "code": "//删除散列树ht中的键值k。删除成功返回true,否则返回false\nbool htree_delete(hashTree ht,int k,int dep=0){\n    if(ht==NULL) return false;\n    if(ht->occupied && ht->key==k){ //查找到键值k\n        ht->occupied=false;\n        return true;\n    }\n    if(dep>=10) return false;\n    int c=(k%p[dep]+p[dep])%p[dep];\n    return htree_delete(ht->cn[c],k,dep+1);\n}",
+        "notes": [
+          "只有仍占用的键才算删除成功；递归补 return；规范负数余数并保护质数表边界。"
+        ]
+      }
+    },
+    "notes": [
+      "此处实现是散列树，而不是常见的数组哈希表；插入/查找按每层质数取模向下分支。示例键类型为 32 位 int。"
+    ]
+  },
+  "qsmaorshgyypzl6s": {
+    "blocks": {
+      "9": {
+        "code": "//向AVL树t中插入结点,结点的键值为k,插入成功,返回true,否则,返回false(t中已存在键值为k的结点)\nbool avl_insert(avlTree &t,keytype k){\n    if(t==NULL){\n        t=new avlNode,t->key=k;\n        return true;\n    }\n    if(k<t->key){\n        if(!avl_insert(t->lc,k)) return false;\n        if(avl_height(t->lc)-avl_height(t->rc)>1){\n            //不平衡,A为t,B为t->lc,因为此处属于t的左子树回退部分\n            if(t->lc->key>k) t=LL(t);\n            else t=LR(t);\n        }\n    }\n    else if(k>t->key){\n        if(!avl_insert(t->rc,k)) return false;\n        if(avl_height(t->rc)-avl_height(t->lc)>1){\n            //不平衡,A为t,B为t->rc,因为此处属于t的右子树回退部分\n            if(t->rc->key<k) t=RR(t);\n            else t=RL(t);\n        }\n    }\n    else\n        return false;\n    t->h=max(avl_height(t->lc),avl_height(t->rc))+1;\n    return true;\n}",
+        "notes": [
+          "向上传递递归插入失败的返回值，确保深层重复键返回 false。"
+        ]
+      },
+      "3": {
+        "code": " //删除二叉查找树t中键值为k的结点。删除成功,返回true,否则返回false\nbool bst_delete(bstTree &t,keytype k) {\n    bstNode *tmp;\n    if(t==NULL) return false; //情形(1):不存在键值为k的结点,删除失败\n    else if(k < t->key) return bst_delete(t->lc,k); //进入左子树\n    else if(k > t->key) return bst_delete(t->rc,k); //进入右子树\n    else { //t的键值为k,删除结点t(算法中的(1))\n        if(t->lc==NULL && t->rc==NULL) { //情形(2)\n            delete t,t=NULL;\n        }\n        else if(t->rc==NULL) {\n            tmp=t; //仅有左孩子，直接以整棵左子树取代当前结点\n            t=t->lc;\n            delete tmp;\n        }\n        else {\n            tmp=t->rc; //情形(4)\n            while(tmp->lc) tmp=tmp->lc;\n            //获取t的直接后继tmp(右子树的最左孩子,算法中的(2))\n            keytype k1=tmp->key;\n            bst_delete(t,k1); //删除tmp\n            t->key=k1; //用tmp的键值取代t的键值\n        }\n        return true;\n    }\n}",
+        "notes": [
+          "仅有左子树时整体接替当前结点，而非仅复制左孩子键值；后者在左孩子存在右子树时会破坏 BST 顺序。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "ryfee7q3xhla8ghs": {
+    "blocks": {
+      "0": {
+        "code": "//二分查找，查找顺序表sl的下标区间[left,right]中是否存在值为k的元素，若存在则返回元素的下标，否则返回-1\nint binary_search(const vector<keytype>&sl,int left,int right,keytype k){\n    int mid;\n    if(left<0 || right>=(int)sl.size() || left>right) return -1; //查找失败\n    mid=left+(right-left)/2; //下标区间的中间位置\n    if(sl[mid]==k) return mid; //查找成功\n    else if(sl[mid]>k) return binary_search(sl,left,mid-1,k); //转到左半区间查找\n    else return binary_search(sl,mid+1,right,k); //转到右半区间查找\n}\n//二分查找的非递归实现，查找顺序表sl中是否存在元素的值为k，若存在则返回元素的下标，否则返回-1\nint binary_search(const vector<keytype>&sl,keytype k){\n    int left=0,right=(int)sl.size()-1,mid;\n    while(left<=right){\n        mid=left+(right-left)/2;\n        if(sl[mid]==k) return mid; //查找成功\n        else if(sl[mid]>k) right=mid-1; //转到左半区间查找\n        else left=mid+1; //转到右半区间查找\n    }\n    return -1; //查找失败\n}",
+        "notes": [
+          "顺序表改为 const 引用，避免每次递归复制整个数组而破坏二分复杂度；中点用差值计算；处理非法边界和空表。"
+        ]
+      },
+      "1": {
+        "code": "//插值查找的非递归实现，查找顺序表sl中是否存在元素的值为k\nint interpolation_search(const vector<keytype>&sl,keytype k){\n    int left=0,right=(int)sl.size()-1,mid;\n    while(left<=right){\n        if(k<sl[left] || k>sl[right]) return -1;\n        if(sl[left]==sl[right]) return sl[left]==k ? left : -1;\n        mid=left+(int)(1LL*(right-left)*(1LL*k-sl[left])/(1LL*sl[right]-sl[left]));\n        if(sl[mid]==k) return mid; //查找成功\n        else if(sl[mid]>k) right=mid-1; //转到左半区间查找\n        else left=mid+1; //转到右半区间查找\n    }\n    return -1; //查找失败\n}",
+        "notes": [
+          "先检查目标范围和相等端点，避免除零与越界；插值乘法用 long long 中间值；顺序表改 const 引用。"
+        ]
+      },
+      "4": {
+        "code": "//构建原始数据和块索引表b\nvoid get_bitTable(bitTable &b){\n    keytype k,mk;\n    int i,n=0,m;\n    b.sl.clear(); b.sz=0;\n    cout<<\"输入分块数量:\";\n    cin>>m;\n    if(m<0 || m>M) return;\n    b.sz=m;\n    for(i=0;i<m;i++){\n        cout<<\"输入第\"<<i+1<<\"块的键值(当输入0时结束本块输入):\"<<endl; //输入第i+1块的数据\n        b.bit[i].begin=n,mk=-1; //n为当前原始数据的下标\n        while(cin>>k && k>0){ //假设键值都为正\n            b.sl.push_back(k); //将键值依次加入原始顺序表\n            if(mk<k) mk=k; //更新当前块的最大值\n            ++n;\n        }\n        b.bit[i].mkey=mk;\n        b.bit[i].end=n; //第i+1块索引表构建完毕\n    }\n}\n//对分块查找表b进行分块查找，查找的键值为k，查找成功，返回k在原顺序表中的下标，否则返回-1\nint block_search(const bitTable &b,keytype k){\n    bitNode bit1; bit1.mkey=k;\n    int i=lower_bound(b.bit,b.bit+b.sz,bit1)-b.bit; //i为键值k所在的块\n    if(i>=b.sz) return -1; //k比所有键值都大，查找失败\n    bitNode bit=b.bit[i]; //第i个块的块索引表\n    const vector<keytype>&sl=b.sl; //原始顺序表\n    for(int j=bit.begin;j<bit.end;j++) //在第i个块内进行顺序查找\n        if(sl[j]==k) return j; //查找成功\n    return -1;\n}",
+        "notes": [
+          "构造前清空旧数据、验证块数并正确处理输入失败；查找使用 const 引用，避免复制整个表。"
+        ]
+      },
+      "5": {
+        "code": "//朴素模式匹配算法，判断主串s中是否包含模式串t\nint bf(string s,string t){\n    int i=0,j=0,k=0,sz_s=s.size(),sz_t=t.size();\n    if(sz_t==0) return 0;\n    while(i<sz_s && j<sz_t){\n        if(s[i]==t[j]){\n            ++i,++j; //i,j同步后移\n            if(j==sz_t) return k; //j到达模式串的最后一个字符的下一个位置，匹配成功\n        }else\n            ++k,i=k,j=0; //下一轮匹配主串从下一个字符开始，模式串从头开始\n    }\n    return -1; //匹配不成功\n}",
+        "notes": [
+          "空模式串应在下标 0 匹配成功，与 KMP 和常见字符串查找定义一致。"
+        ]
+      },
+      "6": {
+        "code": "//求KMP算法中模式串t的next数组\nvoid kmp_next(string t,vector<int>& next){\n    int i=0,j=-1,sz=t.size();\n    next.resize(sz);\n    if(sz==0) return;\n    next[0]=-1;\n    while(i<sz-1){\n        if(j==-1 || t[i]==t[j]){\n            ++i,++j; //i和j同步向后移动\n            if(t[i]==t[j]) next[i]=next[j]; //改进的next\n            else next[i]=j;\n        }\n        else\n            j=next[j];\n    }\n}\n\n//KMP模式匹配算法,判断s中是否包含t,如果包含,则返回t在s中第一次出现的位置,否则返回-1\nint kmp(string s,string t){\n    int i=0,j=0,sz_s=s.size(),sz_t=t.size();\n    if(sz_t==0) return 0; //空模式串\n    vector<int> next(sz_t);\n    kmp_next(t,next); //求t的next数组\n    while(i<sz_s){\n        if(j==-1 || s[i]==t[j]){\n            ++i,++j; //i,j同步后移\n            if(j==sz_t) return i-j; //匹配成功\n        }\n        else\n            j=next[j]; //j向前移动到下一个位置\n    }\n    return -1; //匹配失败\n}",
+        "notes": [
+          "next 数组按模式串长度调整；空模式串时直接返回，避免访问 next[0] 越界。"
+        ]
+      },
+      "7": {
+        "code": "constexpr int ML=[](){\n    int n=N,level=1;\n    while(n>1){ n=n/2+n%2; ++level; }\n    return level;\n}(); /* 跳表的层数的上限 */\n\nstruct sklNode{\n    keytype key; //键值\n    sklNode *next[ML]; //各层的next指针\n    sklNode(){\n        for(int i=0;i<ML;i++) next[i]=NULL;\n    }\n};\n\nstruct skipList{\n    sklNode *head; //跳表的头结点\n    int level; //跳表的层数\n    skipList():level(0){\n        head=new sklNode;\n    }\n};",
+        "notes": [
+          "用 C++17 编译期整数运算计算跳表层数；std::log/std::ceil 在 C++17 下不是 constexpr，原写法不能作为结构体数组大小。"
+        ]
+      }
+    },
+    "notes": [
+      "二分/插值查找要求数组递增有序；插值查找例子适合可转为整数并做减法的键。分块查找要求块间有序、块内可无序，且每块非空；只有块最大值递增不足以保证正确。跳表层数常量 ML 需由正的编译期 N 确定。",
+      "分块查找示例仍按正数键、0 结束每块、块间严格有序且非空的输入约定使用；该交互输入构造函数仅做了编译和静态审查，未覆盖所有非法输入。"
+    ]
+  },
+  "sn9gtyf4m8hli693": {
+    "blocks": {
+      "1": {
+        "code": "rbTree LL(rbTree A);\nrbTree RR(rbTree A);\n\n//设置颜色,最多可设置三个结点\nvoid set_color(rbTree t1,color c1,rbTree t2=NULL,color c2=RED,rbTree t3=NULL,color c3=RED){\n    if(t1) t1->c=c1;\n    if(t2) t2->c=c2;\n    if(t3) t3->c=c3;\n}\n\n//获取结点颜色,空结点视为黑色\ncolor get_color(rbTree t){\n    return t?t->c:BLACK;\n}\n\n//检查新插入结点C是否符合红黑树条件,不符合则调整结构和颜色\nvoid adjust_color(rbTree &t,rbTree C){\n    while(C!=t && get_color(C->pa)==RED){\n        rbTree B=C->pa,A=B->pa;\n        if(B==A->lc){ //父结点B是祖父结点A的左孩子\n            rbTree U=A->rc; //U为叔叔结点\n            if(get_color(U)==RED){\n                set_color(B,BLACK,U,BLACK,A,RED);\n                C=A; //向上继续检查\n            }\n            else{\n                if(C==B->rc){\n                    C=B;\n                    RR(C); //先左旋,转为LL型\n                }\n                B=C->pa,A=B->pa;\n                set_color(B,BLACK,A,RED);\n                rbTree rt=LL(A); //右旋\n                if(rt->pa==NULL) t=rt;\n            }\n        }\n        else{ //父结点B是祖父结点A的右孩子\n            rbTree U=A->lc;\n            if(get_color(U)==RED){\n                set_color(B,BLACK,U,BLACK,A,RED);\n                C=A;\n            }\n            else{\n                if(C==B->lc){\n                    C=B;\n                    LL(C); //先右旋,转为RR型\n                }\n                B=C->pa,A=B->pa;\n                set_color(B,BLACK,A,RED);\n                rbTree rt=RR(A); //左旋\n                if(rt->pa==NULL) t=rt;\n            }\n        }\n    }\n    if(t) t->c=BLACK; //根结点始终为黑色\n}\n\n//向红黑树t中插入键值为k的结点,成功返回true,否则返回false\nbool rbt_insert(rbTree &t,keytype k){\n    rbTree C,pa=NULL,t1=t;\n    while(t1){\n        pa=t1;\n        if(k<t1->key) t1=t1->lc;\n        else if(k>t1->key) t1=t1->rc;\n        else return false; //键值已存在\n    }\n    C=new rbNode,C->key=k; //新结点默认为红色\n    C->pa=pa;\n    if(pa==NULL) t=C; //插入根结点\n    else if(k<pa->key) pa->lc=C;\n    else pa->rc=C;\n    adjust_color(t,C); //调整颜色和结构\n    return true;\n}\n",
+        "notes": [
+          "增加旋转函数前向声明，使本页按代码块顺序组合时可编译。"
+        ]
+      }
+    },
+    "notes": [
+      "本页 LL/RR 会同时维护父指针和祖父的孩子指针，不能替换为普通 BST/AVL 页的同名旋转。"
+    ]
+  },
+  "wxd6uls7v918plpt": {
+    "blocks": {
+      "0": {
+        "code": "\nmap<string,int> ma; //定义一个map类型的变量,key的类型为string,value的类型为int\nma.insert(make_pair(\"Nanjing\",10001)); //插入元素方法1\nma.insert(pair<string,int>(\"Beijing\",10002)); //插入元素方法2\nma.insert(map<string,int>::value_type(\"Hangzhou\",10003)); //插入元素方法3\nma[\"Shanghai\"]=10004; //如果key存在,通过key改变value;否则添加一个元素\ncout<<ma.size()<<' '<<ma.max_size()<<endl; //输出元素个数和最多可存储元素个数\n\ncout<<ma[\"Nanjing\"]<<endl; //通过key直接访问value\n//遍历所有元素,按key的值由小到大逐个遍历\nfor(map<string,int>::iterator it=ma.begin();it!=ma.end();it++)\n    cout<<it->first<<' '<<it->second<<endl;\n\ncout<<ma.erase(\"Hangzhou\")<<endl; //删除一个元素,存在返回1,否则返回0\nmap<string,int>::iterator it=ma.find(\"Shanghai\"); //按键值查找一个元素\nma.erase(it); //删除迭代器所指向的元素\nauto lo=ma.lower_bound(\"Nanjing\");\nif(lo!=ma.end()) cout<<lo->second<<endl;\nauto hi=ma.upper_bound(\"Nanjing\");\nif(hi!=ma.end()) cout<<hi->second<<endl; //可能为 end，不能直接解引用\nma.clear(); //清空\n",
+        "notes": [
+          "upper_bound(\"Nanjing\") 在本例删除后等于 end；检查迭代器边界后再解引用。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "yrvn9hbmegw2rrux": {
+    "blocks": {
+      "1": {
+        "code": "//查找Trie树t中是否存在键值k。若存在,返回键值的数量,否则返回0\nint trie_search(trieTree t,string k){\n    if(t==NULL) return 0;\n    for(char ch:k) if(ch<'a' || ch>'z') return 0;\n    k+='S';\n    int i,pos,sz=k.size();\n    for(i=0;i<sz;i++){\n        pos=k[i]!='S' ? k[i]-'a' : BS-1; //依次检查k的每一个字符\n        if(t->branch[pos]==NULL) return 0; //查找失败\n        t=t->branch[pos]; //进入下一个分支\n    }\n    if(t!=NULL) return t->cnt; //到达叶结点\n    return 0;\n}",
+        "notes": [
+          "空树查找直接返回；限制为本结构声明的小写英文字母，防止分支下标越界。"
+        ]
+      },
+      "2": {
+        "code": "//在Trie树t中插入一个键值k\nvoid trie_insert(trieTree &t,string k){\n    for(char ch:k) if(ch<'a' || ch>'z') return;\n    if(t==NULL) t=new trieNode; //生成根结点\n    k+='S';\n\n    int i,pos,sz=k.size();\n    trieTree tmp=t;\n    for(i=0;i<sz;i++){\n        tmp->cnt++; //字符串经过结点tmp,其cnt加1\n        pos=k[i]!='S' ? k[i]-'a' : BS-1; //下一个分支的编号\n        if(tmp->branch[pos]==NULL) //分支不存在,创建分支\n            tmp->branch[pos]=new trieNode;\n        tmp=tmp->branch[pos]; //进入下一分支\n    }\n    tmp->cnt++; //叶结点的cnt加1\n}",
+        "notes": [
+          "在修改计数前校验输入字符，避免非法字符访问 branch 数组越界。"
+        ]
+      },
+      "3": {
+        "code": "//删除树t中的键值k。删除成功返回1,否则返回0。dep为当前所处的层数,succ标志是否删除成功\nint trie_delete(trieTree &t,string k,int dep,int &succ){\n    if(dep==0){\n        succ=0;\n        for(char ch:k) if(ch<'a' || ch>'z') return 0;\n        k+='S';\n    }\n    if(t==NULL) return 0; //空树或不存在的分支\n    int i,pos,ret;\n    if(dep==k.size()){\n        succ=1; return 1; //找到键值,删除成功\n    }\n\n    pos=k[dep]!='S' ? k[dep]-'a' : BS-1; //下一个分支的编号\n    if(t->branch[pos]!=NULL){\n        trieTree &tmp=t->branch[pos];\n        ret=trie_delete(tmp,k,dep+1,succ); //进入下一个分支\n        if(succ){\n            if(--tmp->cnt==0) //回退时,如果删除成功,则调整结点的cnt\n                delete tmp,tmp=NULL;\n            if(dep==0 && --t->cnt==0) //根结点特别处理\n                delete t,t=NULL;\n        }\n    }\n    else{\n        succ=0;\n        return 0;\n    }\n    return ret;\n}",
+        "notes": [
+          "入口初始化 succ，空树安全返回，非法字符直接拒绝；不存在分支时明确报告失败，防止调用方残留的成功标记。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "sms4ub2q4at6o0an": {
+    "blocks": {
+      "0": {
+        "code": "//计数排序:将给定数组a的下标在区间[left,right)中的键值进行排序\nvoid count_sort(int a[], int left, int right) {\n    if(left>=right) return;\n\n    int i, mx=a[left], mn=a[left];\n\n    //求最小键值mn和最大键值mx\n    for(i=left; i<right; i++) {\n        if(mx<a[i]) mx=a[i];\n        if(mn>a[i]) mn=a[i];\n    }\n\n    long long range=1LL*mx-mn+1;\n    if(range>10000000){\n        stable_sort(a+left,a+right); //值域过大时回退，仍保证完成排序\n        return;\n    }\n\n    int len=(int)range;\n    int *tmp=new int[right-left];\n    int *countTable=new int[len]{0}; //分配操作\n\n    //统计每个键值出现的次数\n    for(i=left; i<right; i++)\n        countTable[a[i]-mn]++;\n\n    //求前缀和\n    for(i=1; i<len; i++)\n        countTable[i]+=countTable[i-1];\n\n    //收集操作\n    for(i=right-1; i>=left; i--) {\n        tmp[countTable[a[i]-mn]-1]=a[i];\n        countTable[a[i]-mn]--;\n    }\n\n    //将排序结果保存到a中\n    for(i=left; i<right; i++)\n        a[i]=tmp[i-left];\n\n    delete []tmp;\n    delete []countTable;\n}",
+        "notes": [
+          "值域过大时回退到稳定比较排序，避免原代码静默返回未排序数组。"
+        ]
+      }
+    },
+    "notes": []
+  },
+  "zragm35cyd391far": {
+    "blocks": {
+      "1": {
+        "code": "//快速排序:对键值序列a的下标在区间[left,right)中的键值进行排序\nvoid quick_sort(keytype a[], int left, int right) {\n    if (right <= left + 1) return;  //下标区间内不超过1个元素时,结束\n\n    int i = left + 1, j = right - 1, k;\n    k = rand() % (right - left) + left;  //获取随机下标\n    swap(a[left], a[k]);  //将随机选取的元素设置为第一个元素\n\n    while (i <= j) {\n        while (i < right && a[i] <= a[left]) i++;  //获取左端第一个比a[left]大的元素的下标\n        while (a[j] > a[left]) j--;  //获取右端第一个不大于a[left]的元素的下标\n        if (i < j) swap(a[i], a[j]);  //交换\n    }\n\n    swap(a[left], a[j]);  //分界值与a[j]交换,注意此时a[j]<=a[left]\n\n    //一轮结束,以j为分界点,将序列分为两部分,对两部分用同样的方法进行处理\n    quick_sort(a, left, j);  //左半部分,注意:区间为左闭右开区间\n    quick_sort(a, j + 1, right);  //右半部分\n}",
+        "notes": [
+          "修正快速排序左递归区间的注释；算法实际使用 [left,right)。"
+        ]
+      },
+      "2": {
+        "code": "//线性时间选择:给定键值序列a的下标在区间[left,right)中的第k小键值,返回值为第k小键值的下标\nint bfprt(keytype a[], int left, int right, int k) {\n    int i, j, d;\n    if(k<1 || k>right-left) return -1;\n\n    if (right - left <= 75) {  //当元素个数小于75时,直接用冒泡排序\n        bubble_sort(a, left, right);\n        return left + k - 1;\n    }\n\n    for (i = j = left; i < right; i += 5, j++) {  //按每组5个元素进行分组\n        int r = i + 5 > right ? right : i + 5;  //每个分组的右端点,注意:最后一组可能不足5个元素\n        bubble_sort(a, i, r);\n        swap(a[(i + r - 1) / 2], a[j]);  //将找到的中位数交换到数组的前端j处\n    }\n\n    //所有分组的中位数在a的下标区间[left,j)处,求该区间的中位数,中位数为第(j-left)/2+1个元素\n    d = bfprt(a, left, j, (j - 1 - left) / 2 + 1);\n    swap(a[left], a[d]);  //将求得的中位数交换到数组的第一个元素上\n\n    keytype pivot=a[left];\n    int lt=left, cur=left, gt=right;\n    while(cur<gt){\n        if(a[cur]<pivot) swap(a[lt++],a[cur++]);\n        else if(a[cur]>pivot) swap(a[cur],a[--gt]);\n        else ++cur;\n    }\n    //三段分别为小于、等于、大于 pivot，重复值不会造成逐个剥离\n    int target=left+k-1;\n    if(target<lt) return bfprt(a,left,lt,k);\n    if(target<gt) return target;\n    return bfprt(a,gt,right,k-(gt-left));\n}",
+        "notes": [
+          "检查第 k 小的合法范围；以相同中位数枢轴进行三路划分，防止大量重复值时退化并失去 BFPRT 的线性最坏复杂度。"
+        ]
+      }
+    },
+    "notes": [
+      "普通随机快速排序仍可能出现 O(n²) 最坏情况（例如本例的两路划分遇到大量相等元素），不能声称所有输入都为 O(n log n)。BFPRT 的 k 从 1 开始。"
+    ]
+  },
+  "fnhvweguk0m162gc": {
+    "blocks": {
+      "0": {
+        "code": "#define K 8   //顺串个数的上限,K-路归并\n#define M 10  //每个顺串中元素个数的上限\n\nkeytype leaf[K + 1];   //叶结点的值,为每一个顺串的最小值\nint loser[K << 1];     //败者树\nint idx[K];            //每个顺串当前元素的下标\n\nvoid ini(keytype a[][M], int k) {\n    int i;\n    leaf[k] = -INF;    //leaf添加一个元素,其值为-INF\n    for(i = 0; i < k; i++) loser[i] = k; //初始化非叶结点,值为leaf的下标\n    for(i = k; i < 2 * k; i++) loser[i] = i - k; //叶结点初始化,值为leaf的下标\n    for(i = 0; i < k; i++) leaf[i] = a[i][0], idx[i] = 0; //初始化leaf,初始为每一个顺串的第一个元素\n}\n\n//更新操作:对败者树的编号为cur的结点进行更新\nvoid adjust(int cur) {\n    int tmp = loser[cur];\n    while((cur = cur >> 1) > 0) { //从当前结点的父结点开始更新\n        if(leaf[loser[cur]] < leaf[tmp])\n            swap(loser[cur], tmp); //利用新的tmp继续向上更新\n    }\n    loser[0] = tmp; //最终0-结点为最小值的下标\n}\n\n//对顺串a[0],a[1],...,a[k-1]进行归并,归并结果放到ret中\nvoid multi_merge(keytype a[][M], int k, vector<keytype>& ret) {\n    int i, j;\n    if(k<=0 || k>K) return;\n    ini(a, k); //初始化全局数组\n    for(i = 2 * k - 1; i >= k; i--) adjust(i); //从后向前考虑每一个叶结点,初始化败者树\n    while(1) { //更新败者树\n        j = loser[0]; //j为最小值的顺串的下标\n        if(leaf[j] == INF) break; //归并结束\n        ret.push_back(leaf[j]); //将当前最小值加入结果中\n        /*\n        if(ret.size() >= block_size) {\n            //将结果存入磁盘\n            ret.clear();\n        }\n        */\n        idx[j]++; //考虑顺串j的下一个元素\n        /*\n        if(a[j][idx[j]] == INF) { //第j个顺串处理完\n            //根据需要从磁盘读取数据填充该顺串\n            idx[j] = 0; //重新加载顺串的第一个元素开始\n        }\n        */\n        leaf[j] = (idx[j] < M) ? a[j][idx[j]] : INF; //更新叶结点的值,防止数组越界\n        adjust(j + k); //第j个顺串所对应的败者树中叶结点的编号为j+k\n    }\n}",
+        "notes": [
+          "验证顺串数量，避免空输入或超过静态容量时访问败者树越界。"
+        ]
+      },
+      "1": {
+        "code": "#define C 7             //败者树叶结点的数量上限\n#define M 8             //顺串的数量上限\n#define N 100           //键值的总数上限\n\nkeytype leaf[C + 1],       //叶结点的值，为每一个顺串的最小值\n        a[N];          //原键值序列\n\nvector<keytype> runs[N]; //最多 N 个顺串，避免超过原固定 8 个顺串容量\n\nstruct rss_node {\n    int idx;           //属于叶结点的编号\n    int run_idx;       //顺串编号\n\n    bool operator<(rss_node rn) {\n        //排序第一关键字为顺串编号，第二关键字为键值\n        if (run_idx == rn.run_idx)\n            return leaf[idx] < leaf[rn.idx];\n        return run_idx < rn.run_idx;\n    }\n};\n\nrss_node loser[C << 1]; //败者树\n",
+        "notes": [
+          "给 leaf[c] 哨兵预留一个位置；最坏可产生多于 M 个顺串，输出数组容量扩为键值数上限 N。"
+        ]
+      },
+      "2": {
+        "code": "void ini(int c) {\n    int i;\n    for (i = 0; i < c; i++)\n        loser[i].idx = c, loser[i].run_idx = 0; //非叶结点\n\n    for (i = c; i < 2 * c; i++)\n        loser[i].idx = i - c, loser[i].run_idx = 0; //叶结点\n\n    for (i = 0; i < c; i++)\n        leaf[i] = a[i];\n\n    leaf[c] = -INF; //为了操作的一致性\n}\n\n//更新败者树的第cur个结点\nvoid adjust(int cur) {\n    int pa = cur >> 1;\n    rss_node tmp = loser[cur];\n\n    while (pa > 0) {\n        if (loser[pa] < tmp)\n            swap(loser[pa], tmp);\n        pa >>= 1;\n    }\n\n    loser[0] = tmp;\n}\n\n//基于败者树的置换-选择排序，n为键值的总数，c为败者树叶结点的数量\nvoid rss_sort(int n, int c) {\n    int i, j, run_j = 0;\n    for(i=0;i<N;i++) runs[i].clear();\n    if(n<=0 || n>N || c<=0 || c>C) return;\n    c=min(c,n);\n    ini(c);\n\n    for (i = 2 * c - 1; i >= c; i--)\n        adjust(i);\n\n    i = c;\n\n    while (1) {\n        j = loser[0].idx;           //最小键值的下标\n        run_j = loser[0].run_idx;   //一个顺串结束，考虑下一个顺串\n\n        if (leaf[j] == INF)\n            break;                 //所有键值都加入顺串，结束\n\n        runs[run_j].push_back(leaf[j]); //将最小值加入当前顺串中\n\n        /*\n        if (runs[run_j].size() >= block_size) {\n            //将结果存入磁盘\n            runs[run_j].clear();\n        }\n        */\n\n        int mi = leaf[j];\n        rss_node tmp;\n        tmp.idx = j;\n\n        if (i >= n) {\n            /* a中的键值处理完毕，从磁盘中加载其他未处理的键值，\n               如果已全部加载，执行下面的操作 */\n            leaf[j] = INF;       //如果键值全部加载进败者树，则添加一个INF\n            tmp.run_idx = N + 1; //结点的顺串编号设置一个比所有顺串编号都大的值\n        }\n        else {\n            leaf[j] = a[i++];    //更新叶结点的值\n            tmp.run_idx = run_j;\n        }\n\n        if (leaf[j] < mi)\n            tmp.run_idx++;      //新的键值<上一次所选取的键值，则属于下一个顺串\n\n        loser[j + c] = tmp;      //更新叶结点\n        adjust(j + c);          //更新败者树\n    }\n}",
+        "notes": [
+          "重置叶结点顺串编号和旧输出；处理 n<c、空输入和容量边界；耗尽节点的哨兵顺串号设为 N+1，始终排在有效顺串之后。"
+        ]
+      }
+    },
+    "notes": [
+      "多路归并与置换选择是独立示例，不能把同名 leaf/loser/ini/adjust 与不同 M 宏直接合并。输入有效键必须严格位于 -INF 与 INF 之间；M 长度顺串未用位置需用 INF 补齐。"
+    ]
+  },
+  "pxmrn0a4cfzsfyab": {
+    "blocks": {
+      "2": {
+        "code": " //在结点t中插入一个键值k,并返回插入键值的位置,如果键值已存在,则返回-1\nint add(tree2_3 &t,int k){\n    int i;\n    for(i=0;i<t->num;i++) if(t->key[i]==k) return -1;\n    for(i=t->num;i>0;i--){\n        if(t->key[i-1]>k){ //t中比k大的键值向右移动一位,孩子指针也相应移动\n            t->key[i]=t->key[i-1];\n            t->child[i+1]=t->child[i];\n        }\n        else break;\n    }\n    t->child[i+1]=t->child[i];\n    t->key[i]=k,t->num++; //插入键值,结点的键值数加1\n    return i;\n}\n",
+        "notes": [
+          "按照函数注释补充重复键检测，发现重复时不移动任何键或孩子指针。"
+        ]
+      },
+      "3": {
+        "code": " //分裂结点t,此时t中有3个键值、4个孩子结点,t的父结点为tp\nvoid split(tree2_3 &t,tree2_3 &tp){\n    int flag=0;\n    if(tp==NULL) flag=1,tp=new node2_3; //t为根结点,需创建一个结点,作为新的根结点\n    //增加一个结点,该结点的键值为t中的最大键值,两个孩子结点为t的最右边的两个孩子\n    tree2_3 tmp=new node2_3;\n    tmp->num=1,tmp->key[0]=t->key[2];\n    tmp->child[0]=t->child[2],tmp->child[1]=t->child[3];\n    if(t->child[0]!=NULL){ //若t不是叶结点,则重新确定其右边两个结点的父结点\n        if(tmp->child[0]) tmp->child[0]->parent=tmp;\n        if(tmp->child[1]) tmp->child[1]->parent=tmp;\n    }\n    t->child[2]=t->child[3]=NULL;\n    t->num=1; //t只保留第一个键值\n    int k=add(tp,t->key[1]); //将中间键值加入父结点,k为加入的位置\n    tp->child[k]=t,tp->child[k+1]=tmp,tmp->parent=tp; //重新设置父子关系\n    if(flag) t->parent=tp,t=tp; //根结点发生变化,重设根结点\n}\n",
+        "notes": [
+          "分裂后清空已移交给右结点的孩子指针，避免残留别名干扰后续删除。"
+        ]
+      },
+      "5": {
+        "code": "void delete2_3_first(tree2_3 &rt,tree2_3 &t){\n    if(t==NULL) return;\n\n    tree2_3 removed=t; //t可能引用父结点的孩子槽，移动槽位前保存原指针\n    //已有下溢的父结点 num==0 时只调整结构，不再减为 -1\n    if(t->num>0){\n        for(int i=0;i<t->num-1;i++) t->key[i]=t->key[i+1];\n        t->num--;\n    }\n    if(t->num>0) return; //删除后仍为2-结点,结束\n\n    //以下处理t中没有键值的情形\n    if(t==rt){\n        //根结点没有键值\n        rt=t->child[0];\n        if(rt!=NULL) rt->parent=NULL;\n        delete removed;\n        return;\n    }\n\n    tree2_3 tp=t->parent;\n    int i=0;\n    while(i<=tp->num && tp->child[i]!=t) i++;\n    if(i>tp->num) return;\n\n    //情形(2.1):左兄弟为3-结点\n    if(i>0 && tp->child[i-1]->num>1){\n        tree2_3 tb=tp->child[i-1];\n\n        t->key[0]=tp->key[i-1];\n        tp->key[i-1]=tb->key[tb->num-1];\n\n        t->child[1]=t->child[0];\n        t->child[0]=tb->child[tb->num];\n\n        if(t->child[0]!=NULL)\n            t->child[0]->parent=t;\n\n        tb->child[tb->num]=NULL;\n        t->num=1;\n        tb->num--;\n    }\n        //情形(2.1):右兄弟为3-结点\n    else if(i<tp->num && tp->child[i+1]->num>1){\n        tree2_3 tb=tp->child[i+1];\n\n        t->key[0]=tp->key[i];\n        tp->key[i]=tb->key[0];\n\n        t->child[1]=tb->child[0];\n        if(t->child[1]!=NULL)\n            t->child[1]->parent=t;\n\n        for(int j=0;j<tb->num-1;j++)\n            tb->key[j]=tb->key[j+1];\n\n        for(int j=0;j<tb->num;j++)\n            tb->child[j]=tb->child[j+1];\n\n        tb->child[tb->num]=NULL;\n        t->num=1;\n        tb->num--;\n    }\n        //情形(2.2):父结点为3-结点,与兄弟合并\n    else if(tp->num>1){\n        if(i>0){\n            tree2_3 tb=tp->child[i-1];\n\n            tb->key[1]=tp->key[i-1];\n            tb->child[2]=t->child[0];\n\n            if(tb->child[2]!=NULL)\n                tb->child[2]->parent=tb;\n\n            tb->num=2;\n\n            for(int j=i-1;j<tp->num-1;j++)\n                tp->key[j]=tp->key[j+1];\n\n            for(int j=i;j<tp->num;j++)\n                tp->child[j]=tp->child[j+1];\n\n            tp->child[tp->num]=NULL;\n            tp->num--;\n        }\n        else{\n            tree2_3 tb=tp->child[1];\n\n            tb->key[1]=tb->key[0];\n            tb->key[0]=tp->key[0];\n\n            tb->child[2]=tb->child[1];\n            tb->child[1]=tb->child[0];\n            tb->child[0]=t->child[0];\n\n            if(tb->child[0]!=NULL)\n                tb->child[0]->parent=tb;\n\n            tb->num=2;\n            tp->key[0]=tp->key[1];\n            tp->child[0]=tb;\n            tp->child[1]=tp->child[2];\n            tp->child[2]=NULL;\n            tp->num--;\n        }\n\n        delete removed;\n    }\n        //情形(2.3):父结点为2-结点,合并后向上调整\n    else{\n        tree2_3 tb;\n\n        if(i>0){\n            //t为右分支,与左兄弟合并\n            tb=tp->child[0];\n\n            tb->key[1]=tp->key[0];\n            tb->child[2]=t->child[0];\n\n            if(tb->child[2]!=NULL)\n                tb->child[2]->parent=tb;\n\n            tb->num=2;\n            delete removed;\n        }\n        else{\n            //t为左分支,与右兄弟合并\n            tb=tp->child[1];\n\n            tb->key[1]=tb->key[0];\n            tb->key[0]=tp->key[0];\n\n            tb->child[2]=tb->child[1];\n            tb->child[1]=tb->child[0];\n            tb->child[0]=t->child[0];\n\n            if(tb->child[0]!=NULL)\n                tb->child[0]->parent=tb;\n\n            tb->num=2;\n            delete removed;\n        }\n\n        tp->child[0]=tb;\n        tp->child[1]=NULL;\n        tb->parent=tp;\n        tp->num=0;\n\n        //继续检查父结点\n        if(tp==rt){\n            rt=tb;\n            tb->parent=NULL;\n            delete tp;\n        }\n        else{\n            delete2_3_first(rt,tp);\n        }\n    }\n}",
+        "notes": [
+          "在移动父结点孩子槽位前保存待释放指针，防止引用别名改变后误删兄弟或新根；根缩短时释放旧根；向上处理 num==0 的父结点时不重复减计数。"
+        ]
+      }
+    },
+    "notes": [
+      "2-3 树每个内部结点的孩子数应为键数加 1，所有叶子同层；插入时临时允许 3 个键，再向父结点分裂。"
+    ]
+  }
+}

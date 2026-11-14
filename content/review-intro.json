@@ -1,0 +1,4 @@
+{
+"rp22kqtt7ubidu9t":{"notes":["均摊复杂度分析一系列操作的平均成本，不等于最好时间复杂度。例如 vector 追加通常是均摊 O(1)，一次扩容仍可为 O(n)。","大 O 描述增长量级的上界，不是精确运行时间；还需说明分析的是最好、最坏还是平均情况。"]},
+"cmox6ucn9er3gtai":{"notes":["deque 支持随机访问，但内存通常分段组织，并非与 vector 一样连续存储。","stack 的底层容器需支持 back、push_back、pop_back；queue 还需支持 front、pop_front，因此 vector 不能直接作为 queue 底层容器。","priority_queue 默认使用 vector；有序关联容器通常用红黑树实现，无序关联容器基于散列结构。"]}
+}

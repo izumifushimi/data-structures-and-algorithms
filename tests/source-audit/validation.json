@@ -1,0 +1,33 @@
+{
+  "status": "complete",
+  "books": [
+    "图",
+    "查找",
+    "排序"
+  ],
+  "documents_reviewed": 24,
+  "source_code_blocks": 88,
+  "documents_with_corrections_or_notes": 19,
+  "corrected_blocks": 47,
+  "compiler": "Apple clang++ C++17 -O1 -fsanitize=address,undefined -fno-omit-frame-pointer",
+  "passed": [
+    "1500 random sorting/subrange trials; about 6000 kth-element checks; integer extrema fallback; all-equal BFPRT",
+    "18000 mixed operations vs std::set for splay, BST, AVL, 2-3, hash-tree and red-black tree; ordering, AVL height, RB black-height, parent links, 2-3 depth invariants",
+    "5000 Trie multiset operations including empty and duplicate keys",
+    "600 random connected Prim/Kruskal comparisons and disconnected Prim edge case",
+    "450 directed nonnegative graphs: every-source Dijkstra/SPFA vs Floyd and SCC pairwise comparison",
+    "250 negative DAGs: every-source SPFA vs Floyd; reachable and unreachable negative-cycle examples",
+    "500 random undirected multigraphs: cut vertices and bridges vs removal-based baseline",
+    "AOE multiple-sink critical path and cycle rejection",
+    "5000 sorted-array search and BF/KMP comparisons including empty strings; 5000 skip-list mixed operations",
+    "1000 multiway merges; 1500 replacement-selection trials including n<c, empty input and repeated calls",
+    "graph-storage creation/traversal and repeated creation; disconnected DFS/BFS sequence preservation; 5 maze boundary cases",
+    "map/set demonstration runs without end-iterator dereference; 1000 heap-sort offset subranges"
+  ],
+  "limitations": [
+    "Code snippets are independent alternatives and require matching headers/types/macros; snippets with duplicate globals and names must not be concatenated indiscriminately.",
+    "Capacity limits, vertex numbering and integer/INF range constraints remain part of each example contract.",
+    "Block-table interactive malformed-input handling and full membership of all biconnected components are not exhaustively tested.",
+    "AOE critical-path general variants beyond tested examples are statically reviewed only."
+  ]
+}
