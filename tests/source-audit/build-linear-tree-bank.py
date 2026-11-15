@@ -26,7 +26,7 @@ def blocks(d,ids):return '\n'.join(b(d,i) for i in ids)
 def inp(a,tail=''):return str(len(a))+'\n'+' '.join(map(str,a))+'\n'+tail
 def exp(a):return ' '.join(map(str,a))+'\n' if a else 'EMPTY\n'
 def add(id,title,d,ids,funcs,desc,inf,outf,cases,prefix='',alg='',read=ARR,run='',targets=None,limits=None,difficulty='基础',note=''):
- refs=[{'docId':d,'blocks':list(ids),'functions':funcs}]
+ refs=[{'docId':d,'blocks':list(ids),'primaryBlocks':list(ids if targets is None else targets),'functions':funcs}]
  reference=H+prefix+'\n'+alg+'\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\n'+read+'\n'+run+'\nreturn 0;}\n'
  template=H+'\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\n'+read+'\n// TODO: '+title+'，按题面完成算法并输出结果。\nreturn 0;}\n'
  cs=[{'name':f'测试 {i+1}','stdin':c[0],'expected':c[1]} for i,c in enumerate(cases)]

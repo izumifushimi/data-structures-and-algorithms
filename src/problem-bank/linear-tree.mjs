@@ -15,6 +15,9 @@ export const problems = [
           4,
           5
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "sl_insert"
         ]
@@ -71,6 +74,9 @@ export const problems = [
           3,
           4,
           5
+        ],
+        "primaryBlocks": [
+          2
         ],
         "functions": [
           "sl_pushback"
@@ -129,6 +135,9 @@ export const problems = [
           4,
           5
         ],
+        "primaryBlocks": [
+          4
+        ],
         "functions": [
           "sl_delete"
         ]
@@ -186,6 +195,9 @@ export const problems = [
           4,
           5
         ],
+        "primaryBlocks": [
+          5
+        ],
         "functions": [
           "sl_erase"
         ]
@@ -237,6 +249,9 @@ export const problems = [
         "docId": "rs4udzq4ez5ieiek",
         "blocks": [
           0,
+          3
+        ],
+        "primaryBlocks": [
           3
         ],
         "functions": [
@@ -296,6 +311,9 @@ export const problems = [
           5,
           6
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "cl_traverse"
         ]
@@ -352,6 +370,9 @@ export const problems = [
           3,
           5,
           6
+        ],
+        "primaryBlocks": [
+          3
         ],
         "functions": [
           "cl_insert"
@@ -410,6 +431,9 @@ export const problems = [
           5,
           6
         ],
+        "primaryBlocks": [
+          5
+        ],
         "functions": [
           "cl_delete"
         ]
@@ -467,6 +491,9 @@ export const problems = [
           5,
           6
         ],
+        "primaryBlocks": [
+          6
+        ],
         "functions": [
           "cl_destroy"
         ]
@@ -521,6 +548,9 @@ export const problems = [
           3,
           4
         ],
+        "primaryBlocks": [
+          4
+        ],
         "functions": [
           "cl_creator"
         ]
@@ -572,6 +602,9 @@ export const problems = [
         "docId": "up0t23dy1c8i7wna",
         "blocks": [
           0,
+          2
+        ],
+        "primaryBlocks": [
           2
         ],
         "functions": [
@@ -630,6 +663,9 @@ export const problems = [
           10,
           11
         ],
+        "primaryBlocks": [
+          10
+        ],
         "functions": [
           "dcl_create"
         ]
@@ -685,6 +721,9 @@ export const problems = [
           9,
           10,
           11
+        ],
+        "primaryBlocks": [
+          8
         ],
         "functions": [
           "dcl_insert_post"
@@ -742,6 +781,9 @@ export const problems = [
           10,
           11
         ],
+        "primaryBlocks": [
+          9
+        ],
         "functions": [
           "dcl_insert_pre"
         ]
@@ -796,6 +838,9 @@ export const problems = [
           8,
           9,
           10,
+          11
+        ],
+        "primaryBlocks": [
           11
         ],
         "functions": [
@@ -856,6 +901,9 @@ export const problems = [
           15,
           16
         ],
+        "primaryBlocks": [
+          14
+        ],
         "functions": [
           "rcl_creater"
         ]
@@ -913,6 +961,9 @@ export const problems = [
           14,
           15,
           16
+        ],
+        "primaryBlocks": [
+          13
         ],
         "functions": [
           "rcl_insert"
@@ -972,6 +1023,9 @@ export const problems = [
           15,
           16
         ],
+        "primaryBlocks": [
+          15
+        ],
         "functions": [
           "rcl_delete"
         ]
@@ -1030,6 +1084,9 @@ export const problems = [
           15,
           16
         ],
+        "primaryBlocks": [
+          16
+        ],
         "functions": [
           "rcl_destroy"
         ]
@@ -1086,6 +1143,9 @@ export const problems = [
           13,
           14
         ],
+        "primaryBlocks": [
+          12
+        ],
         "functions": [
           "cl_search"
         ]
@@ -1137,6 +1197,9 @@ export const problems = [
         "docId": "mtgwclgx66dch1gd",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -1192,6 +1255,9 @@ export const problems = [
           0,
           2
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "vector"
         ]
@@ -1243,6 +1309,9 @@ export const problems = [
         "docId": "mtgwclgx66dch1gd",
         "blocks": [
           0,
+          3
+        ],
+        "primaryBlocks": [
           3
         ],
         "functions": [
@@ -1298,6 +1367,9 @@ export const problems = [
           0,
           4
         ],
+        "primaryBlocks": [
+          4
+        ],
         "functions": [
           "vector"
         ]
@@ -1351,6 +1423,9 @@ export const problems = [
           0,
           5
         ],
+        "primaryBlocks": [
+          5
+        ],
         "functions": [
           "vector"
         ]
@@ -1402,6 +1477,9 @@ export const problems = [
         "docId": "mtgwclgx66dch1gd",
         "blocks": [
           0,
+          6
+        ],
+        "primaryBlocks": [
           6
         ],
         "functions": [
@@ -1458,6 +1536,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "list::push-front"
         ]
@@ -1511,6 +1592,9 @@ export const problems = [
           0,
           1,
           2
+        ],
+        "primaryBlocks": [
+          1
         ],
         "functions": [
           "list::pop-front"
@@ -1566,6 +1650,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "list::unique"
         ]
@@ -1619,6 +1706,9 @@ export const problems = [
           0,
           1,
           2
+        ],
+        "primaryBlocks": [
+          1
         ],
         "functions": [
           "list::reverse"
@@ -1674,6 +1764,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "list::remove"
         ]
@@ -1725,6 +1818,10 @@ export const problems = [
         "docId": "fdg8dyzhbd1z3521",
         "blocks": [
           0,
+          1,
+          2
+        ],
+        "primaryBlocks": [
           1,
           2
         ],
@@ -1782,6 +1879,10 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1,
+          2
+        ],
         "functions": [
           "list::remove-odd"
         ]
@@ -1833,6 +1934,9 @@ export const problems = [
         "docId": "fdg8dyzhbd1z3521",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -1888,6 +1992,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "list::merge"
         ]
@@ -1939,6 +2046,9 @@ export const problems = [
         "docId": "fdg8dyzhbd1z3521",
         "blocks": [
           0,
+          3
+        ],
+        "primaryBlocks": [
           3
         ],
         "functions": [
@@ -1997,6 +2107,9 @@ export const problems = [
           3,
           4
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "empty"
         ]
@@ -2052,6 +2165,9 @@ export const problems = [
           2,
           3,
           4
+        ],
+        "primaryBlocks": [
+          1
         ],
         "functions": [
           "push"
@@ -2109,6 +2225,9 @@ export const problems = [
           3,
           4
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "top"
         ]
@@ -2165,6 +2284,9 @@ export const problems = [
           3,
           4
         ],
+        "primaryBlocks": [
+          3
+        ],
         "functions": [
           "pop"
         ]
@@ -2219,6 +2341,9 @@ export const problems = [
           1,
           2,
           3,
+          4
+        ],
+        "primaryBlocks": [
           4
         ],
         "functions": [
@@ -2278,6 +2403,9 @@ export const problems = [
           10,
           11
         ],
+        "primaryBlocks": [
+          7
+        ],
         "functions": [
           "empty"
         ]
@@ -2334,6 +2462,9 @@ export const problems = [
           9,
           10,
           11
+        ],
+        "primaryBlocks": [
+          8
         ],
         "functions": [
           "push"
@@ -2392,6 +2523,9 @@ export const problems = [
           10,
           11
         ],
+        "primaryBlocks": [
+          9
+        ],
         "functions": [
           "top"
         ]
@@ -2448,6 +2582,9 @@ export const problems = [
           9,
           10,
           11
+        ],
+        "primaryBlocks": [
+          10
         ],
         "functions": [
           "pop"
@@ -2506,6 +2643,9 @@ export const problems = [
           10,
           11
         ],
+        "primaryBlocks": [
+          11
+        ],
         "functions": [
           "traverse"
         ]
@@ -2556,6 +2696,9 @@ export const problems = [
       {
         "docId": "owuypwz940xxzpvr",
         "blocks": [
+          5
+        ],
+        "primaryBlocks": [
           5
         ],
         "functions": [
@@ -2611,6 +2754,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "stack::size"
         ]
@@ -2662,6 +2808,9 @@ export const problems = [
         "docId": "naes6mh6d27dh4fg",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -2717,6 +2866,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "stack::traverse"
         ]
@@ -2769,6 +2921,9 @@ export const problems = [
         "blocks": [
           0
         ],
+        "primaryBlocks": [
+          0
+        ],
         "functions": [
           "check_brackets"
         ]
@@ -2819,6 +2974,9 @@ export const problems = [
       {
         "docId": "bza8d7o3twyr1qqc",
         "blocks": [
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -2874,6 +3032,9 @@ export const problems = [
         "blocks": [
           0
         ],
+        "primaryBlocks": [
+          0
+        ],
         "functions": [
           "left_smaller"
         ]
@@ -2924,6 +3085,9 @@ export const problems = [
       {
         "docId": "uqmmo4zf165fax00",
         "blocks": [
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -2979,6 +3143,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "empty"
         ]
@@ -3030,6 +3197,9 @@ export const problems = [
         "docId": "xhmfwclpu62ys3yo",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -3085,6 +3255,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "front"
         ]
@@ -3136,6 +3309,9 @@ export const problems = [
         "docId": "xhmfwclpu62ys3yo",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -3191,6 +3367,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "traserve"
         ]
@@ -3242,6 +3421,9 @@ export const problems = [
         "docId": "xhmfwclpu62ys3yo",
         "blocks": [
           2,
+          3
+        ],
+        "primaryBlocks": [
           3
         ],
         "functions": [
@@ -3297,6 +3479,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          3
+        ],
         "functions": [
           "push"
         ]
@@ -3348,6 +3533,9 @@ export const problems = [
         "docId": "xhmfwclpu62ys3yo",
         "blocks": [
           2,
+          3
+        ],
+        "primaryBlocks": [
           3
         ],
         "functions": [
@@ -3403,6 +3591,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          3
+        ],
         "functions": [
           "pop"
         ]
@@ -3454,6 +3645,9 @@ export const problems = [
         "docId": "xhmfwclpu62ys3yo",
         "blocks": [
           2,
+          3
+        ],
+        "primaryBlocks": [
           3
         ],
         "functions": [
@@ -3509,6 +3703,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          3
+        ],
         "functions": [
           "full"
         ]
@@ -3560,6 +3757,9 @@ export const problems = [
         "docId": "vn1vtgg058gsyr91",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -3615,6 +3815,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "queue::back"
         ]
@@ -3666,6 +3869,9 @@ export const problems = [
         "docId": "vn1vtgg058gsyr91",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -3721,6 +3927,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "queue::size"
         ]
@@ -3772,6 +3981,9 @@ export const problems = [
         "docId": "vn1vtgg058gsyr91",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -3827,6 +4039,9 @@ export const problems = [
           0,
           2
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "deque::slice"
         ]
@@ -3878,6 +4093,9 @@ export const problems = [
         "docId": "vn1vtgg058gsyr91",
         "blocks": [
           0,
+          2
+        ],
+        "primaryBlocks": [
           2
         ],
         "functions": [
@@ -3933,6 +4151,9 @@ export const problems = [
           0,
           2
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "deque::pop-front"
         ]
@@ -3985,6 +4206,9 @@ export const problems = [
         "blocks": [
           0
         ],
+        "primaryBlocks": [
+          0
+        ],
         "functions": [
           "yanghuiTriangle"
         ]
@@ -4034,6 +4258,9 @@ export const problems = [
       {
         "docId": "dzb4ust6p1tn1p4i",
         "blocks": [
+          0
+        ],
+        "primaryBlocks": [
           0
         ],
         "functions": [
@@ -4093,6 +4320,9 @@ export const problems = [
           4,
           5
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "mat_mul"
         ]
@@ -4149,6 +4379,9 @@ export const problems = [
           3,
           4,
           5
+        ],
+        "primaryBlocks": [
+          2
         ],
         "functions": [
           "convert(matrix)"
@@ -4207,6 +4440,9 @@ export const problems = [
           4,
           5
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "convert(vector<int>)"
         ]
@@ -4263,6 +4499,9 @@ export const problems = [
           3,
           4,
           5
+        ],
+        "primaryBlocks": [
+          4
         ],
         "functions": [
           "sm_convert(matrix)"
@@ -4321,6 +4560,9 @@ export const problems = [
           4,
           5
         ],
+        "primaryBlocks": [
+          4
+        ],
         "functions": [
           "sm_convert(sMatrix)"
         ]
@@ -4378,6 +4620,9 @@ export const problems = [
           4,
           5
         ],
+        "primaryBlocks": [
+          5
+        ],
         "functions": [
           "sm_tr"
         ]
@@ -4432,6 +4677,9 @@ export const problems = [
           1,
           2,
           3
+        ],
+        "primaryBlocks": [
+          1
         ],
         "functions": [
           "cs_assign"
@@ -4488,6 +4736,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "cs_traverse"
         ]
@@ -4543,6 +4794,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "cs_insert_post"
         ]
@@ -4597,6 +4851,9 @@ export const problems = [
           1,
           2,
           3
+        ],
+        "primaryBlocks": [
+          2
         ],
         "functions": [
           "cs_delete"
@@ -4658,6 +4915,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          3
+        ],
         "functions": [
           "cs_compare"
         ]
@@ -4711,6 +4971,9 @@ export const problems = [
           0,
           1,
           2
+        ],
+        "primaryBlocks": [
+          1
         ],
         "functions": [
           "gt_insert(char)"
@@ -4766,6 +5029,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "gt_insert(gTable)"
         ]
@@ -4818,6 +5084,9 @@ export const problems = [
         "blocks": [
           0,
           1,
+          2
+        ],
+        "primaryBlocks": [
           2
         ],
         "functions": [
@@ -4878,6 +5147,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "gt_traverse"
         ]
@@ -4927,6 +5199,9 @@ export const problems = [
       {
         "docId": "xg722hby8yvyr2i0",
         "blocks": [
+          0
+        ],
+        "primaryBlocks": [
           0
         ],
         "functions": [
@@ -4981,6 +5256,9 @@ export const problems = [
         "blocks": [
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "sl_delete"
         ]
@@ -5031,6 +5309,9 @@ export const problems = [
       {
         "docId": "xg722hby8yvyr2i0",
         "blocks": [
+          2
+        ],
+        "primaryBlocks": [
           2
         ],
         "functions": [
@@ -5085,6 +5366,9 @@ export const problems = [
         "blocks": [
           3
         ],
+        "primaryBlocks": [
+          3
+        ],
         "functions": [
           "cl_insert"
         ]
@@ -5135,6 +5419,9 @@ export const problems = [
       {
         "docId": "xg722hby8yvyr2i0",
         "blocks": [
+          4
+        ],
+        "primaryBlocks": [
           4
         ],
         "functions": [
@@ -5189,6 +5476,9 @@ export const problems = [
         "blocks": [
           7
         ],
+        "primaryBlocks": [
+          7
+        ],
         "functions": [
           "cl_unique"
         ]
@@ -5239,6 +5529,9 @@ export const problems = [
       {
         "docId": "xg722hby8yvyr2i0",
         "blocks": [
+          5
+        ],
+        "primaryBlocks": [
           5
         ],
         "functions": [
@@ -5292,6 +5585,9 @@ export const problems = [
         "blocks": [
           6
         ],
+        "primaryBlocks": [
+          6
+        ],
         "functions": [
           "merge"
         ]
@@ -5341,6 +5637,9 @@ export const problems = [
       {
         "docId": "xg722hby8yvyr2i0",
         "blocks": [
+          8
+        ],
+        "primaryBlocks": [
           8
         ],
         "functions": [
@@ -5395,6 +5694,9 @@ export const problems = [
         "blocks": [
           9
         ],
+        "primaryBlocks": [
+          9
+        ],
         "functions": [
           "dcl_swap"
         ]
@@ -5445,6 +5747,9 @@ export const problems = [
       {
         "docId": "xg722hby8yvyr2i0",
         "blocks": [
+          10
+        ],
+        "primaryBlocks": [
           10
         ],
         "functions": [
@@ -5499,6 +5804,9 @@ export const problems = [
         "blocks": [
           11
         ],
+        "primaryBlocks": [
+          11
+        ],
         "functions": [
           "pal"
         ]
@@ -5550,6 +5858,9 @@ export const problems = [
         "blocks": [
           12
         ],
+        "primaryBlocks": [
+          12
+        ],
         "functions": [
           "check"
         ]
@@ -5599,6 +5910,9 @@ export const problems = [
       {
         "docId": "xg722hby8yvyr2i0",
         "blocks": [
+          13
+        ],
+        "primaryBlocks": [
           13
         ],
         "functions": [
@@ -5657,6 +5971,9 @@ export const problems = [
         "blocks": [
           14
         ],
+        "primaryBlocks": [
+          14
+        ],
         "functions": [
           "f"
         ]
@@ -5707,6 +6024,9 @@ export const problems = [
       {
         "docId": "xfaary207gmrfvvu",
         "blocks": [
+          0
+        ],
+        "primaryBlocks": [
           0
         ],
         "functions": [
@@ -5760,6 +6080,9 @@ export const problems = [
         "blocks": [
           0
         ],
+        "primaryBlocks": [
+          0
+        ],
         "functions": [
           "cl_merge"
         ]
@@ -5809,6 +6132,9 @@ export const problems = [
       {
         "docId": "xfaary207gmrfvvu",
         "blocks": [
+          0
+        ],
+        "primaryBlocks": [
           0
         ],
         "functions": [
@@ -5863,6 +6189,9 @@ export const problems = [
         "blocks": [
           0
         ],
+        "primaryBlocks": [
+          0
+        ],
         "functions": [
           "Delete"
         ]
@@ -5913,6 +6242,9 @@ export const problems = [
       {
         "docId": "xfaary207gmrfvvu",
         "blocks": [
+          0
+        ],
+        "primaryBlocks": [
           0
         ],
         "functions": [
@@ -5967,6 +6299,9 @@ export const problems = [
         "blocks": [
           0
         ],
+        "primaryBlocks": [
+          0
+        ],
         "functions": [
           "Add"
         ]
@@ -6017,6 +6352,9 @@ export const problems = [
       {
         "docId": "xfaary207gmrfvvu",
         "blocks": [
+          0
+        ],
+        "primaryBlocks": [
           0
         ],
         "functions": [
@@ -6071,6 +6409,9 @@ export const problems = [
         "blocks": [
           0,
           6,
+          4
+        ],
+        "primaryBlocks": [
           4
         ],
         "functions": [
@@ -6132,6 +6473,9 @@ export const problems = [
           6,
           5
         ],
+        "primaryBlocks": [
+          5
+        ],
         "functions": [
           "preOrder"
         ]
@@ -6191,6 +6535,9 @@ export const problems = [
           6,
           7
         ],
+        "primaryBlocks": [
+          7
+        ],
         "functions": [
           "midOrder"
         ]
@@ -6248,6 +6595,9 @@ export const problems = [
         "blocks": [
           0,
           6,
+          10
+        ],
+        "primaryBlocks": [
           10
         ],
         "functions": [
@@ -6310,6 +6660,9 @@ export const problems = [
           6,
           8
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "create_lrpTree(char,lrpTree,lrpTree)"
         ]
@@ -6360,6 +6713,9 @@ export const problems = [
         "docId": "nkgizgxflk13u2gn",
         "blocks": [
           2,
+          3
+        ],
+        "primaryBlocks": [
           3
         ],
         "functions": [
@@ -6416,6 +6772,9 @@ export const problems = [
           8,
           9,
           11
+        ],
+        "primaryBlocks": [
+          6
         ],
         "functions": [
           "create_lrpTree(string,int&)"
@@ -6477,6 +6836,9 @@ export const problems = [
           9,
           11
         ],
+        "primaryBlocks": [
+          8
+        ],
         "functions": [
           "convertToBracket"
         ]
@@ -6536,6 +6898,9 @@ export const problems = [
           8,
           9,
           11
+        ],
+        "primaryBlocks": [
+          9
         ],
         "functions": [
           "convertToTree"
@@ -6597,6 +6962,9 @@ export const problems = [
           9,
           11
         ],
+        "primaryBlocks": [
+          11
+        ],
         "functions": [
           "postOrder(string)"
         ]
@@ -6651,6 +7019,7 @@ export const problems = [
       {
         "docId": "errmguf6z99r6eqp",
         "blocks": [],
+        "primaryBlocks": [],
         "functions": []
       }
     ],
@@ -6701,6 +7070,9 @@ export const problems = [
           0,
           1,
           2
+        ],
+        "primaryBlocks": [
+          0
         ],
         "functions": [
           "heap_adjust"
@@ -6756,6 +7128,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          0
+        ],
         "functions": [
           "heap_make"
         ]
@@ -6810,6 +7185,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "heap_push"
         ]
@@ -6862,6 +7240,9 @@ export const problems = [
         "blocks": [
           0,
           1,
+          2
+        ],
+        "primaryBlocks": [
           2
         ],
         "functions": [
@@ -6918,6 +7299,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          0
+        ],
         "functions": [
           "priority_queue::max"
         ]
@@ -6971,6 +7355,9 @@ export const problems = [
           0,
           1,
           2
+        ],
+        "primaryBlocks": [
+          0
         ],
         "functions": [
           "priority_queue::min"
@@ -7026,6 +7413,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "priority_queue::custom"
         ]
@@ -7078,6 +7468,9 @@ export const problems = [
         "blocks": [
           0,
           1,
+          2
+        ],
+        "primaryBlocks": [
           2
         ],
         "functions": [
@@ -7134,6 +7527,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "priority_queue::push"
         ]
@@ -7186,6 +7582,9 @@ export const problems = [
         "blocks": [
           0,
           1,
+          2
+        ],
+        "primaryBlocks": [
           2
         ],
         "functions": [
@@ -7243,6 +7642,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "thTree_create"
         ]
@@ -7297,6 +7699,9 @@ export const problems = [
           1,
           2,
           3
+        ],
+        "primaryBlocks": [
+          2
         ],
         "functions": [
           "midNext"
@@ -7353,6 +7758,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "midpre"
         ]
@@ -7406,6 +7814,9 @@ export const problems = [
           0,
           1,
           2,
+          3
+        ],
+        "primaryBlocks": [
           3
         ],
         "functions": [
@@ -7463,6 +7874,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "huTree_create"
         ]
@@ -7518,6 +7932,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "huTree_coding"
         ]
@@ -7572,6 +7989,9 @@ export const problems = [
           1,
           2,
           3
+        ],
+        "primaryBlocks": [
+          2
         ],
         "functions": [
           "coding"
@@ -7633,6 +8053,9 @@ export const problems = [
           2,
           3
         ],
+        "primaryBlocks": [
+          3
+        ],
         "functions": [
           "huTree_decoding"
         ]
@@ -7691,6 +8114,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "shuntingYard"
         ]
@@ -7743,6 +8169,9 @@ export const problems = [
           0,
           1,
           2
+        ],
+        "primaryBlocks": [
+          1
         ],
         "functions": [
           "create"
@@ -7801,6 +8230,9 @@ export const problems = [
         "blocks": [
           0,
           1,
+          2
+        ],
+        "primaryBlocks": [
           2
         ],
         "functions": [
@@ -7862,6 +8294,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "r_bro"
         ]
@@ -7918,6 +8353,9 @@ export const problems = [
         "docId": "vgyr818zdigzrma9",
         "blocks": [
           3,
+          4
+        ],
+        "primaryBlocks": [
           4
         ],
         "functions": [
@@ -7978,6 +8416,9 @@ export const problems = [
           3,
           4
         ],
+        "primaryBlocks": [
+          4
+        ],
         "functions": [
           "lm_child"
         ]
@@ -8034,6 +8475,9 @@ export const problems = [
         "docId": "vgyr818zdigzrma9",
         "blocks": [
           3,
+          4
+        ],
+        "primaryBlocks": [
           4
         ],
         "functions": [
@@ -8095,6 +8539,9 @@ export const problems = [
           4,
           5
         ],
+        "primaryBlocks": [
+          5
+        ],
         "functions": [
           "preOrder"
         ]
@@ -8152,6 +8599,9 @@ export const problems = [
         "blocks": [
           3,
           4,
+          5
+        ],
+        "primaryBlocks": [
           5
         ],
         "functions": [
@@ -8213,6 +8663,9 @@ export const problems = [
           4,
           5
         ],
+        "primaryBlocks": [
+          5
+        ],
         "functions": [
           "postOrder"
         ]
@@ -8270,6 +8723,9 @@ export const problems = [
         "blocks": [
           6
         ],
+        "primaryBlocks": [
+          6
+        ],
         "functions": [
           "lm_child"
         ]
@@ -8320,6 +8776,9 @@ export const problems = [
       {
         "docId": "vgyr818zdigzrma9",
         "blocks": [
+          6
+        ],
+        "primaryBlocks": [
           6
         ],
         "functions": [
@@ -8376,6 +8835,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "query"
         ]
@@ -8430,6 +8892,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          2
+        ],
         "functions": [
           "merge"
         ]
@@ -8480,6 +8945,9 @@ export const problems = [
       {
         "docId": "gme34aw4kzzy04fl",
         "blocks": [
+          0
+        ],
+        "primaryBlocks": [
           0
         ],
         "functions": [
@@ -8535,6 +9003,9 @@ export const problems = [
           1,
           2
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "prefixSum"
         ]
@@ -8587,6 +9058,9 @@ export const problems = [
         "blocks": [
           0,
           1,
+          2
+        ],
+        "primaryBlocks": [
           2
         ],
         "functions": [
@@ -8645,6 +9119,9 @@ export const problems = [
           3,
           4
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "build"
         ]
@@ -8700,6 +9177,9 @@ export const problems = [
           2,
           3,
           4
+        ],
+        "primaryBlocks": [
+          2
         ],
         "functions": [
           "update"
@@ -8757,6 +9237,9 @@ export const problems = [
           3,
           4
         ],
+        "primaryBlocks": [
+          3
+        ],
         "functions": [
           "update"
         ]
@@ -8813,6 +9296,9 @@ export const problems = [
           3,
           4
         ],
+        "primaryBlocks": [
+          4
+        ],
         "functions": [
           "query"
         ]
@@ -8863,6 +9349,9 @@ export const problems = [
       {
         "docId": "mtgwclgx66dch1gd",
         "blocks": [
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -8917,6 +9406,9 @@ export const problems = [
         "blocks": [
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "vector::vector"
         ]
@@ -8967,6 +9459,9 @@ export const problems = [
       {
         "docId": "mtgwclgx66dch1gd",
         "blocks": [
+          4
+        ],
+        "primaryBlocks": [
           4
         ],
         "functions": [
@@ -9021,6 +9516,9 @@ export const problems = [
         "blocks": [
           5
         ],
+        "primaryBlocks": [
+          5
+        ],
         "functions": [
           "vector::pop_back"
         ]
@@ -9071,6 +9569,9 @@ export const problems = [
       {
         "docId": "mtgwclgx66dch1gd",
         "blocks": [
+          5
+        ],
+        "primaryBlocks": [
           5
         ],
         "functions": [
@@ -9125,6 +9626,9 @@ export const problems = [
         "blocks": [
           6
         ],
+        "primaryBlocks": [
+          6
+        ],
         "functions": [
           "vector::at"
         ]
@@ -9175,6 +9679,9 @@ export const problems = [
       {
         "docId": "mtgwclgx66dch1gd",
         "blocks": [
+          6
+        ],
+        "primaryBlocks": [
           6
         ],
         "functions": [
@@ -9230,6 +9737,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "stack::top"
         ]
@@ -9281,6 +9791,9 @@ export const problems = [
         "docId": "naes6mh6d27dh4fg",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [
@@ -9336,6 +9849,9 @@ export const problems = [
           0,
           1
         ],
+        "primaryBlocks": [
+          1
+        ],
         "functions": [
           "queue::front"
         ]
@@ -9387,6 +9903,9 @@ export const problems = [
         "docId": "vn1vtgg058gsyr91",
         "blocks": [
           0,
+          1
+        ],
+        "primaryBlocks": [
           1
         ],
         "functions": [

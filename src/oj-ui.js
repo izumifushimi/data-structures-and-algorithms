@@ -22,7 +22,7 @@ const code=p=>'DS'+String(1001+problems.indexOf(p));
 function saveFile(text,name){const u=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
 function sourceTitle(p,docs){const ref=p.sourceRefs?.[0];return docs.find(d=>d.id===ref?.docId)?.title||p.category}
 function samplesOf(p){return p.samples?.length?p.samples:p.cases.slice(0,2)}
-function sourceBlocks(p,docs){return (p.sourceRefs||[]).flatMap(ref=>{const d=docs.find(d=>d.id===ref.docId);if(!d)return [];return (ref.blocks||[]).filter(i=>d.codes[i]).map(i=>({doc:d,index:i,code:d.codes[i],target:(ref.functions||[]).some(fn=>new RegExp('\\b'+fn.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\s*\\([^;]*?\\)\\s*(?:const\\s*)?\\{').test(d.codes[i].corrected))})).sort((a,b)=>Number(b.target)-Number(a.target))})}
+function sourceBlocks(p,docs){return (p.sourceRefs||[]).flatMap(ref=>{const d=docs.find(d=>d.id===ref.docId);if(!d)return [];return (ref.blocks||[]).filter(i=>d.codes[i]).map(i=>({doc:d,index:i,code:d.codes[i],target:ref.primaryBlocks?ref.primaryBlocks.includes(i):(ref.functions||[]).some(fn=>new RegExp('\\b'+fn.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\s*\\([^;]*?\\)\\s*(?:const\\s*)?\\{').test(d.codes[i].corrected))})).sort((a,b)=>Number(b.target)-Number(a.target))})}
 
 export function mountPracticeCatalog(host,{docs}){
  let category='全部',status='全部',query='';

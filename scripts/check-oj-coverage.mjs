@@ -10,7 +10,7 @@ for(const p of problems){
  assert.ok(Array.isArray(p.constraints)&&p.constraints.length,p.id+': 缺少数据范围');
  assert.ok(p.samples?.length,p.id+': 缺少样例');assert.ok(p.cases?.length>=3,p.id+': 测试少于3组');
  assert.ok(p.sourceRefs?.length,p.id+': 缺少原文关联');assert.ok(p.sourceRefs.some(ref=>byDoc.get(ref.docId)?.book===p.category),p.id+': 分类未关联主文档');
- for(const ref of p.sourceRefs){const d=byDoc.get(ref.docId);assert.ok(d,p.id+': 无效文档');for(const i of ref.blocks||[])assert.ok(Number.isInteger(i)&&d.codes[i],p.id+': 无效代码片段 '+i);}
+ for(const ref of p.sourceRefs){const d=byDoc.get(ref.docId);assert.ok(d,p.id+': 无效文档');for(const i of ref.blocks||[])assert.ok(Number.isInteger(i)&&d.codes[i],p.id+': 无效代码片段 '+i);for(const i of ref.primaryBlocks||[])assert.ok(ref.blocks.includes(i),p.id+': 主算法片段必须属于参考上下文');}
  for(const t of [...p.samples,...p.cases]){assert.equal(typeof t.stdin,'string',p.id+': 输入格式错误');assert.equal(typeof t.expected,'string',p.id+': 期望输出格式错误');}
  cases+=p.cases.length;
 }
