@@ -11,7 +11,9 @@
     "check:animations": "node scripts/check-animations.mjs",
     "check:problems": "node scripts/check-problems.mjs",
     "build:oj": "vite build --config tools/oj-runtime/vite.config.js && node scripts/sync-oj-runtime.mjs",
-    "check:oj": "node tools/oj-runtime/smoke-test.mjs && node tools/oj-runtime/termination-test.mjs"
+    "check:oj": "node tools/oj-runtime/smoke-test.mjs && node tools/oj-runtime/termination-test.mjs",
+    "check:coverage": "node scripts/check-oj-coverage.mjs",
+    "check:oj-bank": "node tools/oj-runtime/bank-test.mjs"
   },
   "dependencies": {
     "@codemirror/lang-cpp": "^6.0.3",

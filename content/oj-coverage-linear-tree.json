@@ -1,0 +1,1279 @@
+[
+  {
+    "docId": "rs4udzq4ez5ieiek",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-seq-insert",
+      "lt-seq-pushback",
+      "lt-seq-delete",
+      "lt-seq-erase",
+      "lt-seq-search"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "rs4udzq4ez5ieiek",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-seq-insert"
+    ]
+  },
+  {
+    "docId": "rs4udzq4ez5ieiek",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-seq-pushback"
+    ]
+  },
+  {
+    "docId": "rs4udzq4ez5ieiek",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-seq-search"
+    ]
+  },
+  {
+    "docId": "rs4udzq4ez5ieiek",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "lt-seq-delete"
+    ]
+  },
+  {
+    "docId": "rs4udzq4ez5ieiek",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "lt-seq-erase"
+    ]
+  },
+  {
+    "docId": "mtgwclgx66dch1gd",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-vec-fill",
+      "lt-vec-record",
+      "lt-vec-access",
+      "lt-vec-insert",
+      "lt-vec-erase",
+      "lt-vec-assign"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "mtgwclgx66dch1gd",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-vec-fill",
+      "lt-vec-copy",
+      "lt-vec-range"
+    ]
+  },
+  {
+    "docId": "mtgwclgx66dch1gd",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-vec-record"
+    ]
+  },
+  {
+    "docId": "mtgwclgx66dch1gd",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-vec-access"
+    ]
+  },
+  {
+    "docId": "mtgwclgx66dch1gd",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "lt-vec-insert",
+      "lt-vec-push"
+    ]
+  },
+  {
+    "docId": "mtgwclgx66dch1gd",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "lt-vec-erase",
+      "lt-vec-pop",
+      "lt-vec-erase-one"
+    ]
+  },
+  {
+    "docId": "mtgwclgx66dch1gd",
+    "block": 6,
+    "kind": "problem",
+    "problemIds": [
+      "lt-vec-assign",
+      "lt-vec-modify",
+      "lt-vec-assign-values"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-cl-traverse",
+      "lt-cl-insert",
+      "lt-cl-delete-next",
+      "lt-cl-destroy",
+      "lt-cl-create",
+      "lt-cl-search",
+      "lt-rcl-create",
+      "lt-rcl-insert",
+      "lt-rcl-delete",
+      "lt-rcl-destroy",
+      "lt-rcl-search"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-cl-traverse"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-cl-search"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-cl-insert"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "lt-cl-create"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "lt-cl-delete-next"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 6,
+    "kind": "problem",
+    "problemIds": [
+      "lt-cl-destroy"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 7,
+    "kind": "support",
+    "problemIds": [
+      "lt-dcl-create",
+      "lt-dcl-insert-post",
+      "lt-dcl-insert-pre",
+      "lt-dcl-delete"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 8,
+    "kind": "problem",
+    "problemIds": [
+      "lt-dcl-insert-post"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 9,
+    "kind": "problem",
+    "problemIds": [
+      "lt-dcl-insert-pre"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 10,
+    "kind": "problem",
+    "problemIds": [
+      "lt-dcl-create"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 11,
+    "kind": "problem",
+    "problemIds": [
+      "lt-dcl-delete"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 12,
+    "kind": "problem",
+    "problemIds": [
+      "lt-rcl-search"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 13,
+    "kind": "problem",
+    "problemIds": [
+      "lt-rcl-insert"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 14,
+    "kind": "problem",
+    "problemIds": [
+      "lt-rcl-create"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 15,
+    "kind": "problem",
+    "problemIds": [
+      "lt-rcl-delete"
+    ]
+  },
+  {
+    "docId": "up0t23dy1c8i7wna",
+    "block": 16,
+    "kind": "problem",
+    "problemIds": [
+      "lt-rcl-destroy"
+    ]
+  },
+  {
+    "docId": "fdg8dyzhbd1z3521",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-list-push-front",
+      "lt-list-pop-front",
+      "lt-list-unique",
+      "lt-list-reverse",
+      "lt-list-remove",
+      "lt-list-remove-even",
+      "lt-list-remove-odd",
+      "lt-list-merge-asc",
+      "lt-list-merge-desc",
+      "lt-list-traverse"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "fdg8dyzhbd1z3521",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-list-push-front",
+      "lt-list-pop-front",
+      "lt-list-unique",
+      "lt-list-reverse",
+      "lt-list-remove",
+      "lt-list-remove-even",
+      "lt-list-remove-odd",
+      "lt-list-merge-asc",
+      "lt-list-merge-desc"
+    ]
+  },
+  {
+    "docId": "fdg8dyzhbd1z3521",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-list-remove-even",
+      "lt-list-remove-odd"
+    ]
+  },
+  {
+    "docId": "fdg8dyzhbd1z3521",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-list-traverse"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-seq-stack-empty",
+      "lt-seq-stack-push",
+      "lt-seq-stack-top",
+      "lt-seq-stack-pop",
+      "lt-seq-stack-traverse"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-seq-stack-empty",
+      "lt-seq-stack-push"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-seq-stack-top"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-seq-stack-pop"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "lt-seq-stack-traverse"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "lt-array-stack-basic"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 6,
+    "kind": "support",
+    "problemIds": [
+      "lt-chain-stack-empty",
+      "lt-chain-stack-push",
+      "lt-chain-stack-top",
+      "lt-chain-stack-pop",
+      "lt-chain-stack-traverse"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 7,
+    "kind": "problem",
+    "problemIds": [
+      "lt-chain-stack-empty"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 8,
+    "kind": "problem",
+    "problemIds": [
+      "lt-chain-stack-push"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 9,
+    "kind": "problem",
+    "problemIds": [
+      "lt-chain-stack-top"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 10,
+    "kind": "problem",
+    "problemIds": [
+      "lt-chain-stack-pop"
+    ]
+  },
+  {
+    "docId": "owuypwz940xxzpvr",
+    "block": 11,
+    "kind": "problem",
+    "problemIds": [
+      "lt-chain-stack-traverse"
+    ]
+  },
+  {
+    "docId": "naes6mh6d27dh4fg",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-stl-stack-size",
+      "lt-stl-stack-pop",
+      "lt-stl-stack-traverse",
+      "lt-stl-stack-top",
+      "lt-stl-stack-empty"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "naes6mh6d27dh4fg",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-stl-stack-size",
+      "lt-stl-stack-pop",
+      "lt-stl-stack-traverse",
+      "lt-stl-stack-top",
+      "lt-stl-stack-empty"
+    ]
+  },
+  {
+    "docId": "bza8d7o3twyr1qqc",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "lt-brackets"
+    ]
+  },
+  {
+    "docId": "bza8d7o3twyr1qqc",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-calculate"
+    ]
+  },
+  {
+    "docId": "uqmmo4zf165fax00",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "lt-monostack-left_smaller"
+    ]
+  },
+  {
+    "docId": "uqmmo4zf165fax00",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-monostack-left_bigger"
+    ]
+  },
+  {
+    "docId": "xhmfwclpu62ys3yo",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-chain-queue-empty",
+      "lt-chain-queue-push",
+      "lt-chain-queue-front",
+      "lt-chain-queue-pop",
+      "lt-chain-queue-traverse"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "xhmfwclpu62ys3yo",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-chain-queue-empty",
+      "lt-chain-queue-push",
+      "lt-chain-queue-front",
+      "lt-chain-queue-pop",
+      "lt-chain-queue-traverse"
+    ]
+  },
+  {
+    "docId": "xhmfwclpu62ys3yo",
+    "block": 2,
+    "kind": "support",
+    "problemIds": [
+      "lt-ring-queue-empty",
+      "lt-ring-queue-push",
+      "lt-ring-queue-front",
+      "lt-ring-queue-pop",
+      "lt-ring-queue-traverse",
+      "lt-ring-queue-full"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "xhmfwclpu62ys3yo",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ring-queue-empty",
+      "lt-ring-queue-push",
+      "lt-ring-queue-front",
+      "lt-ring-queue-pop",
+      "lt-ring-queue-traverse",
+      "lt-ring-queue-full"
+    ]
+  },
+  {
+    "docId": "vn1vtgg058gsyr91",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-stl-queue-push",
+      "lt-stl-queue-back",
+      "lt-stl-queue-pop",
+      "lt-stl-queue-size",
+      "lt-stl-queue-traverse",
+      "lt-deque-slice",
+      "lt-deque-push-front",
+      "lt-deque-pop-front",
+      "lt-stl-queue-front",
+      "lt-stl-queue-empty"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "vn1vtgg058gsyr91",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-stl-queue-push",
+      "lt-stl-queue-back",
+      "lt-stl-queue-pop",
+      "lt-stl-queue-size",
+      "lt-stl-queue-traverse",
+      "lt-stl-queue-front",
+      "lt-stl-queue-empty"
+    ]
+  },
+  {
+    "docId": "vn1vtgg058gsyr91",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-deque-slice",
+      "lt-deque-push-front",
+      "lt-deque-pop-front"
+    ]
+  },
+  {
+    "docId": "hhq73pa711g46fxo",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "lt-yanghui"
+    ]
+  },
+  {
+    "docId": "dzb4ust6p1tn1p4i",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "lt-sliding-max"
+    ]
+  },
+  {
+    "docId": "tha5paui8hzzxa5c",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-matrix-multiply",
+      "lt-symmetric-compress",
+      "lt-symmetric-restore",
+      "lt-sparse-compress",
+      "lt-sparse-restore",
+      "lt-sparse-transpose"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "tha5paui8hzzxa5c",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-matrix-multiply"
+    ]
+  },
+  {
+    "docId": "tha5paui8hzzxa5c",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-symmetric-compress",
+      "lt-symmetric-restore"
+    ]
+  },
+  {
+    "docId": "tha5paui8hzzxa5c",
+    "block": 3,
+    "kind": "support",
+    "problemIds": [
+      "lt-matrix-multiply",
+      "lt-symmetric-compress",
+      "lt-symmetric-restore",
+      "lt-sparse-compress",
+      "lt-sparse-restore",
+      "lt-sparse-transpose"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "tha5paui8hzzxa5c",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "lt-sparse-compress",
+      "lt-sparse-restore"
+    ]
+  },
+  {
+    "docId": "tha5paui8hzzxa5c",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "lt-sparse-transpose"
+    ]
+  },
+  {
+    "docId": "xwlnuwghb5uqp1sc",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-chainstr-assign",
+      "lt-chainstr-traverse",
+      "lt-chainstr-insert",
+      "lt-chainstr-delete",
+      "lt-chainstr-compare"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "xwlnuwghb5uqp1sc",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-chainstr-assign",
+      "lt-chainstr-traverse",
+      "lt-chainstr-insert"
+    ]
+  },
+  {
+    "docId": "xwlnuwghb5uqp1sc",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-chainstr-delete"
+    ]
+  },
+  {
+    "docId": "xwlnuwghb5uqp1sc",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-chainstr-compare"
+    ]
+  },
+  {
+    "docId": "hrhvgg9q5xwn4zwn",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-gt-insert-atom",
+      "lt-gt-insert-subtable",
+      "lt-gt-equal",
+      "lt-gt-traverse"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "hrhvgg9q5xwn4zwn",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-gt-insert-atom",
+      "lt-gt-insert-subtable",
+      "lt-gt-traverse"
+    ]
+  },
+  {
+    "docId": "hrhvgg9q5xwn4zwn",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-gt-equal"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-range-search"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-range-delete"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-list-search"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-list-insert"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-list-delete-all"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-merge-sorted"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 6,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-merge-linked"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 7,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-list-unique"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 8,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-ring-split"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 9,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-adjacent-swap"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 10,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-ring-delete-pre"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 11,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-pal"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 12,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-check"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 13,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-convert"
+    ]
+  },
+  {
+    "docId": "xg722hby8yvyr2i0",
+    "block": 14,
+    "kind": "problem",
+    "problemIds": [
+      "lt-ex-building-span"
+    ]
+  },
+  {
+    "docId": "xfaary207gmrfvvu",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "lt-practice-sl_merge",
+      "lt-practice-cl_merge",
+      "lt-practice-copy",
+      "lt-practice-delete",
+      "lt-practice-swap",
+      "lt-practice-poly-add",
+      "lt-practice-poly-mul"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-binary-pre-rec",
+      "lt-binary-pre-stack",
+      "lt-binary-mid",
+      "lt-binary-post",
+      "lt-binary-create-pointer",
+      "lt-binary-create-pre",
+      "lt-binary-to-bracket",
+      "lt-binary-from-bracket",
+      "lt-binary-bracket-post"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-create-pointer"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 2,
+    "kind": "support",
+    "problemIds": [
+      "lt-binary-create-array"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-create-array"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-pre-rec"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-pre-stack"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 6,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-create-pre"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 7,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-mid"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 8,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-to-bracket"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 9,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-from-bracket"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 10,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-post"
+    ]
+  },
+  {
+    "docId": "nkgizgxflk13u2gn",
+    "block": 11,
+    "kind": "problem",
+    "problemIds": [
+      "lt-binary-bracket-post"
+    ]
+  },
+  {
+    "docId": "ebic8kgy45ilbbyn",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "lt-heap-adjust",
+      "lt-heap-build"
+    ]
+  },
+  {
+    "docId": "ebic8kgy45ilbbyn",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-heap-push"
+    ]
+  },
+  {
+    "docId": "ebic8kgy45ilbbyn",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-heap-pop"
+    ]
+  },
+  {
+    "docId": "ov6067m2ggauqgm5",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "lt-priority-max",
+      "lt-priority-min"
+    ]
+  },
+  {
+    "docId": "ov6067m2ggauqgm5",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-priority-custom"
+    ]
+  },
+  {
+    "docId": "ov6067m2ggauqgm5",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-priority-top",
+      "lt-priority-push",
+      "lt-priority-pop"
+    ]
+  },
+  {
+    "docId": "bfazopa9871m0v0n",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-threaded-create",
+      "lt-threaded-next",
+      "lt-threaded-pre",
+      "lt-threaded-traverse"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "bfazopa9871m0v0n",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-threaded-create"
+    ]
+  },
+  {
+    "docId": "bfazopa9871m0v0n",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-threaded-next",
+      "lt-threaded-pre"
+    ]
+  },
+  {
+    "docId": "bfazopa9871m0v0n",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-threaded-traverse"
+    ]
+  },
+  {
+    "docId": "ysfglgiveivmrnif",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-huffman-build",
+      "lt-huffman-codes",
+      "lt-huffman-encode",
+      "lt-huffman-decode"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "ysfglgiveivmrnif",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-huffman-build"
+    ]
+  },
+  {
+    "docId": "ysfglgiveivmrnif",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-huffman-codes",
+      "lt-huffman-encode"
+    ]
+  },
+  {
+    "docId": "ysfglgiveivmrnif",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-huffman-decode"
+    ]
+  },
+  {
+    "docId": "xcwkgfs7vbb92p2k",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-rpn-convert"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "xcwkgfs7vbb92p2k",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-rpn-convert"
+    ]
+  },
+  {
+    "docId": "vgyr818zdigzrma9",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-forest-parent-create",
+      "lt-forest-parent-child",
+      "lt-forest-parent-sibling"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "vgyr818zdigzrma9",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-forest-parent-create"
+    ]
+  },
+  {
+    "docId": "vgyr818zdigzrma9",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-forest-parent-child",
+      "lt-forest-parent-sibling"
+    ]
+  },
+  {
+    "docId": "vgyr818zdigzrma9",
+    "block": 3,
+    "kind": "support",
+    "problemIds": [
+      "lt-forest-lrb-create",
+      "lt-forest-lrb-child",
+      "lt-forest-lrb-sibling",
+      "lt-forest-pre",
+      "lt-forest-mid",
+      "lt-forest-post"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "vgyr818zdigzrma9",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "lt-forest-lrb-create",
+      "lt-forest-lrb-child",
+      "lt-forest-lrb-sibling"
+    ]
+  },
+  {
+    "docId": "vgyr818zdigzrma9",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "lt-forest-pre",
+      "lt-forest-mid",
+      "lt-forest-post"
+    ]
+  },
+  {
+    "docId": "vgyr818zdigzrma9",
+    "block": 6,
+    "kind": "problem",
+    "problemIds": [
+      "lt-forest-bracket-child",
+      "lt-forest-bracket-sibling"
+    ]
+  },
+  {
+    "docId": "efgmxpodr4s61iwh",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-dsu-query",
+      "lt-dsu-merge"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "efgmxpodr4s61iwh",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-dsu-query"
+    ]
+  },
+  {
+    "docId": "efgmxpodr4s61iwh",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-dsu-merge"
+    ]
+  },
+  {
+    "docId": "gme34aw4kzzy04fl",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "lt-fenwick-lowbit"
+    ]
+  },
+  {
+    "docId": "gme34aw4kzzy04fl",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-fenwick-prefix"
+    ]
+  },
+  {
+    "docId": "gme34aw4kzzy04fl",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-fenwick-update"
+    ]
+  },
+  {
+    "docId": "wzfhk2wlng7igkb7",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "lt-segment-build",
+      "lt-segment-point",
+      "lt-segment-range",
+      "lt-segment-query"
+    ],
+    "reason": "本块为类型、构造、头文件或依赖辅助声明；在关联题中提供对应实现的必要上下文。"
+  },
+  {
+    "docId": "wzfhk2wlng7igkb7",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "lt-segment-build"
+    ]
+  },
+  {
+    "docId": "wzfhk2wlng7igkb7",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "lt-segment-point"
+    ]
+  },
+  {
+    "docId": "wzfhk2wlng7igkb7",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "lt-segment-range"
+    ]
+  },
+  {
+    "docId": "wzfhk2wlng7igkb7",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "lt-segment-query"
+    ]
+  }
+]

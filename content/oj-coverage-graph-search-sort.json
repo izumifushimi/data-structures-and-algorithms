@@ -1,0 +1,905 @@
+[
+  {
+    "docId": "uaafc7zhihxseat8",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "g-matrix-build",
+      "g-matrix-neighbors"
+    ],
+    "reason": "邻接矩阵类型与容量定义；由构建/邻点题复用。"
+  },
+  {
+    "docId": "uaafc7zhihxseat8",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "g-matrix-build",
+      "g-matrix-neighbors"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "uaafc7zhihxseat8",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "g-matrix-neighbors"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "hnap2ge6fi24yk7v",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "g-linked-adjacency"
+    ],
+    "reason": "链式边表节点和图类型；由链式构建题复用。"
+  },
+  {
+    "docId": "hnap2ge6fi24yk7v",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "g-linked-adjacency"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "hnap2ge6fi24yk7v",
+    "block": 2,
+    "kind": "support",
+    "problemIds": [
+      "g-vector-adjacency"
+    ],
+    "reason": "vector边表类型和edge构造；由vector构建题复用。"
+  },
+  {
+    "docId": "hnap2ge6fi24yk7v",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "g-vector-adjacency"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "hnap2ge6fi24yk7v",
+    "block": 4,
+    "kind": "support",
+    "problemIds": [
+      "g-forward-star-adjacency"
+    ],
+    "reason": "静态前向星节点、头数组和计数器；由构建题复用。"
+  },
+  {
+    "docId": "hnap2ge6fi24yk7v",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "g-forward-star-adjacency"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "hzwyvvq4bbg2x7pc",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "g-dfs"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "hzwyvvq4bbg2x7pc",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "g-maze-reachable",
+      "g-maze-paths"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "hzwyvvq4bbg2x7pc",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "g-bfs"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "hzwyvvq4bbg2x7pc",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "g-distance"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "gm25a9zkibxepn7w",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "g-scc-kosaraju"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "gm25a9zkibxepn7w",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "g-scc-tarjan"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "efgybln1u34h4qk2",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "g-cut-vertices",
+      "g-point-bcc"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "efgybln1u34h4qk2",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "g-bridges",
+      "g-edge-bcc"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "gcbkvkk1hbl1a1wu",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "g-mst-prim"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "gcbkvkk1hbl1a1wu",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "g-mst-kruskal"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "cupw7m5ihhhargh0",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "g-topological-fifo",
+      "g-critical-path"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "cupw7m5ihhhargh0",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "g-critical-path"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "nt3aaeukgr2p9zed",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "g-dijkstra-distances",
+      "g-dijkstra-path",
+      "g-spfa-path"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "nt3aaeukgr2p9zed",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "g-spfa-distances",
+      "g-spfa-path"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "nt3aaeukgr2p9zed",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "g-floyd-distances",
+      "g-floyd-path"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "nt3aaeukgr2p9zed",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "g-transitive-closure"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "s-recursive-binary",
+      "s-iterative-binary"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "s-interpolation"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "s-stl-binary-exists",
+      "s-stl-lower-bound",
+      "s-stl-upper-bound",
+      "s-stl-equal-range",
+      "s-stl-set-lower-bound"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 3,
+    "kind": "support",
+    "problemIds": [
+      "s-block-search"
+    ],
+    "reason": "分块索引类型；由分块查找题复用。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "s-block-search"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "s-string-bf"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 6,
+    "kind": "problem",
+    "problemIds": [
+      "s-string-kmp"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 7,
+    "kind": "support",
+    "problemIds": [
+      "s-skip-search",
+      "s-skip-insert",
+      "s-skip-delete",
+      "s-skip-print"
+    ],
+    "reason": "跳表编译期层数与节点类型；由跳表各题复用。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 8,
+    "kind": "problem",
+    "problemIds": [
+      "s-skip-search",
+      "s-skip-insert",
+      "s-skip-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 9,
+    "kind": "problem",
+    "problemIds": [
+      "s-skip-insert",
+      "s-skip-delete",
+      "s-skip-print"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ryfee7q3xhla8ghs",
+    "block": 10,
+    "kind": "problem",
+    "problemIds": [
+      "s-skip-insert",
+      "s-skip-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "s-bst-search",
+      "s-bst-insert",
+      "s-bst-delete"
+    ],
+    "reason": "BST节点类型；由BST查找/插入/删除题复用。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "s-bst-search",
+      "s-bst-insert",
+      "s-bst-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "s-bst-search",
+      "s-bst-insert",
+      "s-bst-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "s-bst-search",
+      "s-bst-insert",
+      "s-bst-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 4,
+    "kind": "support",
+    "problemIds": [
+      "s-avl-insert",
+      "s-avl-delete",
+      "s-avl-rotate-ll",
+      "s-avl-rotate-rr",
+      "s-avl-rotate-lr",
+      "s-avl-rotate-rl"
+    ],
+    "reason": "AVL节点类型和高度辅助函数；由AVL旋转/插删题复用。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "s-avl-insert",
+      "s-avl-delete",
+      "s-avl-rotate-ll",
+      "s-avl-rotate-rr",
+      "s-avl-rotate-lr",
+      "s-avl-rotate-rl"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 6,
+    "kind": "problem",
+    "problemIds": [
+      "s-avl-insert",
+      "s-avl-delete",
+      "s-avl-rotate-ll",
+      "s-avl-rotate-rr",
+      "s-avl-rotate-lr",
+      "s-avl-rotate-rl"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 7,
+    "kind": "problem",
+    "problemIds": [
+      "s-avl-insert",
+      "s-avl-delete",
+      "s-avl-rotate-ll",
+      "s-avl-rotate-rr",
+      "s-avl-rotate-lr",
+      "s-avl-rotate-rl"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 8,
+    "kind": "problem",
+    "problemIds": [
+      "s-avl-insert",
+      "s-avl-delete",
+      "s-avl-rotate-ll",
+      "s-avl-rotate-rr",
+      "s-avl-rotate-lr",
+      "s-avl-rotate-rl"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 9,
+    "kind": "problem",
+    "problemIds": [
+      "s-avl-insert",
+      "s-avl-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "qsmaorshgyypzl6s",
+    "block": 10,
+    "kind": "problem",
+    "problemIds": [
+      "s-avl-insert",
+      "s-avl-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "it1niv51webln15h",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "s-splay-stretch",
+      "s-splay-search",
+      "s-splay-insert",
+      "s-splay-delete"
+    ],
+    "reason": "伸展树节点类型；由伸展/查找/插删题复用。"
+  },
+  {
+    "docId": "it1niv51webln15h",
+    "block": 1,
+    "kind": "support",
+    "problemIds": [
+      "s-splay-stretch",
+      "s-splay-search",
+      "s-splay-insert",
+      "s-splay-delete"
+    ],
+    "reason": "伸展树单旋辅助；由伸展和各公开操作题复用。"
+  },
+  {
+    "docId": "it1niv51webln15h",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "s-splay-stretch",
+      "s-splay-search",
+      "s-splay-insert",
+      "s-splay-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "it1niv51webln15h",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "s-splay-stretch",
+      "s-splay-search",
+      "s-splay-insert",
+      "s-splay-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "it1niv51webln15h",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "s-splay-stretch",
+      "s-splay-search",
+      "s-splay-insert",
+      "s-splay-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "it1niv51webln15h",
+    "block": 5,
+    "kind": "problem",
+    "problemIds": [
+      "s-splay-stretch",
+      "s-splay-search",
+      "s-splay-insert",
+      "s-splay-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "sn9gtyf4m8hli693",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "s-rb-insert",
+      "s-rb-delete"
+    ],
+    "reason": "红黑颜色与节点类型；由红黑插删题复用。"
+  },
+  {
+    "docId": "sn9gtyf4m8hli693",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "s-rb-insert",
+      "s-rb-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "sn9gtyf4m8hli693",
+    "block": 2,
+    "kind": "support",
+    "problemIds": [
+      "s-rb-insert",
+      "s-rb-delete"
+    ],
+    "reason": "维护父指针的旋转辅助；由红黑插删调整过程复用。"
+  },
+  {
+    "docId": "sn9gtyf4m8hli693",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "s-rb-insert",
+      "s-rb-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "pxmrn0a4cfzsfyab",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "s-tt-search",
+      "s-tt-insert",
+      "s-tt-delete"
+    ],
+    "reason": "2-3树节点类型；由查找/插删题复用。"
+  },
+  {
+    "docId": "pxmrn0a4cfzsfyab",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "s-tt-search",
+      "s-tt-insert",
+      "s-tt-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "pxmrn0a4cfzsfyab",
+    "block": 2,
+    "kind": "support",
+    "problemIds": [
+      "s-tt-search",
+      "s-tt-insert",
+      "s-tt-delete"
+    ],
+    "reason": "在多键节点内移动并加入键的辅助；由2-3树插入题复用。"
+  },
+  {
+    "docId": "pxmrn0a4cfzsfyab",
+    "block": 3,
+    "kind": "support",
+    "problemIds": [
+      "s-tt-search",
+      "s-tt-insert",
+      "s-tt-delete"
+    ],
+    "reason": "满节点分裂辅助；由2-3树插入题复用。"
+  },
+  {
+    "docId": "pxmrn0a4cfzsfyab",
+    "block": 4,
+    "kind": "problem",
+    "problemIds": [
+      "s-tt-search",
+      "s-tt-insert",
+      "s-tt-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "pxmrn0a4cfzsfyab",
+    "block": 5,
+    "kind": "support",
+    "problemIds": [
+      "s-tt-search",
+      "s-tt-insert",
+      "s-tt-delete"
+    ],
+    "reason": "删除首键及下溢修复辅助；由2-3树删除题复用。"
+  },
+  {
+    "docId": "pxmrn0a4cfzsfyab",
+    "block": 6,
+    "kind": "problem",
+    "problemIds": [
+      "s-tt-search",
+      "s-tt-insert",
+      "s-tt-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "yrvn9hbmegw2rrux",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "s-trie-search",
+      "s-trie-insert",
+      "s-trie-delete"
+    ],
+    "reason": "Trie分支数、节点与计数类型；由Trie各操作题复用。"
+  },
+  {
+    "docId": "yrvn9hbmegw2rrux",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "s-trie-search",
+      "s-trie-insert",
+      "s-trie-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "yrvn9hbmegw2rrux",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "s-trie-search",
+      "s-trie-insert",
+      "s-trie-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "yrvn9hbmegw2rrux",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "s-trie-search",
+      "s-trie-insert",
+      "s-trie-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ocd9lro158k0h9og",
+    "block": 0,
+    "kind": "support",
+    "problemIds": [
+      "s-hash-search",
+      "s-hash-insert",
+      "s-hash-delete"
+    ],
+    "reason": "逐层质数表和散列树节点；由散列树各题复用。"
+  },
+  {
+    "docId": "ocd9lro158k0h9og",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "s-hash-search",
+      "s-hash-insert",
+      "s-hash-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ocd9lro158k0h9og",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "s-hash-search",
+      "s-hash-insert",
+      "s-hash-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "ocd9lro158k0h9og",
+    "block": 3,
+    "kind": "problem",
+    "problemIds": [
+      "s-hash-search",
+      "s-hash-insert",
+      "s-hash-delete"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "wxd6uls7v918plpt",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "s-stl-map"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "wxd6uls7v918plpt",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "s-stl-set"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "fgbhvgrm2q318cw0",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-insertion"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "fgbhvgrm2q318cw0",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-shell"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "zragm35cyd391far",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-bubble",
+      "o-bfprt-kth"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "zragm35cyd391far",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-quick"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "zragm35cyd391far",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "o-bfprt-kth"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "hcmvl0efcx70k45g",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-selection"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "hcmvl0efcx70k45g",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-heap"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "gnsddlavq1f6mrdp",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-merge"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "sms4ub2q4at6o0an",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-counting"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "sms4ub2q4at6o0an",
+    "block": 1,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-bucket"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "sms4ub2q4at6o0an",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "o-sort-radix"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "fnhvweguk0m162gc",
+    "block": 0,
+    "kind": "problem",
+    "problemIds": [
+      "o-loser-tree-merge"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  },
+  {
+    "docId": "fnhvweguk0m162gc",
+    "block": 1,
+    "kind": "support",
+    "problemIds": [
+      "o-replacement-selection"
+    ],
+    "reason": "置换选择的叶数组、顺串和比较节点定义；由置换选择题复用。"
+  },
+  {
+    "docId": "fnhvweguk0m162gc",
+    "block": 2,
+    "kind": "problem",
+    "problemIds": [
+      "o-replacement-selection"
+    ],
+    "reason": "此块含可执行主算法/操作，关联题提供完整题面、参考程序与测试。"
+  }
+]

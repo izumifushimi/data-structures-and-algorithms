@@ -1502,9 +1502,11 @@ const mt = [
   "/sys/lib/clang/8.0.1/include",
   "-ferror-limit",
   "6",
+  // Each guest is single-threaded. Avoid atomic guards unsupported by this WASM backend.
   "-fmessage-length",
   "100",
   "-std=c++17",
+  "-fno-threadsafe-statics",
   "-O1",
   "-o",
   "/program.o",

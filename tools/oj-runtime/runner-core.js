@@ -92,7 +92,8 @@ async function execute(module, args, fs, stdin = '') {
 const compilerArgs = ['clang', '-cc1', '-emit-obj', '-disable-free', '-isysroot', '/sys',
  '-internal-isystem', '/sys/include/c++/v1', '-internal-isystem', '/sys/include',
  '-internal-isystem','/sys/lib/clang/8.0.1/include', '-ferror-limit','6',
- '-fmessage-length','100','-std=c++17','-O1','-o','/program.o','-x','c++','/program.cpp'];
+ // Each guest is single-threaded. Avoid atomic guards unsupported by this WASM backend.
+ '-fmessage-length','100','-std=c++17','-fno-threadsafe-statics','-O1','-o','/program.o','-x','c++','/program.cpp'];
 const linkerArgs = ['wasm-ld', '--no-threads', '--export-dynamic', '-z', 'stack-size=1048576',
  '--max-memory=67108864','-L/sys/lib/wasm32-wasi','/sys/lib/wasm32-wasi/crt1.o','/program.o',
  '-lc','-lc++','-lc++abi','/sys/lib/clang/8.0.1/lib/wasi/libclang_rt.builtins-wasm32.a','-o','/program.wasm'];
