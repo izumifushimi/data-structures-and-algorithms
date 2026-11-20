@@ -58,7 +58,7 @@ for row in json.loads(SOURCE.read_text(encoding='utf-8')):
     codes=[]
     for i,code in enumerate(parser.codes):
         f=fix.get('blocks',{}).get(str(i),{})
-        codes.append({'original':code,'corrected':f.get('code',code),'notes':f.get('notes',[]),'sha256':hashlib.sha256(code.encode()).hexdigest()})
+        codes.append({'original':code,'corrected':f.get('code',code),'notes':f.get('notes',[]),'sha256':hashlib.sha256(code.encode()).hexdigest(),**({'label':f['label']} if f.get('label') else {})})
     docs.append({'id':slug,'title':d['title'],'book':book,'sourceURL':base+'/'+slug,'sourceUpdatedAt':d.get('content_updated_at'),'originalHtml':''.join(parser.out),'codes':codes,'notes':fix.get('notes',[]),'enrichment':enrich.get(slug,{}),'sourceHash':hashlib.sha256(d['body'].encode()).hexdigest()})
 docs.sort(key=lambda d:(list(BOOKS.values()).index(d['book']),ORDER[d['book']].index(d['title']) if d['title'] in ORDER[d['book']] else 999))
 target=ROOT/'public/data/notes.json';target.write_text(json.dumps(docs,ensure_ascii=False,separators=(',',':')))

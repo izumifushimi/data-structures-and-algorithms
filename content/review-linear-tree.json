@@ -256,10 +256,12 @@
   "hhq73pa711g46fxo": {
     "blocks": {
       "0": {
-        "code": "//输出杨辉三角的前n行\nvoid yanghuiTriangle(int n){\n    if(n<=0) return;\n    int f1,f2,flag,w=4; //w是字符宽度，为了保证输出杨辉三角的形状。flag判断当前行是否已经输出第一个数字\n    queue<int>qu;\n    qu.push(0),qu.push(1); //初始化队列\n    while(n--){ //循环n次\n        qu.push(0); \n        flag=0;//flag等于0表示这一行还没有输出过第一个数字\n        do{\n            f1=qu.front();qu.pop();\n            f2=qu.front();\n            if(f2){\n                if(!flag){\n                    flag=1;\n                    cout<<setw(w*n+1)<<f2;//setw表示设置文本输出宽度w\n                }\n                else{\n                    cout<<setw(2*w)<<f2;\n                }\n            }\n            else{\n                cout<<endl;\n            }\n            qu.push(f1+f2);\n        }while(f2!=0);     \n    }\n}",
+        "code": "void yanghui(int n){\n    if(n<=0) return;\n    queue<int> qu;\n    qu.push(1);\n    for(int i=1;i<=n;i++){\n        int f1=0,f2;\n        for(int j=0;j<i;j++){\n            f2=qu.front();\n            qu.pop();\n            cout<<f2<<\" \";\n            qu.push(f1+f2);\n            f1=f2;\n        }\n        cout<<endl;\n        qu.push(1);\n    }\n}",
         "notes": [
-          "n 为负数时 while(n--) 不会正常终止；非正行数直接返回。"
-        ]
+          "按用户提供的 yanghui(n) 更新，已还原复制文本中的 HTML 实体与转义符。",
+          "此版队列初始化只放入 1；每行先令 f1=0，输出并弹出旧行元素，将 f1+f2 入队，最后补入右端的 1。原笔记“先将 0、1 入队”的描述对应保留的旧原码。"
+        ],
+        "label": "用户更新版"
       }
     },
     "notes": [

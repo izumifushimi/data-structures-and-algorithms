@@ -4210,7 +4210,7 @@ export const problems = [
           0
         ],
         "functions": [
-          "yanghuiTriangle"
+          "yanghui"
         ]
       }
     ],
@@ -4229,8 +4229,8 @@ export const problems = [
       }
     ],
     "template": "#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\n// 输入：一个整数 n。\n// 输出：每行输出一行三角形；n=0 输出 EMPTY。\nvoid solve(istream& in, ostream& out) {\n    // TODO: 读取输入，独立实现本题算法并输出结果。\n}\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    solve(cin, cout);\n    return 0;\n}\n",
-    "reference": "#include <iostream>\n#include <vector>\n#include <list>\n#include <deque>\n#include <queue>\n#include <stack>\n#include <map>\n#include <string>\n#include <algorithm>\n#include <cstring>\n#include <cctype>\n#include <stdexcept>\n#include <iomanip>\n#include <sstream>\nusing namespace std;\nvoid printv(const vector<int>&v){if(v.empty()){cout<<\"EMPTY\\n\";return;}for(int x:v)cout<<x<<' ';cout<<'\\n';}\n\n//输出杨辉三角的前n行\nvoid yanghuiTriangle(int n){\n    if(n<=0) return;\n    int f1,f2,flag,w=4; //w是字符宽度，为了保证输出杨辉三角的形状。flag判断当前行是否已经输出第一个数字\n    queue<int>qu;\n    qu.push(0),qu.push(1); //初始化队列\n    while(n--){ //循环n次\n        qu.push(0); \n        flag=0;//flag等于0表示这一行还没有输出过第一个数字\n        do{\n            f1=qu.front();qu.pop();\n            f2=qu.front();\n            if(f2){\n                if(!flag){\n                    flag=1;\n                    cout<<setw(w*n+1)<<f2;//setw表示设置文本输出宽度w\n                }\n                else{\n                    cout<<setw(2*w)<<f2;\n                }\n            }\n            else{\n                cout<<endl;\n            }\n            qu.push(f1+f2);\n        }while(f2!=0);     \n    }\n}\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;\nif(!n)cout<<\"EMPTY\\n\";else yanghuiTriangle(n);\nreturn 0;}\n",
-    "referenceNote": "算法主体来自本节原码的最小修正版；仅补充标准头文件、输入输出驱动和必要的类型上下文。空结果用 EMPTY 表示。",
+    "reference": "#include <iostream>\n#include <vector>\n#include <list>\n#include <deque>\n#include <queue>\n#include <stack>\n#include <map>\n#include <string>\n#include <algorithm>\n#include <cstring>\n#include <cctype>\n#include <stdexcept>\n#include <iomanip>\n#include <sstream>\nusing namespace std;\nvoid printv(const vector<int>&v){if(v.empty()){cout<<\"EMPTY\\n\";return;}for(int x:v)cout<<x<<' ';cout<<'\\n';}\n\nvoid yanghui(int n){\n    if(n<=0) return;\n    queue<int> qu;\n    qu.push(1);\n    for(int i=1;i<=n;i++){\n        int f1=0,f2;\n        for(int j=0;j<i;j++){\n            f2=qu.front();\n            qu.pop();\n            cout<<f2<<\" \";\n            qu.push(f1+f2);\n            f1=f2;\n        }\n        cout<<endl;\n        qu.push(1);\n    }\n}\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);\nint n;cin>>n;\nif(!n)cout<<\"EMPTY\\n\";else yanghui(n);\nreturn 0;}\n",
+    "referenceNote": "采用用户更新的 yanghui(n) 队列实现，仅补充标准头文件和输入输出驱动。OJ 约定 n=0 时输出 EMPTY；函数本身对非正行数直接返回。旧原码仍可切换查看。",
     "cases": [
       {
         "name": "测试 1",
